@@ -1,0 +1,88 @@
+body {
+	background: #eedeee;
+}
+
+@media (min-width: 992px) {
+  .card-title {
+    font-size: 2vw;
+  }
+  .card-subtitle {
+    font-size: 1.6vw;
+  }
+  .card-text {
+    font-size: 1.3vw;
+  }
+}
+@media (max-width: 991px) {
+  .card-title {
+    font-size: 4vw;
+  }
+  .card-subtitle {
+    font-size: 3.5vw;
+  }
+  .card-text {
+    font-size: 3vw;
+  }
+}
+
+.card a {
+	color: #fcafff;
+}
+.card:hover a{
+	color: #eee;
+}
+
+.card-title {
+  font-weight: bold;
+  color: white;
+  transition-duration: 500ms;
+}
+.card-subtitle {
+  text-decoration: underline;
+  transition-duration: 500ms;
+}
+.card:hover .card-title, .card:hover .card-subtitle{
+  transition-duration: 500ms;
+  color: #fcafff;
+}
+
+@media (min-width: 992px) {
+  .col-lg-6:first-child {
+    margin-left: 25%;
+  }
+}
+
+p {
+  margin-bottom: 0px;
+}
+
+.card {
+  border-radius: 1.5em;
+  background: #300555;
+  padding: 1em;
+  color: #AAA;
+  transition-duration: 500ms;
+  min-height: 25em;
+}
+
+.card:hover {
+  border-radius: 3em;
+  color: white;
+  transition-duration: 500ms;
+}
+
+.card img {
+  width: 70%;
+  transition-duration: 500ms;
+}
+
+.card:hover img {
+  transform: scale(.8, .8);
+  opacity: .75;
+  transition-duration: 500ms;
+}
+
+.descripcion {
+	font-size: 50em;
+	text-decoration: underline;
+}
