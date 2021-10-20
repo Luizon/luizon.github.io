@@ -4,35 +4,41 @@ body {
 
 @media (min-width: 1200px) {
   .card-title {
-    font-size: 2.5vw;
+    font-size: 2.5em;
   }
   .card-subtitle {
-    font-size: 2vw;
+    font-size: 1.8em;
   }
   .card-text {
-    font-size: 1.6vw;
+    font-size: 1.45em;
+  }
+  .card {
+	min-height: 35em;
   }
 }
 @media (max-width: 1199px) {
   .card-title {
-    font-size: 3.5vw;
+    font-size: 2.2em;
   }
   .card-subtitle {
-    font-size: 3vw;
+    font-size: 1.65em;
   }
   .card-text {
-    font-size: 2vw;
+    font-size: 1.3em;
+  }
+  .card {
+	min-height: 30em;
   }
 }
 @media (max-width: 767px) {
   .card-title {
-    font-size: 2.5em;
-  }
-  .card-subtitle {
     font-size: 2em;
   }
+  .card-subtitle {
+    font-size: 1.5em;
+  }
   .card-text {
-    font-size: 1em;
+    font-size: 1.2em;
   }
 }
 
@@ -73,24 +79,27 @@ p {
   padding: 1em;
   color: #AAA;
   transition-duration: 500ms;
-  min-height: 20vw;
 }
 
 .card:hover {
-  border-radius: 3em;
   color: white;
   transition-duration: 500ms;
 }
 
 .card img {
-  width: 70%;
+  width: 90%;
+  height: 90%;
   transition-duration: 500ms;
+  opacity: .9;
+  border-radius: 1em;
 }
 
 .card:hover img {
-  transform: scale(.8, .8);
-  opacity: .75;
+  border-radius: 1em;
+  opacity: 1;
   transition-duration: 500ms;
+  width: 100%;
+  height: 100%;
 }
 
 .descripcion {
