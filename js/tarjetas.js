@@ -81,7 +81,7 @@ function crearTarjetas() {
 		descripcion: "Escoge un personaje completamente aleatorio del roster de Mortal Kombat 11."
 	}));
 	tarjetas.push(new Tarjeta({
-		titulo: "Smash Ultimate Random Character",
+		titulo: "SSBU Random Character",
 		imagen: "assets/img/ssbu_random.png",
 		url: "https://luizon.github.io/SmashUltimateRandom/",
 		fechaActualizacion: "dd/mm/aaaa",
