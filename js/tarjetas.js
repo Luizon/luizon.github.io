@@ -51,7 +51,12 @@ class Tarjeta {
 	
 	generarHTML() {
 		this.innerHTML = this.div("card",
-			this.div("card-title",
+			this.a(this.url,
+				this.div("card-img-top",
+					this.img(this.imagen)
+				)
+			)
+			+ this.div("card-title",
 				this.titulo
 			)
 			+ this.div("",
