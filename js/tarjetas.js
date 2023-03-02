@@ -3,7 +3,7 @@ var tarjetas = [];
 var contadorTarjetas = 0;
 //https://api.github.com/repos/Luizon/LevelMaker/commits
 class Tarjeta {
-	constructor(json) {
+	async constructor(json) {
 		this.titulo = json.titulo || "Título vacío";
 		this.imagen = json.imagen || "";
 		this.url = json.url || "https://luizon.github.io/" + json.nombre;
@@ -21,10 +21,10 @@ class Tarjeta {
 	    return new Promise(resolve => setTimeout(resolve, ms));
 	}
 
-	async fecha(nombre) {
+	fecha(nombre) {
 		this.fechaActualizacion = 'Cargando';
 		let that = this;
-		await $.ajax({
+		$.ajax({
 			url: `https://api.github.com/repos/Luizon/${nombre}/commits`,
 			success: (res) => {
 				let fecha = res[0].commit.committer.date;
@@ -34,15 +34,13 @@ class Tarjeta {
 				that.fechaActualizacion = 'Desconocido';
 			}
 		});
-		return 'Cargando';
 	}
 
 	async actualizaHTML() {
-		if(this.fechaActualizacion == 'Cargando') {
+		while(this.fechaActualizacion == 'Cargando') {
 			this.c++;
-			console.log(this.c + this.fechaActualizacion);
+			console.log(`${this.c} ${this.c} ${this.fechaActualizacion}`);
 			await this.sleep(1000);
-			this.actualizaHTML();
 		}
 		this.generarHTML();
 		let estaTarjeta = document.getElementById(this.id);
@@ -93,6 +91,12 @@ class Tarjeta {
 
 function crearTarjetas() {
 	tarjetas.push(new Tarjeta({
+		titulo: "Level Maker",
+		imagen: "assets/img/LevelMaker.png",
+		nombre: 'LevelMaker',
+		descripcion: "Editor de niveles para crear un mini juego de plataformas sencillo. ¡Crea y juega tus propios niveles! "
+	}));
+	tarjetas.push(new Tarjeta({
 		titulo: "Pong",
 		imagen: "assets/img/Pong.png",
 		nombre: 'Javascript_Pong',
@@ -103,6 +107,12 @@ function crearTarjetas() {
 		imagen: "assets/img/FlappyThing.png",
 		nombre: 'Javascript_FlappyThing',
 		descripcion: "El clásico Flappy Bird, recreado con gráficos. Intenta conseguir una gran puntuación, ¡entre mayor sea más complicado se vuelve el juego!"
+	}));
+	tarjetas.push(new Tarjeta({
+		titulo: "Piano",
+		imagen: "assets/img/js_piano.png",
+		nombre: 'js_piano',
+		descripcion: "Piano sencillo que toma el tamaño de la ventana. Funciona con mouse y teclado."
 	}));
 	tarjetas.push(new Tarjeta({
 		titulo: "Una calculadora",
@@ -121,18 +131,6 @@ function crearTarjetas() {
 		imagen: "assets/img/ssbu_random.png",
 		nombre: 'SmashUltimateRandom',
 		descripcion: "Escoge un personaje completamente aleatorio del roster de Super Smash Bros Ultimate."
-	}));
-	tarjetas.push(new Tarjeta({
-		titulo: "Piano",
-		imagen: "assets/img/js_piano.png",
-		nombre: 'js_piano',
-		descripcion: "Piano sencillo que toma el tamaño de la ventana. Funciona con mouse y teclado."
-	}));
-	tarjetas.push(new Tarjeta({
-		titulo: "Level Maker",
-		imagen: "assets/img/LevelMaker.png",
-		nombre: 'LevelMaker',
-		descripcion: "Editor de niveles para crear un mini juego de plataformas sencillo. ¡Crea y juega tus propios niveles!"
 	}));
 
 	
