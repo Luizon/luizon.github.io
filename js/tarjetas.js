@@ -3,7 +3,7 @@ var tarjetas = [];
 var contadorTarjetas = 0;
 //https://api.github.com/repos/Luizon/LevelMaker/commits
 class Tarjeta {
-	async constructor(json) {
+	constructor(json) {
 		this.titulo = json.titulo || "Título vacío";
 		this.imagen = json.imagen || "";
 		this.url = json.url || "https://luizon.github.io/" + json.nombre;
@@ -39,7 +39,7 @@ class Tarjeta {
 	async actualizaHTML() {
 		while(this.fechaActualizacion == 'Cargando') {
 			this.c++;
-			console.log(`${this.c} ${this.c} ${this.fechaActualizacion}`);
+			console.log(`Tarjeta ${this.id}: iteracion ${this.c}: ${this.fechaActualizacion}`);
 			await this.sleep(1000);
 		}
 		this.generarHTML();
