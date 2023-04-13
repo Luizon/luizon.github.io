@@ -1,7 +1,6 @@
 var tarjetero;
 var tarjetas = [];
 var contadorTarjetas = 0;
-//https://api.github.com/repos/Luizon/LevelMaker/commits
 class Tarjeta {
 	constructor(json) {
 		this.titulo = json.titulo || "Título vacío";
@@ -114,25 +113,6 @@ function crearTarjetas() {
 		nombre: 'js_piano',
 		descripcion: "Piano sencillo que toma el tamaño de la ventana. Funciona con mouse y teclado."
 	}));
-	tarjetas.push(new Tarjeta({
-		titulo: "Una calculadora",
-		imagen: "assets/img/Calculator.png",
-		nombre: 'calculadora',
-		descripcion: "Una calculadora común y corriente."
-	}));
-	tarjetas.push(new Tarjeta({
-		titulo: "MK11 Random character",
-		imagen: "assets/img/mk11_random.png",
-		nombre: 'MortalKombat11_Random',
-		descripcion: "Escoge un personaje completamente aleatorio del roster de Mortal Kombat 11."
-	}));
-	tarjetas.push(new Tarjeta({
-		titulo: "SSBU Random Character",
-		imagen: "assets/img/ssbu_random.png",
-		nombre: 'SmashUltimateRandom',
-		descripcion: "Escoge un personaje completamente aleatorio del roster de Super Smash Bros Ultimate."
-	}));
-
 	
 	tarjetas.forEach( (tarjeta, i) => {
 		let nodoTarjeta = document.createElement("div");
