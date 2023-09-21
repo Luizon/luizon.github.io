@@ -96,22 +96,16 @@ function crearTarjetas() {
 		descripcion: "Editor de niveles para crear un mini juego de plataformas sencillo. ¡Crea y juega tus propios niveles! "
 	}));
 	tarjetas.push(new Tarjeta({
-		titulo: "Pong",
-		imagen: "assets/img/Pong.png",
-		nombre: 'Javascript_Pong',
-		descripcion: "El clásico Pong de toda la vida. Juegas solo con dificultad que va de 1 a 10, en una dificultad especial imposible de ganar o con alguien, compartiendo el teclado."
-	}));
-	tarjetas.push(new Tarjeta({
 		titulo: "Flappy Thing",
 		imagen: "assets/img/FlappyThing.png",
 		nombre: 'Javascript_FlappyThing',
-		descripcion: "El clásico Flappy Bird, recreado con gráficos. Intenta conseguir una gran puntuación, ¡entre mayor sea más complicado se vuelve el juego!"
+		descripcion: "El clásico Flappy Bird, recreado con gráficos polígonales. Intenta conseguir una gran puntuación, ¡entre mayor sea más complicado se vuelve el juego!"
 	}));
 	tarjetas.push(new Tarjeta({
-		titulo: "Piano",
-		imagen: "assets/img/js_piano.png",
-		nombre: 'js_piano',
-		descripcion: "Piano sencillo que toma el tamaño de la ventana. Funciona con mouse y teclado."
+		titulo: "Pong",
+		imagen: "assets/img/Pong.png",
+		nombre: 'Javascript_Pong',
+		descripcion: "El clásico Pong de toda la vida. Juega solo con dificultad que va de 1 a 10, en una dificultad especial imposible de ganar o incluso juega con otra persona localmente."
 	}));
 	
 	tarjetas.forEach( (tarjeta, i) => {
