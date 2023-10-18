@@ -1,0 +1,58 @@
+.wave-hand {
+  animation: wave 2s;
+}
+
+.wave-hand:hover {
+  animation: wave 2s infinite;
+}
+
+@keyframes wave {
+  0% { transform: rotate( 0.0deg) }
+   10% { transform: rotate(20.0deg) }
+   20% { transform: rotate(-10.0deg) }
+   30% { transform: rotate(20.0deg) }
+   40% { transform: rotate(-5.0deg) }
+   50% { transform: rotate(10.0deg) }
+   60% { transform: rotate( 0.0deg) }
+  100% { transform: rotate( 0.0deg) }
+}
+
+#containerr {
+    position: absolute;
+    width: 100vw;
+    bottom: 10px;
+    
+    filter: url(#threshold) blur(0.6px);
+}
+
+#text1,
+#text2 {
+    position: absolute;
+    bottom: 0px;
+    left: 10px;
+    display: inline-block;
+    user-select: none;
+}
+
+/* 
+#quality{
+  animation: quality-animation-1 infinite 20s;
+}
+
+#quality2{
+  animation-delay: 4s;
+}
+#quality3{
+  animation-delay: 8s;
+}
+#quality4{
+  animation-delay: 12s;
+}
+#quality5{
+  animation-delay: 16s;
+} */
+
+@keyframes quality-animation-1 {
+  0%, 8%, 22%, 100% { opacity: 0; }
+  10%, 20% { opacity: 100%; }
+}
