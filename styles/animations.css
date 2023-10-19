@@ -33,3 +33,31 @@
     display: inline-block;
     user-select: none;
 }
+
+@media (max-width: 599.98px) {
+  #text1,
+  #text2 {
+    left: 4px;
+  }
+  #containerr {
+    bottom: 4px;
+  }
+  .wave-hand {
+    animation: wave 2s infinite;
+  }
+}
+
+@media (max-width: 991.98px) {
+  #text1,
+  #text2 {
+    left: 7px;
+  }
+  #containerr {
+    bottom: 7px;
+  }
+}
+@media (orientation: portrait) {
+  .wave-hand {
+    animation: wave 2s infinite;
+  }
+}

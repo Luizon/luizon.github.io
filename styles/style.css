@@ -1,3 +1,8 @@
+:root {
+  --sm-device: 575.98px;
+  --md-device: 991.98px;
+}
+
 @font-face {
   font-family: jetbrainsmono-regular;
   src: url('./font/JetBrainsMono-Regular.ttf');
@@ -48,7 +53,7 @@ nav {
 }
 
 #biography {
-  margin-top: calc(35px);
+  margin-top: 35px;
   padding: 0em 0em 0em 1em;
   color:aliceblue;
   font-size: 1.3em;
@@ -65,12 +70,6 @@ nav {
 
 .purple:hover {
   font-weight: bolder;
-}
-
-.quality{
-  bottom: 10px;
-  left: 10px;
-  opacity: 0%;
 }
 
 #networks {
@@ -119,6 +118,33 @@ nav {
 .img-profile-pic:hover{
   transform: scale(1.03);
   transition: 200ms;
+}
+
+@media (max-width: 991.98px) {
+  #networks {
+    width: 5em;
+  }
+  .navbar-brand {
+    font-size: 12px;
+  }
+  .nav-icon {
+    width: 22px;
+  }
+  #biography {
+    font-size: 1.2em;
+  }
+  #biography h1 {
+    font-size: 2em;
+  }
+}
+
+@media (max-width: 599.98px) {
+  #biography {
+    font-size: 1em;
+  }
+  #biography h1 {
+    font-size: 2em;
+  }
 }
 
 .tetris-L{
