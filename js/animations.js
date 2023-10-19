@@ -10,6 +10,13 @@ const texts = [
     "☕ Cafeinómano",
     "👾 Videojugador",
 ];
+const textsEN = [
+    "👨🏾‍💻 Developer",
+    "💡 Creative mind",
+    "🎯 Problem solver",
+    "☕ Coffeeholic",
+    "👾 Gamer",
+];
 
 const morphTime = 1.5;
 const cooldownTime = 2;
@@ -19,8 +26,14 @@ let time = new Date();
 let morph = 0;
 let cooldown = cooldownTime;
 
-elts.text1.textContent = texts[textIndex % texts.length];
-elts.text2.textContent = texts[(textIndex + 1) % texts.length];
+if(window.location.href.includes("/EN")) {
+    elts.text1.textContent = textsEN[textIndex % textsEN.length];
+    elts.text2.textContent = textsEN[(textIndex + 1) % textsEN.length];
+}
+else {
+    elts.text1.textContent = texts[textIndex % texts.length];
+    elts.text2.textContent = texts[(textIndex + 1) % texts.length];
+}
 
 function doMorph() {
     morph -= cooldown;
@@ -44,8 +57,14 @@ function setMorph(fraction) {
     elts.text1.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
     elts.text1.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
 
-    elts.text1.textContent = texts[textIndex % texts.length];
-    elts.text2.textContent = texts[(textIndex + 1) % texts.length];
+    if(window.location.href.includes("/EN")) {
+        elts.text1.textContent = textsEN[textIndex % textsEN.length];
+        elts.text2.textContent = textsEN[(textIndex + 1) % textsEN.length];
+    }
+    else {
+        elts.text1.textContent = texts[textIndex % texts.length];
+        elts.text2.textContent = texts[(textIndex + 1) % texts.length];
+    }
 }
 
 function doCooldown() {
