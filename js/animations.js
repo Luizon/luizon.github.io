@@ -1,3 +1,30 @@
+// Obtén todas las secciones
+const sections = document.querySelectorAll('section');
+let currentSectionIndex = 0;
+// let lastUbi = 0;
+
+// Agrega un evento para detectar el desplazamiento
+const moveToSection = (event) => {
+    console.log(event)
+    if (event.deltaY > 0) {
+        // Desplazamiento hacia abajo
+        if (currentSectionIndex < sections.length - 1) {
+            currentSectionIndex++;
+            console.log("bajar a " + currentSectionIndex)
+            sections[currentSectionIndex].scrollIntoView({ behavior: 'smooth' });
+        }
+    } else if (event.deltaY < 0) {
+        // Desplazamiento hacia arriba
+        if (currentSectionIndex > 0) {
+            currentSectionIndex--;
+            console.log("subir a " + currentSectionIndex)
+            sections[currentSectionIndex].scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+}
+// window.addEventListener('scrollend', moveToSection);
+window.addEventListener('wheel', moveToSection);
+
 const elts = {
     text1: document.getElementById("text1"),
     text2: document.getElementById("text2")
