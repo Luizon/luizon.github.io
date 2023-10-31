@@ -17,6 +17,7 @@ body {
   margin: 0px;
   background-color: #210333;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 html {
@@ -145,26 +146,4 @@ nav {
   #biography h1 {
     font-size: 1.5em;
   }
-}
-
-.tetris-L{
-  clip-path: polygon(0% 0%, 0% 100%, 66.6% 100%, 66.6% 66.6%, 33.3% 66.6%, 33.3% 0%);
-}
-.tetris-square{
-  clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%);
-}
-.tetris-T-down{
-  clip-path: polygon(33.3% 0%, 33.3% 33.3%, 0% 33.3%, 0% 66.6%, 100% 66.6%, 100% 33.3%, 66.6% 33.3%, 66.6% 0%);
-}
-.tetris-T-up{
-  clip-path: polygon(66.6% 0%, 66.6% 33.3%, 33.3% 33.3%, 33.3% 66.6%, 66.6% 66.6%, 66.6% 100%, 100% 100%, 100% 0%);
-}
-.tetris-Z{
-  clip-path: polygon(0% 33.3%, 0% 66.6%, 33.3% 66.6%, 33.3% 100%, 100% 100%, 100% 66.6%, 66.6% 66.6%, 66.6% 33.3%);
-}
-.tetris-Z-vertical{
-  clip-path: polygon(66.6% 0%, 66.6% 33.3%, 33.3% 33.3%, 33.3% 100%, 66.6% 100%, 66.6% 66.6%, 100% 66.6%, 100% 0%);
-}
-.tetris-S-vertical{
-  clip-path: polygon(66.6% 0%, 66.6% 33.3%, 100% 33.3%, 100% 100%, 66.6% 100%, 66.6% 66.6%, 33.3% 66.6%, 33.3% 0%);
 }
