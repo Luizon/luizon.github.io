@@ -6,10 +6,18 @@ const __body__ = document.getElementById("top");
 __body__.addEventListener("keyup", evt => {
     if(evt.key != " ")
         return;
+    if(!__body__.classList.contains("smooth-1s"))
+        __body__.classList.add("smooth-1s");
     currentSectionIndex++;
     if(currentSectionIndex == sections.length)
         currentSectionIndex = 0;
     sections[currentSectionIndex].scrollIntoView({ behavior: 'smooth' });
+    if(currentSectionIndex == 0) {
+        __body__.style.background = "#210333";
+    }
+    else {
+        __body__.style.background = "#420666";
+    }
 })
 
 
@@ -139,12 +147,14 @@ animate();
 // tetris image follows the mouse
 /////////////////////////////////////
 
-const tetrisImageContainer = document.getElementsByClassName('tetris-shape');
+const tetrisImageContainer = document.querySelectorAll('.tetris-shape-container')
 const textToReplace = document.getElementsByClassName('text-to-replace')[0];
 
 for(let i = 0 ; i < tetrisImageContainer.length ; i++) {
     let tetrisPiece = tetrisImageContainer[i];
     let followImage = tetrisPiece.children[0];
+    if(tetrisPiece.classList.contains("tetris-shape-container"))
+        followImage = followImage.children[0];
     let isHovered = false;
     tetrisPiece.addEventListener('mouseenter', () => {
       isHovered = true;
@@ -152,21 +162,20 @@ for(let i = 0 ; i < tetrisImageContainer.length ; i++) {
     
     tetrisPiece.addEventListener('mouseleave', () => {
       isHovered = false;
-      // Restablece la posición de la imagen cuando el ratón sale
       followImage.style.transform = 'translate(0, 0)';
     });
     
     tetrisPiece.addEventListener('mousemove', (e) => {
       if (isHovered) {
-        // Calcula la posición relativa de la imagen con respecto al puntero del ratón
         const x = e.clientX - tetrisPiece.getBoundingClientRect().left - tetrisPiece.offsetWidth / 2;
         const y = e.clientY - tetrisPiece.getBoundingClientRect().top - tetrisPiece.offsetHeight / 2;
     
-        // Aplica la transformación para mover la imagen ligeramente
         followImage.style.transform = `translate(${x/5}px, ${y/5}px) scale(1.3)`;
 
-        if(textToReplace.innerText != tetrisPiece.title)
-            textToReplace.innerText = tetrisPiece.title;
+        if(textToReplace.innerText != tetrisPiece.ariaLabel)
+            textToReplace.innerText = tetrisPiece.ariaLabel;
       }
     });
 }
+
+

@@ -15,9 +15,13 @@
 
 body {
   margin: 0px;
-  background-color: #210333;
+  background: #210333;
   overflow-x: hidden;
   overflow-y: hidden;
+}
+
+.smooth-1s {
+  transition: 1s;
 }
 
 html {
