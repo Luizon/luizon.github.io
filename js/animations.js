@@ -8,7 +8,6 @@ let currentSectionIndex = 0;
 let isScrolling = false;
 
 for(scrollElement in scrollButtons) {
-    console.log(scrollButtons[scrollElement])
     if(typeof scrollButtons[scrollElement] !== "object")
         break;
     if(scrollButtons[scrollElement].classList.contains("btn-scroll-1"))

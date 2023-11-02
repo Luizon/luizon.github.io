@@ -223,7 +223,7 @@
 /************************************
           MOBILE DEVICES 
 ************************************/
-@media (max-width: 576px) {
+@media (orientation: portrait) {
   /* shapes */
   .tetris-sm-L{
     /* clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 66.6%, 50% 66.6%, 50% 0%); */
