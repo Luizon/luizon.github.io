@@ -1,3 +1,10 @@
+:root {
+  --block-lg-width: calc(100vw /  8);
+  --block-lg-height: calc(100vh /  6);
+  --block-sm-width: calc(100vw /  5);
+  --block-sm-height: calc(100vh /  9);
+}
+
 /* general classes */
 .tetris-image{
   width: 100%;
@@ -12,7 +19,7 @@
   transition: 100ms;
 }
 /* shapes */
-.tetris-L{
+.tetris-lg-L{
   /* clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 66.6%, 50% 66.6%, 50% 0%); */
   clip-path: polygon(
     calc(10vw / 8) 0%, 0% calc(10vw / 8),
@@ -23,7 +30,7 @@
     50% calc(10vw / 8), calc(50% - 10vw / 8) 0%
   );
 }
-.tetris-square{
+.tetris-lg-square{
   /* clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%); */
   clip-path: polygon(
     calc(10vw / 8) 0%, 0% calc(10vw / 8),
@@ -32,7 +39,7 @@
     100% calc(10vw / 8), calc(100% - 10vw / 8) 0%
   );
 }
-.tetris-T-down{
+.tetris-lg-T-down{
   /* clip-path: polygon(33.3% 0%, 33.3% 50%, 0% 50%, 0% 100%, 100% 100%, 100% 50%, 66.6% 50%, 66.6% 0%); */
   clip-path: polygon(
     calc(33.3% + 10vw / 8) 0%, 33.3% calc(10vw / 8),
@@ -45,7 +52,7 @@
     66.6% calc(10vw / 8), calc(66.6% - 10vw / 8) 0%
   );
 }
-.tetris-T-up{
+.tetris-lg-T-up{
   /* clip-path: polygon(50% 0%, 50% 33.3%, 0% 33.3%, 0% 66.6%, 50% 66.6%, 50% 100%, 100% 100%, 100% 0%); */
   clip-path: polygon(
     calc(50% + 10vw / 8) 0%, 50% calc(10vw / 8),
@@ -58,7 +65,7 @@
     100% calc(10vw / 8), calc(100% - 10vw / 8) 0%
   );
 }
-.tetris-Z{
+.tetris-lg-Z{
   /* clip-path: polygon(0% 0%, 0% 50%, 33.3% 50%, 33.3% 100%, 100% 100%, 100% 50%, 66.6% 50%, 66.6% 0%); */
   clip-path: polygon(
     calc(10vw / 8) 0%, 0% calc(10vw / 8),
@@ -71,7 +78,7 @@
     66.6% calc(10vw / 8), calc(66.6% - 10vw / 8) 0%
   );
 }
-.tetris-Z-vertical{
+.tetris-lg-Z-vertical{
   /* clip-path: polygon(50% 0%, 50% 33.3%, 0% 33.3%, 0% 100%, 50% 100%, 50% 66.6%, 100% 66.6%, 100% 0%); */
   clip-path: polygon(
     calc(50% + 10vw / 8) 0%, 50% calc(10vw / 8),
@@ -84,7 +91,7 @@
     100% calc(10vw / 8), calc(100% - 10vw / 8) 0%
   );
 }
-.tetris-S-vertical{
+.tetris-lg-S-vertical{
   /* clip-path: polygon(50% 0%, 50% 33.3%, 100% 33.3%, 100% 100%, 50% 100%, 50% 66.6%, 0% 66.6%, 0% 0%); */
   clip-path: polygon(
     0% calc(10vw / 8), calc(10vw / 8) 0%,
@@ -100,8 +107,8 @@
 
 /* sizes and shadow */
 .tetris-shape, .tetris-shape-container {
-  width: calc(100vw / 8 * 3);
-  height: calc(100vh / 6 * 3);
+  width: calc(var(--block-lg-width) * 3);
+  height: calc(var(--block-lg-height) * 3);
   position: absolute;
 }
 .tetris-shape-container {
@@ -112,59 +119,72 @@
   width: 100%;
   left: 10px;
 }
-.tetris-shape-container > .tetris-shape.tetris-T-up {
-  height: 100%;
+.tetris-shape-container > .tetris-sm-S-vertical,
+.tetris-shape-container > .tetris-sm-Z-vertical,
+.tetris-shape-container > .tetris-lg-S-vertical,
+.tetris-shape-container > .tetris-lg-Z-vertical {
+  width: calc(100% - 20px);
 }
-.tetris-shape-container > .tetris-shape.tetris-T-down {
+.tetris-shape-container > .tetris-sm-Z,
+.tetris-shape-container > .tetris-sm-T-down,
+.tetris-shape-container > .tetris-lg-Z,
+.tetris-shape-container > .tetris-lg-T-down {
+  height: calc(100% - 20px);
+  top: 10px;
+}
+.tetris-shape-container > .tetris-shape.tetris-lg-T-up {
+  width: calc(100% - 20px);
+}
+.tetris-shape-container > .tetris-shape.tetris-lg-T-down {
   top: 10px;
   width: calc(100% - 20px);
 }
-.tetris-w-2 {
-  width: calc(100vw / 8 * 2);
+.tetris-lg-w-2 {
+  width: calc(var(--block-lg-width) * 2);
 }
-.tetris-h-2 {
-  height: calc(100vh / 6 * 2);
+.tetris-lg-h-2 {
+  height: calc(var(--block-lg-height) * 2);
 }
 
 /* individual positions */
-.tetris-y-1{
-  top: calc(100vh / 6);
+.tetris-lg-y-1{
+  top: calc(var(--block-lg-height));
 }
-.tetris-y-2{
-  top: calc(100vh / 6 * 2);
+.tetris-lg-y-2{
+  top: calc(var(--block-lg-height) * 2);
 }
-.tetris-y-3{
-  top: calc(100vh / 6 * 3);
+.tetris-lg-y-3{
+  top: calc(var(--block-lg-height) * 3);
 }
-.tetris-y-4{
-  top: calc(100vh / 6 * 4);
+.tetris-lg-y-4{
+  top: calc(var(--block-lg-height) * 4);
 }
-.tetris-y-5{
-  top: calc(100vh / 6 * 5);
+.tetris-lg-y-5{
+  top: calc(var(--block-lg-height) * 5);
 }
-.tetris-x-1{
-  left: calc(100vw / 8);
+.tetris-lg-x-1{
+  left: calc(var(--block-lg-width));
 }
-.tetris-x-2{
-  left: calc(100vw / 8 * 2);
+.tetris-lg-x-2{
+  left: calc(var(--block-lg-width) * 2);
 }
-.tetris-x-3{
-  left: calc(100vw / 8 * 3);
+.tetris-lg-x-3{
+  left: calc(var(--block-lg-width) * 3);
 }
-.tetris-x-4{
-  left: calc(100vw / 8 * 4);
+.tetris-lg-x-4{
+  left: calc(var(--block-lg-width) * 4);
 }
-.tetris-x-5{
-  left: calc(100vw / 8 * 5);
+.tetris-lg-x-5{
+  left: calc(var(--block-lg-width) * 5);
 }
-.tetris-x-6{
-  left: calc(100vw / 8 * 6);
+.tetris-lg-x-6{
+  left: calc(var(--block-lg-width) * 6);
 }
 
 /* language icon */
 .tetris-language-icon{
-  width: calc((100vw / 8) / 1.4);
-  height: calc((100vh / 6) / 1.4);
+  width: calc((var(--block-lg-width)) / 1.4);
+  height: calc((var(--block-lg-height)) / 1.4);
   /* transition: 500ms; */
   position: absolute;
 }
@@ -173,27 +193,237 @@
   transition: 300ms;
 }
 
-.tetris-icon-x-0{
+.tetris-icon-lg-x-0{
   left: 7.5%;
 }
-.tetris-icon-x-33{
+.tetris-icon-lg-x-33{
   left: 39%;
 }
-.tetris-icon-x-50{
+.tetris-icon-lg-x-50{
   left: 58%;
 }
-.tetris-icon-x-66{
+.tetris-icon-lg-x-66{
   left: 71%;
 }
-.tetris-icon-y-0{
+.tetris-icon-lg-y-0{
   top: 10%;
 }
-.tetris-icon-y-33{
+.tetris-icon-lg-y-33{
   top: 43%;
 }
-.tetris-icon-y-50{
+.tetris-icon-lg-y-50{
   top: 58%;
 }
-.tetris-icon-y-66{
+.tetris-icon-lg-y-66{
   top: 72%;
+}
+
+
+
+/************************************
+          MOBILE DEVICES 
+************************************/
+@media (max-width: 576px) {
+  /* shapes */
+  .tetris-sm-L{
+    /* clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 66.6%, 50% 66.6%, 50% 0%); */
+    clip-path: polygon(
+      calc(10vw / 5) 0%, 0% calc(10vw / 5),
+      0% calc(100% - 10vw / 5), calc(10vw / 5) 100%,
+      calc(100% - 10vw / 5) 100%, 100% calc(100% - 10vw / 5),
+      100% calc(66.6% + 10vw / 5), calc(100% - 10vw / 5) 66.6%,
+      50% 66.6%,
+      50% calc(10vw / 5), calc(50% - 10vw / 5) 0%
+    );
+  }
+  .tetris-sm-square{
+    /* clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%); */
+    clip-path: polygon(
+      calc(10vw / 5) 0%, 0% calc(10vw / 5),
+      0% calc(100% - 10vw / 5), calc(10vw / 5) 100%,
+      calc(100% - 10vw / 5) 100%, 100% calc(100% - 10vw / 5),
+      100% calc(10vw / 5), calc(100% - 10vw / 5) 0%
+    );
+  }
+  .tetris-sm-T-down{
+    /* clip-path: polygon(33.3% 0%, 33.3% 50%, 0% 50%, 0% 100%, 100% 100%, 100% 50%, 66.6% 50%, 66.6% 0%); */
+    clip-path: polygon(
+      calc(33.3% + 10vw / 5) 0%, 33.3% calc(10vw / 5),
+      33.3% 50%,
+      calc(10vw / 5) 50%, 0% calc(50% + 10vw / 5),
+      0% calc(100% - 10vw / 5), calc(10vw / 5) 100%,
+      calc(100% - 10vw / 5) 100%, 100% calc(100% - 10vw / 5),
+      100% calc(50% + 10vw / 5), calc(100% - 10vw / 5) 50%,
+      66.6% 50%,
+      66.6% calc(10vw / 5), calc(66.6% - 10vw / 5) 0%
+    );
+  }
+  .tetris-sm-T-up{
+    /* clip-path: polygon(50% 0%, 50% 33.3%, 0% 33.3%, 0% 66.6%, 50% 66.6%, 50% 100%, 100% 100%, 100% 0%); */
+    clip-path: polygon(
+      calc(50% + 10vw / 5) 0%, 50% calc(10vw / 5),
+      50% 33.3%,
+      calc(10vw / 5) 33.3%, 0% calc(33.3% + 10vw / 5),
+      0% calc(66.6% - 10vw / 5), calc(10vw / 5) 66.6%,
+      50% 66.6%,
+      50% calc(100% - 10vw / 5),  calc(50% + 10vw / 5) 100%,
+      calc(100% - 10vw / 5) 100%, 100% calc(100% - 10vw / 5),
+      100% calc(10vw / 5), calc(100% - 10vw / 5) 0%
+    );
+  }
+  .tetris-sm-Z{
+    /* clip-path: polygon(0% 0%, 0% 50%, 33.3% 50%, 33.3% 100%, 100% 100%, 100% 50%, 66.6% 50%, 66.6% 0%); */
+    clip-path: polygon(
+      calc(10vw / 5) 0%, 0% calc(10vw / 5),
+      0% calc(50% - 10vw / 5), calc(10vw / 5) 50%,
+      33.3% 50%,
+      33.3% calc(100% - 10vw / 5), calc(33.3% + 10vw / 5) 100%,
+      calc(100% - 10vw / 5) 100%, 100% calc(100% - 10vw / 5),
+      100% calc(50% + 10vw / 5), calc(100% - 10vw / 5) 50%,
+      66.6% 50%,
+      66.6% calc(10vw / 5), calc(66.6% - 10vw / 5) 0%
+    );
+  }
+  .tetris-sm-Z-vertical{
+    /* clip-path: polygon(50% 0%, 50% 33.3%, 0% 33.3%, 0% 100%, 50% 100%, 50% 66.6%, 100% 66.6%, 100% 0%); */
+    clip-path: polygon(
+      calc(50% + 10vw / 5) 0%, 50% calc(10vw / 5),
+      50% 33.3%,
+      calc(10vw / 5) 33.3%, 0% calc(33.3% + 10vw / 5),
+      0% calc(100% - 10vw / 5), calc(10vw / 5) 100%,
+      calc(50% - 10vw / 5) 100%, 50% calc(100% - 10vw / 5),
+      50% 66.6%,
+      calc(100% - 10vw / 5) 66.6%, 100% calc(66.6% - 10vw / 5),
+      100% calc(10vw / 5), calc(100% - 10vw / 5) 0%
+    );
+  }
+  .tetris-sm-S-vertical{
+    /* clip-path: polygon(50% 0%, 50% 33.3%, 100% 33.3%, 100% 100%, 50% 100%, 50% 66.6%, 0% 66.6%, 0% 0%); */
+    clip-path: polygon(
+      0% calc(10vw / 5), calc(10vw / 5) 0%,
+      calc(50% - 10vw / 5) 0%, 50% calc(10vw / 5),
+      50% 33.3%,
+      calc(100% - 10vw / 5) 33.3%, 100% calc(33.3% + 10vw / 5),
+      100% calc(100% - 10vw / 5), calc(100% - 10vw / 5) 100%,
+      calc(50% + 10vw / 5) 100%, 50% calc(100% - 10vw / 5),
+      50% 66.6%,
+      calc(10vw / 5) 66.6%, 0% calc(66.6% - 10vw / 5)
+    );
+  }
+
+  /* sizes and shadow */
+  .tetris-shape, .tetris-shape-container {
+    width: calc(var(--block-sm-width) * 3);
+    height: calc(var(--block-sm-height) * 3);
+    /* position: absolute; */
+  }
+  /* .tetris-shape-container {
+    background-color: #000;
+  } */
+  /* 
+  .tetris-shape-container > .tetris-shape{
+    height: calc(100% - 10px);
+    width: 100%;
+    left: 10px;
+  }
+  .tetris-shape-container > .tetris-shape.tetris-T-up {
+    height: 100%;
+  }
+  */
+  .tetris-shape-container > .tetris-lg-T-down {
+    height: 100%;
+  }
+  .tetris-shape-container > .tetris-sm-T-down {
+    height: calc(100% - 20px);
+  }
+  .tetris-sm-w-2 {
+    width: calc(var(--block-sm-width) * 2);
+  }
+  .tetris-sm-h-2 {
+    height: calc(var(--block-sm-height) * 2);
+  }
+
+  /* individual positions */
+  .tetris-sm-y-0{
+    top: 0;
+  }
+  .tetris-sm-y-1{
+    top: calc(var(--block-sm-height));
+  }
+  .tetris-sm-y-2{
+    top: calc(var(--block-sm-height) * 2);
+  }
+  .tetris-sm-y-3{
+    top: calc(var(--block-sm-height) * 3);
+  }
+  .tetris-sm-y-4{
+    top: calc(var(--block-sm-height) * 4);
+  }
+  .tetris-sm-y-5{
+    top: calc(var(--block-sm-height) * 5);
+  }
+  .tetris-sm-y-6{
+    top: calc(var(--block-sm-height) * 6);
+  }
+  .tetris-sm-y-7{
+    top: calc(var(--block-sm-height) * 7);
+  }
+  .tetris-sm-y-8{
+    top: calc(var(--block-sm-height) * 8);
+  }
+  .tetris-sm-y-9{
+    top: calc(var(--block-sm-height) * 9);
+  }
+  .tetris-sm-x-0{
+    left: 0;
+  }
+  .tetris-sm-x-1{
+    left: calc(var(--block-sm-width));
+  }
+  .tetris-sm-x-2{
+    left: calc(var(--block-sm-width) * 2);
+  }
+  .tetris-sm-x-3{
+    left: calc(var(--block-sm-width) * 3);
+  }
+  .tetris-sm-x-4{
+    left: calc(var(--block-sm-width) * 4);
+  }
+
+  /* language icon */
+  .tetris-language-icon{
+    width: calc((var(--block-sm-width)) / 1.4);
+    height: calc((100vh / 10) / 1.4);
+    /* transition: 500ms; */
+    position: absolute;
+  }
+  .tetris-language-icon:hover{
+    transform: scale(1.2);
+    transition: 300ms;
+  }
+
+  .tetris-icon-sm-x-0{
+    left: 7.5%;
+  }
+  .tetris-icon-sm-x-33{
+    left: 39%;
+  }
+  .tetris-icon-sm-x-50{
+    left: 58%;
+  }
+  .tetris-icon-sm-x-66{
+    left: 71%;
+  }
+  .tetris-icon-sm-y-0{
+    top: 10%;
+  }
+  .tetris-icon-sm-y-33{
+    top: 38%;
+  }
+  .tetris-icon-sm-y-50{
+    top: 54%;
+  }
+  .tetris-icon-sm-y-66{
+    top: 69%;
+  }
 }

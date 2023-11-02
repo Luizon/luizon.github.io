@@ -3,11 +3,17 @@
 /////////////////////////////////////
 const sections = document.querySelectorAll('section');
 const __body__ = document.getElementById("top");
+let currentSectionIndex = 0;
+let isScrolling = false;
 __body__.addEventListener("keyup", evt => {
-    if(evt.key != " ")
+    if(evt.key != " " || isScrolling)
         return;
     if(!__body__.classList.contains("smooth-1s"))
-        __body__.classList.add("smooth-1s");
+    __body__.classList.add("smooth-1s");
+    isScrolling = true;
+    setTimeout( e => {
+        isScrolling = false;
+    }, 1000);
     currentSectionIndex++;
     if(currentSectionIndex == sections.length)
         currentSectionIndex = 0;
@@ -19,24 +25,6 @@ __body__.addEventListener("keyup", evt => {
         __body__.style.background = "#420666";
     }
 })
-
-
-let flagSectionChanged = false;
-let currentSectionIndex = 0;
-let lastScrollY = 0;
-
-const moveToSection = (event) => {
-    let isScrollingDownwards = window.scrollY - lastScrollY > 0;
-    lastScrollY = window.scrollY;
-    // console.log(isScrollingDownwards, currentSectionIndex);
-    if(isScrollingDownwards && currentSectionIndex < sections.length - 1)
-    ++currentSectionIndex;
-else if(!isScrollingDownwards && currentSectionIndex > 0)
---currentSectionIndex;
-sections[currentSectionIndex].scrollIntoView({ behavior: 'smooth' });
-}
-
-window.addEventListener('scrollend', moveToSection);
 
 /////////////////////////////////////
 // Qualities texts

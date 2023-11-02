@@ -18,44 +18,47 @@
 }
 
 #containerr {
-    position: absolute;
-    width: 100vw;
-    bottom: 10px;
-    
-    filter: url(#threshold) blur(0.6px);
+  position: absolute;
+  width: 100vw;
+  height: calc(100% - 10px);
+  bottom: 10px;
+  z-index: 1;
+  pointer-events: none;
+  
+  filter: url(#threshold) blur(0.6px);
 }
 
 #text1,
 #text2 {
-    position: absolute;
-    bottom: 0px;
-    left: 10px;
-    display: inline-block;
-    user-select: none;
+  position: absolute;
+  bottom: 0px;
+  left: 10px;
+  display: inline-block;
+  user-select: none;
 }
 
-@media (max-width: 599.98px) {
+@media (max-width: 991.98px) {
+  #containerr {
+    bottom: 7px;
+  }
+}
+
+@media (max-width: 575.98px) {
   #text1,
   #text2 {
-    left: 4px;
+    top: 60px;
+    width: 100%;
+    text-align: center;
   }
-  #containerr {
-    bottom: 4px;
+  .navbar-brand{
+    width: 100%;
+    text-align: center;
   }
   .wave-hand {
     animation: wave 2s infinite;
   }
 }
 
-@media (max-width: 991.98px) {
-  #text1,
-  #text2 {
-    left: 7px;
-  }
-  #containerr {
-    bottom: 7px;
-  }
-}
 @media (orientation: portrait) {
   .wave-hand {
     animation: wave 2s infinite;

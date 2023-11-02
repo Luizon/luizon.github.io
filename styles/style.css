@@ -1,8 +1,3 @@
-:root {
-  --sm-device: 575.98px;
-  --md-device: 991.98px;
-}
-
 @font-face {
   font-family: jetbrainsmono-regular;
   src: url('./font/JetBrainsMono-Regular.ttf');
@@ -78,7 +73,7 @@ nav {
   font-weight: bolder;
 }
 
-#networks {
+.networks {
   padding: 4em 0em;
   width: 6em;
   float: right;
@@ -126,7 +121,7 @@ nav {
 }
 
 @media (max-width: 991.98px) {
-  #networks {
+  .networks {
     width: 5em;
   }
   .navbar-brand {
@@ -136,16 +131,30 @@ nav {
     width: 22px;
   }
   #biography {
-    font-size: 1em;
+    font-size: 1.2em;
   }
   #biography h1 {
     font-size: 2em;
   }
 }
 
-@media (max-width: 599.98px) {
+@media (max-width: 767.98px) {
+  .networks {
+    position: absolute;
+    padding: 10px 0px;
+    width: inherit;
+    bottom: 0px;
+    height: 100px;
+  }
+  .img-networks {
+    height: 80px;
+    margin: 0px;
+  }
+}
+
+@media (max-width: 575.98px) {
   #biography {
-    font-size: .7em;
+    font-size: .8em;
   }
   #biography h1 {
     font-size: 1.5em;
