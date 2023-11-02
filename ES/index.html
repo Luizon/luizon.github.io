@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="es">
     <meta property="og:title" content="Luis Cárdenas | Full-stack developer">
@@ -22,6 +22,7 @@
     <meta name="twitter:url" content="https://luizon.dev">
     <link rel="shortcut icon" href="../img/favicon.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/animations.css">
     <link rel="stylesheet" href="../styles/tetris.css">
     <title>Luis Cárdenas | full-stack developer</title>
@@ -45,14 +46,21 @@
       <div class="row">
         <div class="col col-5 col-sm-7 full-height">
           <div class="row pt-5 pt-sm-3">
-            <div class="col d-flex align-items-center" id="biography">
+            <div class="col d-flex align-items-center position-relative" id="biography">
+              <div class="pb-5 d-block d-md-none position-absolute top-100 start-50 translate-middle">
+                <button class="btn btn-link shadow-none text-light btn-scroll btn-scroll-1">
+                  <h2>Bajar</h2>
+                </button>
+                <div class="pb-5 pt-md-2 pt-5 pt-md-0 mb-5 mb-sm-4 mb-md-0 mt-5 mt-sm-0"></div>
+              </div>
               <div>
                 <h1>Hola! <div class="d-inline-flex wave-hand">👋🏾</div></h1>
                 <p>
                   Soy <b>Luis Cárdenas</b>, un <b>ingeniero en software</b> apasionado por
                   la <b>programación</b>, la <b>experiencia de usuario</b> y el <span class="purple">color púrpura</span>. <br><br>
-                  Navega en este portafolio para saber más sobre <b>mi trabajo</b>.
+                  Navega en este portafolio para ver más sobre <b>mi trabajo</b>.
                 </p>
+                <div class="row d-block d-md-none pt-4 pb-4 mobile-only"></div>
               </div>
             </div>
             <div class="col col-auto d-none d-md-block networks pt-5">
@@ -68,7 +76,13 @@
             </div>
           </div>
         </div>
-        <div class="col col-7 col-sm-5 full-height">
+        <div class="col col-7 col-sm-5 full-height position-relative">
+          <div class="pb-5 d-none d-md-block position-absolute top-100 start-50 translate-middle">
+            <button class="btn btn-link shadow-none text-light btn-scroll btn-scroll-1">
+              <h2>Bajar</h2>
+            </button>
+            <div class="pb-5 pt-md-2 pt-5 pt-md-0 mb-5 mb-sm-4 mb-md-0 mt-5 mt-sm-0"></div>
+          </div>
           <div class="profile-cutted-pic full-height">
             <img class="img-profile-pic" src="../img/luizon.jpg" alt="Luizon">
           </div>
@@ -86,12 +100,13 @@
               </div>
               <div class="col">
                 <a href="https://linkedin.com/in/luisfernandocardenas" target="_blank" tabindex="-1">
-                <img class="img-networks" src="../img/redes/linkedin.svg" alt="linkedin">
-              </a>
+                  <img class="img-networks" src="../img/redes/linkedin.svg" alt="linkedin">
+                </a>
+              </div>
             </div>
+            <div class="row pt-4 mobile-only"></div>
           </div>
         </div>
-      </div>
       </div>
       <div id="containerr" class="p-0 m-0">
         <span id="text1" class="text-light fs-3"></span>
@@ -109,9 +124,9 @@
         </defs>
       </svg>
     </section>
-    <section id="technologies" class="position-relative full-height">
+    <section id="projects" class="position-relative full-height">
       <div class="pt-3"></div>
-      <div class="pt-4 d-block d-sm-none"></div>
+      <div class="pt-4 d-block d-md-none"></div>
       <h1 class="text-center pt-4 text-light text-to-replace">Software que he creado</h1>
       <div class="tetris-shape-container tetris-lg-w-2 tetris-sm-w-2 tetris-lg-y-3 tetris-sm-y-6 tetris-lg-L tetris-sm-L" title="Level Maker" data-bs-toggle="tooltip">
         <div class="tetris-shape tetris-lg-L tetris-sm-L">
@@ -161,7 +176,7 @@
         
   </div>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>    <link rel="stylesheet" href="../styles/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
   <script src="../js/animations.js"></script>
   <script src="../js/main.js"></script>
 </body>

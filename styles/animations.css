@@ -43,7 +43,7 @@
   }
 }
 
-@media (max-width: 575.98px) {
+@media (max-width: 767.98px) {
   #text1,
   #text2 {
     top: 60px;
@@ -54,6 +54,9 @@
     width: 100%;
     text-align: center;
   }
+}
+
+@media (max-width: 575.98px) {
   .wave-hand {
     animation: wave 2s infinite;
   }

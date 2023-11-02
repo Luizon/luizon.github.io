@@ -56,13 +56,13 @@ nav {
   /* margin-top: 35px; */
   padding: 0em 1em;
   color:aliceblue;
-  font-size: 1.3em;
+  font-size: 1.2em;
   text-align: center;
   height: 100vh;
 }
 
 #biography h1 {
-  font-size: 3em;
+  font-size: 2.5em;
 }
 
 .purple {
@@ -71,6 +71,10 @@ nav {
 
 .purple:hover {
   font-weight: bolder;
+}
+
+.btn-scroll {
+  white-space: nowrap;
 }
 
 .networks {
@@ -131,20 +135,20 @@ nav {
     width: 22px;
   }
   #biography {
-    font-size: 1.2em;
+    font-size: 1em;
   }
   #biography h1 {
-    font-size: 2em;
+    font-size: 1.75em;
   }
 }
 
 @media (max-width: 767.98px) {
   .networks {
     position: absolute;
-    padding: 10px 0px;
-    width: inherit;
+    padding: 10px 0px 10px 0px;
+    width: 100%;
     bottom: 0px;
-    height: 100px;
+    height: auto;
   }
   .img-networks {
     height: 80px;
