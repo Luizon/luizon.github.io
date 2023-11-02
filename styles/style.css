@@ -77,6 +77,10 @@ nav {
   white-space: nowrap;
 }
 
+.z-1 {
+  z-index: 1;
+}
+
 .networks {
   padding: 4em 0em;
   width: 6em;
