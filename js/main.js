@@ -13,7 +13,6 @@ const scrollButtons = document.querySelectorAll(".btn-scroll");
 const scrollToTopButton = document.getElementById("btnTop");
 let currentSectionIndex = 0;
 let isScrolling = false;
-sections[section.GREETINGS].scrollIntoView({ behavior: 'smooth' });
 
 for( scrollElement in scrollButtons ) {
   if(typeof scrollButtons[ scrollElement ] !== "object")
@@ -28,8 +27,8 @@ scrollToTopButton.addEventListener("click", evt => {
   scrollToSection( evt, section.GREETINGS );
 });
 
-
 function scrollToSection(evt, selectedSection = false) {
+  console.log(`scroll a ${selectedSection}`);
   if((evt.key != " " && selectedSection === false) || isScrolling)
     return;
   if(!__body__.classList.contains("smooth-1s"))
@@ -65,19 +64,34 @@ function scrollToSection(evt, selectedSection = false) {
       scrollToTopButton.classList.remove("fade-out");
     scrollToTopButton.classList.add("fade-in");
     scrollToTopButton.hidden = false;
-    }
+  }
 };
 
 /////////////////////////////////////
-// hide mobile stuff
+// window events
+/////////////////////////////////////
+window.onresize = evt => {
+  sections[currentSectionIndex].scrollIntoView({ behavior: 'smooth' });
+  console.log("resize")
+}
+window.onload = evt => {
+  console.log("load")
+  sections[section.GREETINGS].scrollIntoView({ behavior: 'smooth' });
+}
+
+/////////////////////////////////////
+// mobile stuff
 /////////////////////////////////////
 if (!/Mobi|Android|iPhone/i.test(navigator.userAgent)) {
   let onlyMobileElements = document.getElementsByClassName("mobile-only");
   for(element in onlyMobileElements) {
     if(typeof onlyMobileElements[element] !== "object")
-    break;
-  onlyMobileElements[element].hidden = true;
+      break;
+    onlyMobileElements[element].hidden = true;
+  }
 }
+else {
+  scrollToTopButton.classList.add("btn-top-mobile");
 }
 
 /////////////////////////////////////

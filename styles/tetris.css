@@ -17,6 +17,9 @@
 }
 .text-to-replace{
   transition: 100ms;
+  position: inherit;
+  z-index: 1;
+  background-color: #0008;
 }
 /* shapes */
 .tetris-lg-L{
@@ -209,7 +212,7 @@
   top: 10%;
 }
 .tetris-icon-lg-y-33{
-  top: 43%;
+  top: 38%;
 }
 .tetris-icon-lg-y-50{
   top: 58%;
