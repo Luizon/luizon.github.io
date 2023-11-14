@@ -30,14 +30,17 @@
 <body id="top" class="">
   <nav class="navbar fixed-top">
     <div class="container-fluid">
-      <a class="navbar-brand" href="https://luizon.dev/EN/">
+      <a tabindex="-1" class="navbar-brand" href="https://luizon.dev/EN/">
         <img src="../img/flag_usa.svg" alt="bandera_USA" class="nav-icon">  
         switch to English
       </a>
-      <a class="navbar-brand" href="javascript:alert('Aún no amiguito')">
+      <a tabindex="-1" class="navbar-brand" href="javascript:alert('Aún no amiguito')">
         <img src="../img/pdf.svg" alt="resume_CV" class="nav-icon">  
         <span class="text-decoration-underline">Descargar currículo</span>
       </a>
+      <button tabindex="-1" hidden type="button" id="btnTop" class="rounded-circle btn-scroll border-3 position-absolute end-0 me-2 me-md-3 btn btn-outline-light btn-top">
+        <img class="btn-img" src="../img/arrow_upward.svg" alt="↑">
+      </button>
     </div>
   </nav>
 
@@ -48,8 +51,8 @@
           <div class="row pt-5 pt-sm-3">
             <div class="col d-flex align-items-center position-relative" id="biography">
               <div class="z-1 pb-5 d-block d-md-none position-absolute top-100 start-50 translate-middle">
-                <button class="btn btn-link shadow-none text-light btn-scroll btn-scroll-1">
-                  <h4>Bajar</h4>
+                <button tabindex="-1" class="btn-scroll-down btn btn-scroll btn-outline-light rounded-circle border-3 shadow-none text-light btn-scroll btn-scroll-1">
+                  <img class="img-downwards btn-img" src="../img/arrow_upward.svg" alt="↓">
                 </button>
                 <div class="pb-5 pt-md-2 pt-5 pt-md-0 mb-5 mb-sm-4 mb-md-0 mt-5 mt-sm-0"></div>
               </div>
@@ -65,21 +68,21 @@
             </div>
             <div class="col col-auto d-none d-md-block networks pt-5">
               <a href="https://github.com/luizon" target="_blank" tabindex="-1">
-                <img class="img-networks" src="../img/redes/github.svg" alt="github">
+                <img class="img-networks" src="../img/redes/github.svg" title="Perfil de Github" data-bs-toggle="tooltip" alt="github">
               </a>
               <a href="mailto:lf-cardenas@hotmail.com" tabindex="-1">
-                <img class="img-networks" src="../img/redes/email.svg" alt="email">
+                <img class="img-networks" src="../img/redes/email.svg" title="Correo electrónico" data-bs-toggle="tooltip" alt="email">
               </a>
               <a href="https://linkedin.com/in/luisfernandocardenas" target="_blank" tabindex="-1">
-                <img class="img-networks" src="../img/redes/linkedin.svg" alt="linkedin">
+                <img class="img-networks" src="../img/redes/linkedin.svg" title="Perfil de Linkedin" data-bs-toggle="tooltip" alt="linkedin">
               </a>
             </div>
           </div>
         </div>
         <div class="col col-7 col-sm-5 full-height position-relative">
           <div class="z-1 pb-5 d-none d-md-block position-absolute top-100 start-50 translate-middle">
-            <button class="btn btn-link shadow-none text-light btn-scroll btn-scroll-1">
-              <h4>Bajar</h4>
+            <button tabindex="-1" class="btn-scroll-down btn btn-scroll btn-outline-light rounded-circle border-3 shadow-none text-light btn-scroll btn-scroll-1">
+              <img class="img-downwards btn-img" src="../img/arrow_upward.svg" alt="↓">
             </button>
             <div class="pb-5 pt-md-2 pt-5 pt-md-0 mb-5 mb-sm-4 mb-md-0 mt-5 mt-sm-0"></div>
           </div>
@@ -90,17 +93,17 @@
             <div class="row">
               <div class="col">
                 <a href="https://github.com/luizon" target="_blank" tabindex="-1">
-                  <img class="img-networks" src="../img/redes/github.svg" alt="github">
+                  <img class="img-networks" src="../img/redes/github.svg" title="Perfil de Github" data-bs-toggle="tooltip" alt="github">
                 </a>
               </div>
               <div class="col">
                 <a href="mailto:lf-cardenas@hotmail.com" tabindex="-1">
-                  <img class="img-networks" src="../img/redes/email.svg" alt="email">
+                  <img class="img-networks" src="../img/redes/email.svg" title="Correo electrónico" data-bs-toggle="tooltip" alt="email">
                 </a>
               </div>
               <div class="col">
                 <a href="https://linkedin.com/in/luisfernandocardenas" target="_blank" tabindex="-1">
-                  <img class="img-networks" src="../img/redes/linkedin.svg" alt="linkedin">
+                  <img class="img-networks" src="../img/redes/linkedin.svg" title="Perfil de Linkedin" data-bs-toggle="tooltip" alt="linkedin">
                 </a>
               </div>
             </div>

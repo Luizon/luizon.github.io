@@ -8,13 +8,38 @@
 
 @keyframes wave {
   0% { transform: rotate( 0.0deg) }
-   10% { transform: rotate(20.0deg) }
-   20% { transform: rotate(-10.0deg) }
-   30% { transform: rotate(20.0deg) }
-   40% { transform: rotate(-5.0deg) }
-   50% { transform: rotate(10.0deg) }
-   60% { transform: rotate( 0.0deg) }
+  10% { transform: rotate(20.0deg) }
+  20% { transform: rotate(-10.0deg) }
+  30% { transform: rotate(20.0deg) }
+  40% { transform: rotate(-5.0deg) }
+  50% { transform: rotate(10.0deg) }
+  60% { transform: rotate( 0.0deg) }
   100% { transform: rotate( 0.0deg) }
+}
+
+.fade-in {
+  animation: fade-in-keyframe 250ms linear forwards;
+}
+.fade-out {
+  animation: fade-out-keyframe 250ms linear forwards;
+}
+@keyframes fade-in-keyframe {
+  from { opacity: 0;}
+  to { opacity: 1;}
+}
+@keyframes fade-out-keyframe {
+  from { opacity: 1;}
+  to { opacity: 0;}
+}
+
+.btn-scroll-down {
+  animation: btn-scroll-down-keyframe 1s infinite;
+  position: relative;
+}
+
+@keyframes btn-scroll-down-keyframe {
+  from { top: 0px; }
+  to { top: 10px; }
 }
 
 #containerr {

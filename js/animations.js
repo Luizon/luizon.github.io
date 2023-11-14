@@ -1,50 +1,4 @@
 /////////////////////////////////////
-// scrolling
-/////////////////////////////////////
-const sections = document.querySelectorAll('section');
-const __body__ = document.getElementById("top");
-const scrollButtons = document.querySelectorAll(".btn-scroll");
-let currentSectionIndex = 0;
-let isScrolling = false;
-
-for(scrollElement in scrollButtons) {
-    if(typeof scrollButtons[scrollElement] !== "object")
-        break;
-    if(scrollButtons[scrollElement].classList.contains("btn-scroll-1"))
-        scrollButtons[scrollElement].addEventListener("click", evt => scrollToSection(evt, CONST_PROJECTS));
-}
-__body__.addEventListener("keyup", scrollToSection);
-
-function scrollToSection(evt, selectedSection = false) {
-    if((evt.key != " " && selectedSection === false) || isScrolling)
-        return;
-    if(!__body__.classList.contains("smooth-1s"))
-        __body__.classList.add("smooth-1s");
-    isScrolling = true;
-    setTimeout( e => {
-        isScrolling = false;
-    }, 1000);
-    let flagSectionAlreadySelected = false;
-    if(selectedSection !== false) {
-        if(selectedSection < sections.length && selectedSection > 0) {
-            currentSectionIndex = selectedSection;
-            flagSectionAlreadySelected = true;
-        }
-    }
-    if(!flagSectionAlreadySelected)
-        currentSectionIndex++;
-    if(currentSectionIndex == sections.length)
-        currentSectionIndex = 0;
-    sections[currentSectionIndex].scrollIntoView({ behavior: 'smooth' });
-    if(currentSectionIndex == CONST_GREETINGS) {
-        __body__.style.background = "#210333";
-    }
-    else {
-        __body__.style.background = "#420666";
-    }
-};
-
-/////////////////////////////////////
 // Qualities texts
 /////////////////////////////////////
 const elts = {
@@ -183,5 +137,3 @@ for(let i = 0 ; i < tetrisImageContainer.length ; i++) {
       }
     });
 }
-
-

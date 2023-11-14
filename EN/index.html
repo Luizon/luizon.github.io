@@ -30,14 +30,17 @@
 <body id="top" class="">
   <nav class="navbar fixed-top">
     <div class="container-fluid">
-      <a class="navbar-brand" href="https://luizon.dev/ES/">
+      <a tabindex="-1" class="navbar-brand" href="https://luizon.dev/ES/">
         <img src="../img/flag_mx.svg" alt="bandera_MX" class="nav-icon">  
         ver en Español
       </a>
-      <a class="navbar-brand" href="javascript:alert('Not yet buddy')">
+      <a tabindex="-1" class="navbar-brand" href="javascript:alert('Not yet buddy')">
         <img src="../img/pdf.svg" alt="resume_CV" class="nav-icon">  
         <span class="text-decoration-underline">Download resume</span>
       </a>
+      <button tabindex="-1" hidden type="button" id="btnTop" class="rounded-circle btn-scroll border-3 position-absolute end-0 me-2 me-md-3 btn btn-outline-light btn-top">
+        <img class="btn-img" src="../img/arrow_upward.svg" alt="↑">
+      </button>
     </div>
   </nav>
 
@@ -48,8 +51,8 @@
           <div class="row pt-5 pt-sm-3">
             <div class="col d-flex align-items-center position-relative" id="biography">
               <div class="z-1 pb-5 d-block d-md-none position-absolute top-100 start-50 translate-middle">
-                <button class="btn btn-link shadow-none text-light btn-scroll btn-scroll-1">
-                  <h4>Scroll down</h4>
+                <button tabindex="-1" class="btn-scroll-down btn btn-scroll btn-outline-light rounded-circle border-3 shadow-none text-light btn-scroll btn-scroll-1">
+                  <img class="img-downwards btn-img" src="../img/arrow_upward.svg" alt="↓">
                 </button>
                 <div class="pb-5 pt-md-2 pt-5 pt-md-0 mb-5 mb-sm-4 mb-md-0 mt-5 mt-sm-0"></div>
               </div>
@@ -60,25 +63,26 @@
                   <b>coding</b>, <b>user experience</b> and the <span class="purple">color purple</span>. <br><br>
                   Browse in this portfolio to see more about <b>my work</b>.
                 </p>
+                <div class="row d-block d-md-none pt-4 pb-4 mobile-only"></div>
               </div>
             </div>
             <div class="col col-auto d-none d-md-block networks pt-5">
               <a href="https://github.com/luizon" target="_blank" tabindex="-1">
-                <img class="img-networks" src="../img/redes/github.svg" alt="github">
+                <img class="img-networks" src="../img/redes/github.svg" title="Github profile" data-bs-toggle="tooltip" alt="github">
               </a>
               <a href="mailto:lf-cardenas@hotmail.com" tabindex="-1">
-                <img class="img-networks" src="../img/redes/email.svg" alt="email">
+                <img class="img-networks" src="../img/redes/email.svg" title="email" data-bs-toggle="tooltip" alt="email">
               </a>
               <a href="https://linkedin.com/in/luisfernandocardenas" target="_blank" tabindex="-1">
-                <img class="img-networks" src="../img/redes/linkedin.svg" alt="linkedin">
+                <img class="img-networks" src="../img/redes/linkedin.svg" title="Linkedin profile" data-bs-toggle="tooltip" alt="linkedin">
               </a>
             </div>
           </div>
         </div>
         <div class="col col-7 col-sm-5 full-height position-relative">
           <div class="z-1 pb-5 d-none d-md-block position-absolute top-100 start-50 translate-middle">
-            <button class="btn btn-link shadow-none text-light btn-scroll btn-scroll-1">
-              <h4>Scroll down</h4>
+            <button tabindex="-1" class="btn-scroll-down btn btn-scroll btn-outline-light rounded-circle border-3 shadow-none text-light btn-scroll btn-scroll-1">
+              <img class="img-downwards btn-img" src="../img/arrow_upward.svg" alt="↓">
             </button>
             <div class="pb-5 pt-md-2 pt-5 pt-md-0 mb-5 mb-sm-4 mb-md-0 mt-5 mt-sm-0"></div>
           </div>
@@ -89,17 +93,17 @@
             <div class="row">
               <div class="col">
                 <a href="https://github.com/luizon" target="_blank" tabindex="-1">
-                  <img class="img-networks" src="../img/redes/github.svg" alt="github">
+                  <img class="img-networks" src="../img/redes/github.svg" title="Github profile" data-bs-toggle="tooltip" alt="github">
                 </a>
               </div>
               <div class="col">
                 <a href="mailto:lf-cardenas@hotmail.com" tabindex="-1">
-                  <img class="img-networks" src="../img/redes/email.svg" alt="email">
+                  <img class="img-networks" src="../img/redes/email.svg" title="email" data-bs-toggle="tooltip" alt="email">
                 </a>
               </div>
               <div class="col">
                 <a href="https://linkedin.com/in/luisfernandocardenas" target="_blank" tabindex="-1">
-                  <img class="img-networks" src="../img/redes/linkedin.svg" alt="linkedin">
+                  <img class="img-networks" src="../img/redes/linkedin.svg" title="Linkedin profile" data-bs-toggle="tooltip" alt="linkedin">
                 </a>
               </div>
             </div>
@@ -172,10 +176,11 @@
         <img class="tetris-language-icon tetris-icon-lg-x-50 tetris-icon-sm-x-50 tetris-icon-lg-y-66 tetris-icon-sm-y-66" src="../img/tecnologies/java.svg" alt="Java" data-bs-toggle="tooltip" title="Java">
       </div>
     </section>
+
   </div>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>    <link rel="stylesheet" href="../styles/style.css">
-<script src="../js/animations.js"></script>
+  <script src="../js/animations.js"></script>
   <script src="../js/main.js"></script>
 </body>
 </html>
