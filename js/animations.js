@@ -137,3 +137,45 @@ for(let i = 0 ; i < tetrisImageContainer.length ; i++) {
       }
     });
 }
+
+/////////////////////////////////////
+// tetris image change over time
+/////////////////////////////////////
+
+const project = {
+    // projectName : quantityOfImages
+    cracksCode : 2,
+    crm : 5,
+    drp : 8,
+    ESpeedruN : 2,
+    LevelMaker : 1,
+    monitor_isa : 11,
+    monitor_kart : 3,
+};
+
+function changeImage(projectName, imgNode) {
+  imgNode = document.getElementById(projectName);
+
+  if(imgNode.classList.contains("fade-in"))
+    imgNode.classList.remove("fade-in");
+  imgNode.classList.add("fade-out"); // fade out last like 250ms
+
+  setTimeout(() => {
+    let index = parseInt(imgNode.src.match(/\d+(?=\.png)/)[0]); // get current index
+    index = ((index + 1) % (project[projectName] + 1) ); // get next index
+    index = index <= 0 ? 1 : index;
+    imgNode.src = `../img/projects/${projectName}/${index}.png`; // actual file's name
+    
+    if(imgNode.classList.contains("fade-out"))
+      imgNode.classList.remove("fade-out");
+    imgNode.classList.add("fade-in");
+  }, 300);
+}
+
+setTimeout(()=>{ setInterval( evt => { changeImage("cracksCode") }, 5000)}, 500);
+setTimeout(()=>{ setInterval( evt => { changeImage("crm") }, 5000)}, 1000);
+setTimeout(()=>{ setInterval( evt => { changeImage("drp") }, 5000)}, 1500);
+setTimeout(()=>{ setInterval( evt => { changeImage("ESpeedruN") }, 5000)}, 2000);
+setTimeout(()=>{ setInterval( evt => { changeImage("monitor_kart") }, 5000)}, 2500);
+setTimeout(()=>{ setInterval( evt => { changeImage("monitor_isa") }, 5000)}, 3000);
+setTimeout(()=>{ setInterval( evt => { changeImage("LevelMaker") }, 5000)}, 3500);
