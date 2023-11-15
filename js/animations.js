@@ -2,8 +2,8 @@
 // Qualities texts
 /////////////////////////////////////
 const elts = {
-    text1: document.getElementById("text1"),
-    text2: document.getElementById("text2")
+    text1: $("#text1")[0],
+    text2: $("#text2")[0]
 };
 
 const texts = [
@@ -107,8 +107,8 @@ animate();
 // tetris image follows the mouse
 /////////////////////////////////////
 
-const tetrisImageContainer = document.querySelectorAll('.tetris-shape-container')
-const textToReplace = document.getElementsByClassName('text-to-replace')[0];
+const tetrisImageContainer = $('.tetris-shape-container')
+const textToReplace = $('.text-to-replace')[0];
 
 for(let i = 0 ; i < tetrisImageContainer.length ; i++) {
     let tetrisPiece = tetrisImageContainer[i];
@@ -154,7 +154,7 @@ const project = {
 };
 
 function changeImage(projectName, imgNode) {
-  imgNode = document.getElementById(projectName);
+  imgNode = $(`#${projectName}`)[0];
 
   if(imgNode.classList.contains("fade-in"))
     imgNode.classList.remove("fade-in");

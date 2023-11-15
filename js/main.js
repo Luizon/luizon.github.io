@@ -7,10 +7,10 @@ const section = {
   PROJECTS : 1,
   CONTACT : 3
 }
-const sections = document.querySelectorAll('section');
-const __body__ = document.getElementById("top");
-const scrollButtons = document.querySelectorAll(".btn-scroll");
-const scrollToTopButton = document.getElementById("btnTop");
+const sections = $('section');
+const __body__ = $("#top")[0];
+const scrollButtons = $(".btn-scroll");
+const scrollToTopButton = $("#btnTop")[0];
 let currentSectionIndex = 0;
 let isScrolling = false;
 
@@ -83,7 +83,7 @@ window.onload = evt => {
 // mobile stuff
 /////////////////////////////////////
 if (!/Mobi|Android|iPhone/i.test(navigator.userAgent)) {
-  let onlyMobileElements = document.getElementsByClassName("mobile-only");
+  let onlyMobileElements = $(".mobile-only");
   for(element in onlyMobileElements) {
     if(typeof onlyMobileElements[element] !== "object")
       break;
@@ -97,5 +97,60 @@ else {
 /////////////////////////////////////
 // bootstrap tooltip
 /////////////////////////////////////
-const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipTriggerList = $('[data-bs-toggle="tooltip"]')
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+/////////////////////////////////////
+// tetris project modals
+/////////////////////////////////////
+
+let a_cracksCode = $("#a_cracksCode")[0];
+let a_crm = $("#a_crm")[0];
+let a_drp = $("#a_drp")[0];
+let a_ESpeedruN = $("#a_ESpeedruN")[0];
+let a_LevelMaker = $("#a_LevelMaker")[0];
+let a_monitor_isa = $("#a_monitor_isa")[0];
+let a_monitor_kart = $("#a_monitor_kart")[0];
+
+a_cracksCode.href = `javascript:
+  bootbox.dialog({
+    title: "titulo generico",
+    message: "prueba: a_cracksCode"
+  });
+`;
+a_crm.href = `javascript:
+  bootbox.dialog({
+    title: "titulo generico",
+    message: "prueba: a_crm"
+  });
+`;
+a_drp.href = `javascript:
+  bootbox.dialog({
+    title: "titulo generico",
+    message: "prueba: a_drp"
+  });
+`;
+a_ESpeedruN.href = `javascript:
+  bootbox.dialog({
+    title: "titulo generico",
+    message: "prueba: a_ESpeedruN"
+  });
+`;
+a_LevelMaker.href = `javascript:
+  bootbox.dialog({
+    title: "titulo generico",
+    message: "prueba: a_LevelMaker"
+  });
+`;
+a_monitor_isa.href = `javascript:
+  bootbox.dialog({
+    title: "titulo generico",
+    message: "prueba: a_monitor_isa"
+  });
+`;
+a_monitor_kart.href = `javascript:
+  bootbox.dialog({
+    title: "titulo generico",
+    message: "prueba: a_monitor_kart"
+  });
+`;
