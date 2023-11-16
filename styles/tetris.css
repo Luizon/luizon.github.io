@@ -118,6 +118,12 @@
 }
 .tetris-shape-container {
   background-color: #000;
+  /* this css is to don't get changed while using a button */
+  display: inline-flex;
+  margin: 0em;
+  padding-block: 0px;
+  padding-inline: 0px;
+  border-width: 0px;
 }
 .tetris-shape-container > .tetris-shape{
   height: calc(100% - 10px);

@@ -104,53 +104,53 @@ const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstra
 // tetris project modals
 /////////////////////////////////////
 
-let a_cracksCode = $("#a_cracksCode")[0];
-let a_crm = $("#a_crm")[0];
-let a_drp = $("#a_drp")[0];
-let a_ESpeedruN = $("#a_ESpeedruN")[0];
-let a_LevelMaker = $("#a_LevelMaker")[0];
-let a_monitor_isa = $("#a_monitor_isa")[0];
-let a_monitor_kart = $("#a_monitor_kart")[0];
+let a_cracksCode = $("#a_cracksCode");
+let a_crm = $("#a_crm");
+let a_drp = $("#a_drp");
+let a_ESpeedruN = $("#a_ESpeedruN");
+let a_LevelMaker = $("#a_LevelMaker");
+let a_monitor_isa = $("#a_monitor_isa");
+let a_monitor_kart = $("#a_monitor_kart");
 
-a_cracksCode.href = `javascript:
+a_cracksCode.on("click", () => {
   bootbox.dialog({
     title: "titulo generico",
-    message: "prueba: a_cracksCode"
+    message: "test: cracksCode"
   });
-`;
-a_crm.href = `javascript:
+});
+a_crm.on("click", () => {
   bootbox.dialog({
     title: "titulo generico",
-    message: "prueba: a_crm"
+    message: "test: crm"
   });
-`;
-a_drp.href = `javascript:
+});
+a_drp.on("click", () => {
   bootbox.dialog({
     title: "titulo generico",
-    message: "prueba: a_drp"
+    message: "test: drp"
   });
-`;
-a_ESpeedruN.href = `javascript:
+});
+a_ESpeedruN.on("click", () => {
   bootbox.dialog({
     title: "titulo generico",
-    message: "prueba: a_ESpeedruN"
+    message: "test: ESpeedruN"
   });
-`;
-a_LevelMaker.href = `javascript:
+});
+a_LevelMaker.on("click", () => {
   bootbox.dialog({
     title: "titulo generico",
-    message: "prueba: a_LevelMaker"
+    message: "test: LevelMaker"
   });
-`;
-a_monitor_isa.href = `javascript:
+});
+a_monitor_isa.on("click", () => {
   bootbox.dialog({
     title: "titulo generico",
-    message: "prueba: a_monitor_isa"
+    message: "test: monitor_isa"
   });
-`;
-a_monitor_kart.href = `javascript:
+});
+a_monitor_kart.on("click", () => {
   bootbox.dialog({
     title: "titulo generico",
-    message: "prueba: a_monitor_kart"
+    message: "test: monitor_kart"
   });
-`;
+});

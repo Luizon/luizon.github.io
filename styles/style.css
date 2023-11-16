@@ -53,13 +53,14 @@ nav {
 }
 
 .btn-top {
-  top: calc(100vh - 1rem - 69px);
+  top: calc(1rem + 24px);
+  /* top: calc(100vh - 1rem - 69px); */
   box-shadow: none!important;
 }
 
-.btn-top-mobile {
+/* .btn-top-mobile {
   top: calc(1rem + 24px);
-}
+} */
 
 .btn-scroll {
   width: 69px;

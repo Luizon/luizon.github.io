@@ -172,10 +172,19 @@ function changeImage(projectName, imgNode) {
   }, 300);
 }
 
-setTimeout(()=>{ setInterval( evt => { changeImage("cracksCode") }, 5000)}, 500);
-setTimeout(()=>{ setInterval( evt => { changeImage("crm") }, 5000)}, 1000);
-setTimeout(()=>{ setInterval( evt => { changeImage("drp") }, 5000)}, 1500);
-setTimeout(()=>{ setInterval( evt => { changeImage("ESpeedruN") }, 5000)}, 2000);
-setTimeout(()=>{ setInterval( evt => { changeImage("monitor_kart") }, 5000)}, 2500);
-setTimeout(()=>{ setInterval( evt => { changeImage("monitor_isa") }, 5000)}, 3000);
-setTimeout(()=>{ setInterval( evt => { changeImage("LevelMaker") }, 5000)}, 3500);
+let fading = false;
+setInterval( ()=> {
+    if(!fading) {
+        fading = true;
+        setTimeout( evt => { changeImage("cracksCode") }, 500);
+        setTimeout( evt => { changeImage("crm") }, 1000);
+        setTimeout( evt => { changeImage("drp") }, 1500);
+        setTimeout( evt => { changeImage("ESpeedruN") }, 2000);
+        setTimeout( evt => { changeImage("monitor_kart") }, 2500);
+        setTimeout( evt => { changeImage("monitor_isa") }, 3000);
+        setTimeout( evt => {
+            changeImage("LevelMaker");
+            fading = false;
+        }, 3500);
+    }
+}, 5000);
