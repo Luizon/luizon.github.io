@@ -104,51 +104,51 @@ const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstra
 // tetris project modals
 /////////////////////////////////////
 
-let a_cracksCode = $("#a_cracksCode");
-let a_crm = $("#a_crm");
-let a_drp = $("#a_drp");
-let a_ESpeedruN = $("#a_ESpeedruN");
-let a_LevelMaker = $("#a_LevelMaker");
-let a_monitor_isa = $("#a_monitor_isa");
-let a_monitor_kart = $("#a_monitor_kart");
+let btn_cracksCode = $("#btn_cracksCode");
+let btn_crm = $("#btn_crm");
+let btn_drp = $("#btn_drp");
+let btn_ESpeedruN = $("#btn_ESpeedruN");
+let btn_LevelMaker = $("#btn_LevelMaker");
+let btn_monitorIsa = $("#btn_monitorIsa");
+let btn_monitorKart = $("#btn_monitorKart");
 
-a_cracksCode.on("click", () => {
+btn_cracksCode.on("click", () => {
   bootbox.dialog({
     title: "titulo generico",
     message: "test: cracksCode"
   });
 });
-a_crm.on("click", () => {
+btn_crm.on("click", () => {
   bootbox.dialog({
     title: "titulo generico",
     message: "test: crm"
   });
 });
-a_drp.on("click", () => {
+btn_drp.on("click", () => {
   bootbox.dialog({
     title: "titulo generico",
     message: "test: drp"
   });
 });
-a_ESpeedruN.on("click", () => {
+btn_ESpeedruN.on("click", () => {
   bootbox.dialog({
     title: "titulo generico",
     message: "test: ESpeedruN"
   });
 });
-a_LevelMaker.on("click", () => {
+btn_LevelMaker.on("click", () => {
   bootbox.dialog({
     title: "titulo generico",
     message: "test: LevelMaker"
   });
 });
-a_monitor_isa.on("click", () => {
+btn_monitorIsa.on("click", () => {
   bootbox.dialog({
     title: "titulo generico",
     message: "test: monitor_isa"
   });
 });
-a_monitor_kart.on("click", () => {
+btn_monitorKart.on("click", () => {
   bootbox.dialog({
     title: "titulo generico",
     message: "test: monitor_kart"

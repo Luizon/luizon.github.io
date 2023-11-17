@@ -30,13 +30,12 @@
 <body id="top" class="">
   <nav class="navbar fixed-top">
     <div class="container-fluid">
-      <a tabindex="-1" class="navbar-brand" href="https://luizon.dev/ES/">
-        <img src="../img/flag_mx.svg" alt="bandera_MX" class="nav-icon">  
-        ver en Español
+      <a tabindex="-1" class="navbar-brand" href="https://luizon.dev/ES/" id="navbar_switchLanguage">
       </a>
-      <a tabindex="-1" class="navbar-brand" href="javascript:alert('Not yet buddy')">
+      <a tabindex="-1" class="navbar-brand" id="navbar_resumeHref" href="javascript:alert('Not yet buddy')">
         <img src="../img/pdf.svg" alt="resume_CV" class="nav-icon">  
-        <span class="text-decoration-underline">Download resume</span>
+        <span id="navbar_resume" class="text-decoration-underline">
+        </span>
       </a>
       <button tabindex="-1" hidden type="button" id="btnTop" class="rounded-circle btn-scroll border-3 position-absolute end-0 me-2 me-md-3 btn btn-outline-light btn-top">
         <img class="btn-img" src="../img/arrow_upward.svg" alt="↑">
@@ -57,24 +56,21 @@
                 <div class="pb-5 pt-md-2 pt-5 pt-md-0 mb-5 mb-sm-4 mb-md-0 mt-5 mt-sm-0"></div>
               </div>
               <div>
-                <h1>Hi there! <div class="d-inline-flex wave-hand">👋🏾</div></h1>
-                <p>
-                  I'm <b>Luis Cárdenas</b>, a <b>software engineer</b> passionate about
-                  <b>coding</b>, <b>user experience</b> and the <span class="purple">color purple</span>. <br><br>
-                  Browse in this portfolio to see more about <b>my work</b>.
+                <h1><span id="greetings_title"></span> <div class="d-inline-flex wave-hand">👋🏾</div></h1>
+                <p id="greetings_text">
                 </p>
                 <div class="row d-block d-md-none pt-4 pb-4 mobile-only"></div>
               </div>
             </div>
             <div class="col col-auto d-none d-md-block networks pt-5">
               <a href="https://github.com/luizon" target="_blank" tabindex="-1">
-                <img class="img-networks" src="../img/redes/github.svg" title="Github profile" data-bs-toggle="tooltip" alt="github">
+                <img id="greetings_github1" class="img-networks" src="../img/redes/github.svg" data-bs-toggle="tooltip" alt="github">
               </a>
               <a href="mailto:lf-cardenas@hotmail.com" tabindex="-1">
-                <img class="img-networks" src="../img/redes/email.svg" title="email" data-bs-toggle="tooltip" alt="email">
+                <img id="greetings_email1" class="img-networks" src="../img/redes/email.svg" data-bs-toggle="tooltip" alt="email">
               </a>
               <a href="https://linkedin.com/in/luisfernandocardenas" target="_blank" tabindex="-1">
-                <img class="img-networks" src="../img/redes/linkedin.svg" title="Linkedin profile" data-bs-toggle="tooltip" alt="linkedin">
+                <img id="greetings_linkedin1" class="img-networks" src="../img/redes/linkedin.svg" data-bs-toggle="tooltip" alt="linkedin">
               </a>
             </div>
           </div>
@@ -93,17 +89,17 @@
             <div class="row">
               <div class="col">
                 <a href="https://github.com/luizon" target="_blank" tabindex="-1">
-                  <img class="img-networks" src="../img/redes/github.svg" title="Github profile" data-bs-toggle="tooltip" alt="github">
+                  <img id="greetings_github2" class="img-networks" src="../img/redes/github.svg" data-bs-toggle="tooltip" alt="github">
                 </a>
               </div>
               <div class="col">
                 <a href="mailto:lf-cardenas@hotmail.com" tabindex="-1">
-                  <img class="img-networks" src="../img/redes/email.svg" title="email" data-bs-toggle="tooltip" alt="email">
+                  <img id="greetings_email2" class="img-networks" src="../img/redes/email.svg" data-bs-toggle="tooltip" alt="email">
                 </a>
               </div>
               <div class="col">
                 <a href="https://linkedin.com/in/luisfernandocardenas" target="_blank" tabindex="-1">
-                  <img class="img-networks" src="../img/redes/linkedin.svg" title="Linkedin profile" data-bs-toggle="tooltip" alt="linkedin">
+                  <img id="greetings_linkedin2" class="img-networks" src="../img/redes/linkedin.svg" data-bs-toggle="tooltip" alt="linkedin">
                 </a>
               </div>
             </div>
@@ -131,47 +127,47 @@
       <div class="pt-3 pb-2 pb-md-0"></div>
       <div class="pt-4 d-block d-md-none"></div>
       <h1 class="text-center pt-4 text-light z-1 position-relative">
-        <span class="text-to-replace badge rounded-pill">Software I've made</span>
+        <span id="projects_title" class="text-to-replace badge rounded-pill"></span>
       </h1>
-      <button type="button" id="a_LevelMaker" class="tetris-shape-container tetris-lg-w-2 tetris-sm-w-2 tetris-lg-y-3 tetris-sm-y-6 tetris-lg-L tetris-sm-L" aria-label="Level Maker">
+      <button type="button" id="btn_LevelMaker" class="tetris-shape-container tetris-lg-w-2 tetris-sm-w-2 tetris-lg-y-3 tetris-sm-y-6 tetris-lg-L tetris-sm-L" aria-label="Level Maker">
         <div class="tetris-shape tetris-lg-L tetris-sm-L">
           <img id="LevelMaker" class="tetris-image" src="../img/projects/LevelMaker/1.png" alt="Level Maker">
         </div>
         <img class="tetris-language-icon tetris-icon-lg-x-50 tetris-icon-lg-y-66 tetris-icon-sm-y-66" src="../img/tecnologies/js.svg" alt="Javascript" data-bs-toggle="tooltip" title="Javascript">
       </button>
-      <button type="button" id="a_drp" class="tetris-shape-container tetris-lg-w-2 tetris-lg-h-2 tetris-sm-w-2 tetris-sm-h-2 tetris-lg-x-1 tetris-sm-x-1 tetris-lg-y-3 tetris-sm-y-6 tetris-lg-square tetris-sm-square" aria-label="DRP System">
+      <button type="button" id="btn_drp" class="tetris-shape-container tetris-lg-w-2 tetris-lg-h-2 tetris-sm-w-2 tetris-sm-h-2 tetris-lg-x-1 tetris-sm-x-1 tetris-lg-y-3 tetris-sm-y-6 tetris-lg-square tetris-sm-square">
         <div class="tetris-shape tetris-lg-square tetris-sm-square">
-          <img id="drp" class="tetris-image" src="../img/projects/drp/1.png" alt="DRP System">
+          <img id="drp" class="tetris-image" src="../img/projects/drp/1.png">
         </div>
         <img class="tetris-language-icon tetris-icon-lg-x-0 tetris-icon-sm-x-0 tetris-icon-lg-y-50 tetris-icon-sm-y-50" src="../img/tecnologies/php.svg" alt="php" data-bs-toggle="tooltip" title="php">
         <img class="tetris-language-icon tetris-icon-lg-x-50 tetris-icon-sm-x-50 tetris-icon-lg-y-50 tetris-icon-sm-y-50" src="../img/tecnologies/js.svg" alt="Javascript" data-bs-toggle="tooltip" title="Javascript">
       </button>
-      <button type="button" id="a_ESpeedruN" class="tetris-shape-container tetris-lg-h-2 tetris-sm-h-2 tetris-lg-x-2 tetris-sm-x-2 tetris-lg-y-4 tetris-sm-y-7 tetris-lg-T-down tetris-sm-T-down" aria-label="ESpedruÑ.com">
+      <button type="button" id="btn_ESpeedruN" class="tetris-shape-container tetris-lg-h-2 tetris-sm-h-2 tetris-lg-x-2 tetris-sm-x-2 tetris-lg-y-4 tetris-sm-y-7 tetris-lg-T-down tetris-sm-T-down" aria-label="ESpedruÑ.com">
         <div class="tetris-shape tetris-lg-T-down tetris-sm-T-down">
           <img id="ESpeedruN" class="tetris-image" src="../img/projects/ESpeedruN/1.png" alt="ESpeedruÑ.com">
         </div>
         <img class="tetris-language-icon tetris-icon-lg-x-66 tetris-icon-sm-x-66 tetris-icon-lg-y-50 tetris-icon-sm-y-50" src="../img/tecnologies/js.svg" alt="Javascript" data-bs-toggle="tooltip" title="Javascript">
       </button>
-      <button type="button" id="a_monitor_kart" class="tetris-shape-container tetris-lg-w-2 tetris-sm-h-2 tetris-lg-x-6 tetris-sm-x-0 tetris-lg-y-3 tetris-sm-y-4 tetris-lg-T-up tetris-sm-T-down" aria-label="ISA and NPS Mario Kart Monitor">
+      <button type="button" id="btn_monitorKart" class="tetris-shape-container tetris-lg-w-2 tetris-sm-h-2 tetris-lg-x-6 tetris-sm-x-0 tetris-lg-y-3 tetris-sm-y-4 tetris-lg-T-up tetris-sm-T-down">
         <div class="tetris-shape tetris-lg-T-up tetris-sm-T-down">
-          <img id="monitor_kart" class="tetris-image" src="../img/projects/monitor_kart/1.png" alt="Monitor Kart">
+          <img id="monitorKart" class="tetris-image" src="../img/projects/monitorKart/1.png">
         </div>
         <img class="tetris-language-icon tetris-icon-lg-x-50 tetris-icon-sm-x-66 tetris-icon-lg-y-0 tetris-icon-sm-y-50" src="../img/tecnologies/js.svg" alt="Javascript" data-bs-toggle="tooltip" title="Javascript">
       </button>
-      <button type="button" id="a_monitor_isa" class="tetris-shape-container tetris-lg-h-2 tetris-sm-w-2 tetris-lg-x-4 tetris-sm-x-0 tetris-lg-y-4 tetris-sm-y-2 tetris-lg-Z tetris-sm-Z-vertical" aria-label="Personal ISA Monitor">
+      <button type="button" id="btn_monitorIsa" class="tetris-shape-container tetris-lg-h-2 tetris-sm-w-2 tetris-lg-x-4 tetris-sm-x-0 tetris-lg-y-4 tetris-sm-y-2 tetris-lg-Z tetris-sm-Z-vertical">
         <div class="tetris-shape tetris-lg-Z tetris-sm-Z-vertical">
-          <img id="monitor_isa" class="tetris-image" src="../img/projects/monitor_isa/1.png" alt="Monitor ISA">
+          <img id="monitorIsa" class="tetris-image" src="../img/projects/monitorIsa/1.png">
         </div>
         <img class="tetris-language-icon tetris-icon-lg-x-66 tetris-icon-sm-x-50 tetris-icon-lg-y-50 tetris-icon-sm-y-33" src="../img/tecnologies/java.svg" alt="Java" data-bs-toggle="tooltip" title="Java">
       </button>
-      <button type="button" id="a_crm" class="tetris-shape-container tetris-lg-h-2 tetris-sm-w-2 tetris-lg-x-2 tetris-sm-x-2 tetris-lg-y-2 tetris-sm-y-2 tetris-lg-Z tetris-sm-Z-vertical" aria-label="CRM Argentina Call Center">
+      <button type="button" id="btn_crm" class="tetris-shape-container tetris-lg-h-2 tetris-sm-w-2 tetris-lg-x-2 tetris-sm-x-2 tetris-lg-y-2 tetris-sm-y-2 tetris-lg-Z tetris-sm-Z-vertical">
         <div class="tetris-shape tetris-lg-Z tetris-sm-Z-vertical">
-          <img id="crm" class="tetris-image" src="../img/projects/crm/1.png" alt="CRM Argenina Call Center">
+          <img id="crm" class="tetris-image" src="../img/projects/crm/1.png">
         </div>
         <img class="tetris-language-icon tetris-icon-lg-x-0 tetris-icon-sm-x-0 tetris-icon-lg-y-50 tetris-icon-sm-y-33" src="../img/tecnologies/php.svg" alt="php" data-bs-toggle="tooltip" title="php">
         <img class="tetris-language-icon tetris-icon-lg-x-66 tetris-icon-sm-x-50 tetris-icon-lg-y-50 tetris-icon-sm-y-33" src="../img/tecnologies/js.svg" alt="Javascript" data-bs-toggle="tooltip" title="Javascript">
       </button>
-      <button type="button" id="a_cracksCode" class="tetris-shape-container tetris-lg-w-2 tetris-sm-w-2 tetris-lg-x-4 tetris-sm-x-3 tetris-lg-y-1 tetris-sm-y-5 tetris-lg-S-vertical tetris-sm-S-vertical" aria-label="Cracks Code">
+      <button type="button" id="btn_cracksCode" class="tetris-shape-container tetris-lg-w-2 tetris-sm-w-2 tetris-lg-x-4 tetris-sm-x-3 tetris-lg-y-1 tetris-sm-y-5 tetris-lg-S-vertical tetris-sm-S-vertical" aria-label="Cracks Code">
         <div class="tetris-shape tetris-lg-S-vertical tetris-sm-S-vertical">
           <img id="cracksCode" class="tetris-image" src="../img/projects/cracksCode/1.png" alt="Cracks Code">
         </div>
@@ -184,6 +180,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>    <link rel="stylesheet" href="../styles/style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.0/bootbox.min.js" integrity="sha512-oVbWSv2O4y1UzvExJMHaHcaib4wsBMS5tEP3/YkMP6GmkwRJAa79Jwsv+Y/w7w2Vb/98/Xhvck10LyJweB8Jsw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="../js/dictionary.js"></script>
   <script src="../js/animations.js"></script>
   <script src="../js/main.js"></script>
 </body>
