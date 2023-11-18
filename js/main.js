@@ -114,43 +114,50 @@ let btn_monitorKart = $("#btn_monitorKart");
 
 btn_cracksCode.on("click", () => {
   bootbox.dialog({
-    title: "titulo generico",
-    message: "test: cracksCode"
+    title: "to-do: change this modal UI",
+    message: dictionary[language].sections.projects.systems.cracksCode.description,
+    onEscape : true,
   });
 });
 btn_crm.on("click", () => {
   bootbox.dialog({
-    title: "titulo generico",
-    message: "test: crm"
+    title: "to-do: change this modal UI",
+    message: dictionary[language].sections.projects.systems.crm.description,
+    onEscape : true,
   });
 });
 btn_drp.on("click", () => {
   bootbox.dialog({
-    title: "titulo generico",
-    message: "test: drp"
+    title: "to-do: change this modal UI",
+    message: dictionary[language].sections.projects.systems.drp.description,
+    onEscape : true,
   });
 });
 btn_ESpeedruN.on("click", () => {
   bootbox.dialog({
-    title: "titulo generico",
-    message: "test: ESpeedruN"
+    title: "to-do: change this modal UI",
+    message: dictionary[language].sections.projects.systems.ESpeedruN.description,
+    onEscape : true,
   });
 });
 btn_LevelMaker.on("click", () => {
   bootbox.dialog({
-    title: "titulo generico",
-    message: "test: LevelMaker"
+    title: "to-do: change this modal UI",
+    message: dictionary[language].sections.projects.systems.LevelMaker.description,
+    onEscape : true,
   });
 });
 btn_monitorIsa.on("click", () => {
   bootbox.dialog({
-    title: "titulo generico",
-    message: "test: monitor_isa"
+    title: "to-do: change this modal UI",
+    message: dictionary[language].sections.projects.systems.monitorIsa.description,
+    onEscape : true,
   });
 });
 btn_monitorKart.on("click", () => {
   bootbox.dialog({
-    title: "titulo generico",
-    message: "test: monitor_kart"
+    title: "to-do: change this modal UI",
+    message: dictionary[language].sections.projects.systems.monitorKart.description,
+    onEscape : true,
   });
 });
