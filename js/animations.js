@@ -190,13 +190,13 @@ function changeAllImages() {
               setTimeout( async evt => { await changeSingleImage("monitorIsa");
                 setTimeout( async evt => { await changeSingleImage("LevelMaker");
                   fading = false;
-                }, 500);
-              }, 500);
-            }, 500);
-          }, 500);
-        }, 500);
-      }, 500);
-    }, 500);
+                }, 250);
+              }, 250);
+            }, 250);
+          }, 250);
+        }, 250);
+      }, 250);
+    }, 250);
   }
 }
 

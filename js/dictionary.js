@@ -17,7 +17,6 @@ const dictionary = {
     navbar : {
       switchLanguage : '<img src="../img/flag_usa.svg" alt="flag_USA" class="nav-icon"> switch to English',
       resume: "Descargar currículo",
-      resumeHref: "javascript:bootbox.alert('Aún no amiguito')",
     },
     sections : {
       greetings : {
@@ -74,12 +73,11 @@ const dictionary = {
   LANG_EN : {
     misc : {
       warning : "Warning",
-      mobileDeviceMessage : "This webpage was made for desktop devices. Some stuff may don't work correctly in mobile devices.",
+      mobileDeviceMessage : "This webpage was made for desktop devices. Some stuff may not work correctly in mobile devices.",
     },
     navbar : {
       switchLanguage : '<img src="../img/flag_mx.svg" alt="bandera_MX" class="nav-icon"> ver en Español',
       resume: "Download resume",
-      resumeHref: "javascript:bootbox.alert('Not yet buddy')",
     },
     sections : {
       greetings : {

@@ -153,6 +153,10 @@ nav {
   transition: 200ms;
 }
 
+.bootbox-no-title > .modal-dialog > .modal-content > .modal-header {
+  display: none;
+}
+
 @media (max-width: 991.98px) {
   .networks {
     width: 5em;
