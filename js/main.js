@@ -72,10 +72,10 @@ function scrollToSection(evt, selectedSection = false) {
 /////////////////////////////////////
 window.onresize = evt => {
   sections[currentSectionIndex].scrollIntoView({ behavior: 'smooth' });
-  console.log("resize")
+  // console.log("resize")
 }
 window.onload = evt => {
-  console.log("load")
+  // console.log("load")
   sections[section.GREETINGS].scrollIntoView({ behavior: 'smooth' });
 }
 
@@ -92,6 +92,19 @@ if (!/Mobi|Android|iPhone/i.test(navigator.userAgent)) {
 }
 else {
   scrollToTopButton.classList.add("btn-top-mobile");
+  setTimeout( evt => {
+    try {
+      bootbox.dialog({
+        title: dictionary[language].misc.warning,
+        message: dictionary[language].misc.mobileDeviceMessage,
+        onEscape: true
+      })
+    } catch(e) {
+      alert(dictionary[language].misc.warning + ": " + dictionary[language].misc.mobileDeviceMessage);
+      console.log(e)
+    }
+  }
+  , 1000);
 }
 
 /////////////////////////////////////
@@ -160,4 +173,11 @@ btn_monitorKart.on("click", () => {
     message: dictionary[language].sections.projects.systems.monitorKart.description,
     onEscape : true,
   });
+});
+
+
+$("#dictionary").ready(function() {
+  $('body').fadeIn();
+
+  console.log('a')
 });

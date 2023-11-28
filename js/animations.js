@@ -146,37 +146,50 @@ const project = {
 };
 let fading = false;
 
-function changeSingleImage(projectName, imgNode) {
+async function changeSingleImage(projectName, imgNode) {
   imgNode = $(`#${projectName}`)[0];
 
   if(imgNode.classList.contains("fade-in"))
     imgNode.classList.remove("fade-in");
-  imgNode.classList.add("fade-out"); // fade out last like 250ms
 
-  setTimeout(() => {
-    let index = parseInt(imgNode.src.match(/\d+(?=\.png)/)[0]); // get current index
-    index = ((index + 1) % (project[projectName] + 1) ); // get next index
-    index = index <= 0 ? 1 : index;
-    imgNode.src = `../img/projects/${projectName}/${index}.png`; // actual file's name
-    
-    if(imgNode.classList.contains("fade-out"))
-      imgNode.classList.remove("fade-out");
-    imgNode.classList.add("fade-in");
-  }, 300);
+  let newImage = new Image(); // image buffer
+  let index = parseInt(imgNode.src.match(/\d+(?=\.png)/)[0]); // get current index
+  index = ((index + 1) % (project[projectName] + 1) ); // get next index
+  index = index <= 0 ? 1 : index;
+  newImage.src = `../img/projects/${projectName}/${index}.png`; // actual file's name
+
+  await new Promise( resolve => {
+    newImage.onload = () => {
+      imgNode.classList.add("fade-out"); // fade out last like 250ms
+      setTimeout(async () => {
+        $(imgNode).attr('src', newImage.src);
+
+        if(imgNode.classList.contains("fade-out"))
+        imgNode.classList.remove("fade-out");
+        imgNode.classList.add("fade-in");
+
+        resolve(true);
+      }, 300)
+    }
+    newImage.onerror = err => {
+      console.error("An error happened while loading a project image.")
+      console.error(err);
+      resolve(false);
+    }
+  });
 }
 
 function changeAllImages() {
   if(!fading) {
     fading = true;
-    setTimeout( evt => { changeSingleImage("cracksCode")
-      setTimeout( evt => { changeSingleImage("crm")
-        setTimeout( evt => { changeSingleImage("drp")
-          setTimeout( evt => { changeSingleImage("ESpeedruN")
-            setTimeout( evt => { changeSingleImage("monitorKart")
-              setTimeout( evt => { changeSingleImage("monitorIsa")
-                setTimeout( evt => {
-                    changeSingleImage("LevelMaker");
-                    fading = false;
+    setTimeout( async evt => { await changeSingleImage("cracksCode");
+      setTimeout( async evt => { await changeSingleImage("crm");
+        setTimeout( async evt => { await changeSingleImage("drp");
+          setTimeout( async evt => { await changeSingleImage("ESpeedruN");
+            setTimeout( async evt => { await changeSingleImage("monitorKart");
+              setTimeout( async evt => { await changeSingleImage("monitorIsa");
+                setTimeout( async evt => { await changeSingleImage("LevelMaker");
+                  fading = false;
                 }, 500);
               }, 500);
             }, 500);

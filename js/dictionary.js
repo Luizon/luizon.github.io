@@ -10,7 +10,32 @@ var qualities = [
 
 const dictionary = {
   LANG_ES : {
+    misc : {
+      warning : "Advertencia",
+      mobileDeviceMessage : "Esta página web fue creada para dispositivos de escritorio. Es posible que algunas cosas no funcionen correctamente en dispositivos móviles.",
+    },
+    navbar : {
+      switchLanguage : '<img src="../img/flag_usa.svg" alt="flag_USA" class="nav-icon"> switch to English',
+      resume: "Descargar currículo",
+      resumeHref: "javascript:bootbox.alert('Aún no amiguito')",
+    },
     sections : {
+      greetings : {
+        title : "Hola!",
+        text : `Soy <b>Luis Cárdenas</b>, <b>ingeniero en software</b> apasionado por la <b>programación</b>, la <b>experiencia de usuario</b> y el <span class="purple">color púrpura</span>. <br><br> Browse in this portfolio to see more about <b>my work</b>.`,
+        networks : {
+          github : "Perfil de Github",
+          email : "Correo electrónico",
+          linkedin : "Perfil de Linkdein",
+        },
+        qualities : [
+          "👨🏾‍💻 Desarrollador",
+          "💡 Mente creativa",
+          "🎯 Solucionador de problemas",
+          "☕ Cafeinómano",
+          "👾 Videojugador",
+        ],
+      },
       projects : {
         title : "Software que he creado",
         systems : {
@@ -47,10 +72,14 @@ const dictionary = {
     },
   },
   LANG_EN : {
+    misc : {
+      warning : "Warning",
+      mobileDeviceMessage : "This webpage was made for desktop devices. Some stuff may don't work correctly in mobile devices.",
+    },
     navbar : {
       switchLanguage : '<img src="../img/flag_mx.svg" alt="bandera_MX" class="nav-icon"> ver en Español',
       resume: "Download resume",
-      resumeHref: "javascript:alert('Not yet buddy')",
+      resumeHref: "javascript:bootbox.alert('Not yet buddy')",
     },
     sections : {
       greetings : {
