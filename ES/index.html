@@ -30,13 +30,13 @@
 <body id="top" class="">
   <nav class="navbar fixed-top">
     <div class="container-fluid">
-      <a tabindex="-1" class="navbar-brand" href="https://luizon.dev/EN/">
-        <img src="../img/flag_usa.svg" alt="banderbanderbtn_MX" class="nav-icon">  
+      <a tabindex="-1" class="navbar-brand" href="javascript:switchLanguage();" id="navbar_switchLanguage">
+        <img src="../img/flag_usa.svg" alt="flag_USA" class="nav-icon">  
         switch to English
       </a>
       <a tabindex="-1" class="navbar-brand" href="javascript:bootbox.dialog({message: 'Aún no amiguito', backdrop: true, buttons: { ok: { label: 'Aceptar', className: 'btn-primary'} }, className: 'bootbox-no-title'})">
         <img src="../img/pdf.svg" alt="resume_CV" class="nav-icon">  
-        <span class="text-decoration-underline">Descargar currículo</span>
+        <span id="navbar_resume" class="text-decoration-underline">Descargar currículo</span>
       </a>
       <button tabindex="-1" hidden type="button" id="btnTop" class="rounded-circle btn-scroll border-3 position-absolute end-0 me-2 me-md-3 btn btn-outline-light btn-top">
         <img class="btn-img" src="../img/arrow_upward.svg" alt="↑">
@@ -57,8 +57,8 @@
                 <div class="pb-5 pt-md-2 pt-5 pt-md-0 mb-5 mb-sm-4 mb-md-0 mt-5 mt-sm-0"></div>
               </div>
               <div>
-                <h1>Hola! <div class="d-inline-flex wave-hand">👋🏾</div></h1>
-                <p>
+                <h1><span id="greetings_title">¡Hola!</span> <div class="d-inline-flex wave-hand">👋🏾</div></h1>
+                <p id="greetings_text">
                   Soy <b>Luis Cárdenas</b>, <b>ingeniero en software</b> apasionado por
                   la <b>programación</b>, la <b>experiencia de usuario</b> y el <span class="purple">color púrpura</span>. <br><br>
                   Navega en este portafolio para ver más sobre <b>mi trabajo</b>.
@@ -68,13 +68,13 @@
             </div>
             <div class="col col-auto d-none d-md-block networks pt-5">
               <a href="https://github.com/luizon" target="_blank" tabindex="-1">
-                <img class="img-networks" src="../img/redes/github.svg" title="Perfil de Github" data-bs-toggle="tooltip" alt="github">
+                <img id="greetings_github1" class="img-networks" src="../img/redes/github.svg" title="Perfil de Github" data-bs-toggle="tooltip" alt="github">
               </a>
               <a href="mailto:lf-cardenas@hotmail.com" tabindex="-1">
-                <img class="img-networks" src="../img/redes/email.svg" title="Correo electrónico" data-bs-toggle="tooltip" alt="email">
+                <img id="greetings_email1" class="img-networks" src="../img/redes/email.svg" title="Correo electrónico" data-bs-toggle="tooltip" alt="email">
               </a>
               <a href="https://linkedin.com/in/luisfernandocardenas" target="_blank" tabindex="-1">
-                <img class="img-networks" src="../img/redes/linkedin.svg" title="Perfil de Linkedin" data-bs-toggle="tooltip" alt="linkedin">
+                <img id="greetings_linkedin1" class="img-networks" src="../img/redes/linkedin.svg" title="Perfil de Linkedin" data-bs-toggle="tooltip" alt="linkedin">
               </a>
             </div>
           </div>
@@ -93,17 +93,17 @@
             <div class="row">
               <div class="col">
                 <a href="https://github.com/luizon" target="_blank" tabindex="-1">
-                  <img class="img-networks" src="../img/redes/github.svg" title="Perfil de Github" data-bs-toggle="tooltip" alt="github">
+                  <img id="greetings_github2" class="img-networks" src="../img/redes/github.svg" title="Perfil de Github" data-bs-toggle="tooltip" alt="github">
                 </a>
               </div>
               <div class="col">
                 <a href="mailto:lf-cardenas@hotmail.com" tabindex="-1">
-                  <img class="img-networks" src="../img/redes/email.svg" title="Correo electrónico" data-bs-toggle="tooltip" alt="email">
+                  <img id="greetings_email2" class="img-networks" src="../img/redes/email.svg" title="Correo electrónico" data-bs-toggle="tooltip" alt="email">
                 </a>
               </div>
               <div class="col">
                 <a href="https://linkedin.com/in/luisfernandocardenas" target="_blank" tabindex="-1">
-                  <img class="img-networks" src="../img/redes/linkedin.svg" title="Perfil de Linkedin" data-bs-toggle="tooltip" alt="linkedin">
+                  <img id="greetings_linkedin2" class="img-networks" src="../img/redes/linkedin.svg" title="Perfil de Linkedin" data-bs-toggle="tooltip" alt="linkedin">
                 </a>
               </div>
             </div>
@@ -131,7 +131,7 @@
       <div class="pt-3 pb-2 pb-md-0"></div>
       <div class="pt-4 d-block d-md-none"></div>
       <h1 class="text-center pt-4 text-light z-1 position-relative">
-        <span class="text-to-replace badge rounded-pill">Software que he creado</span>
+        <span id="projects_title" class="text-to-replace badge rounded-pill">Software que he creado</span>
       </h1>
       <button type="button" id="btn_LevelMaker" class="tetris-shape-container tetris-lg-w-2 tetris-sm-w-2 tetris-lg-y-3 tetris-sm-y-6 tetris-lg-L tetris-sm-L" aria-label="Level Maker">
         <div class="tetris-shape tetris-lg-L tetris-sm-L">

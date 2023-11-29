@@ -1,7 +1,7 @@
 var language = "LANG_ES";
 
 var qualities = [
-  "👨🏾‍💻 Desarollador",
+  "👨🏾‍💻 Desarrollador",
   "💡 Mente creativa",
   "🎯 Solucionador de problemas",
   "☕ Cafeinómano",
@@ -20,8 +20,8 @@ const dictionary = {
     },
     sections : {
       greetings : {
-        title : "Hola!",
-        text : `Soy <b>Luis Cárdenas</b>, <b>ingeniero en software</b> apasionado por la <b>programación</b>, la <b>experiencia de usuario</b> y el <span class="purple">color púrpura</span>. <br><br> Browse in this portfolio to see more about <b>my work</b>.`,
+        title : "¡Hola!",
+        text : `Soy <b>Luis Cárdenas</b>, <b>ingeniero en software</b> apasionado por la <b>programación</b>, la <b>experiencia de usuario</b> y el <span class="purple">color púrpura</span>. <br><br> Navega en este portafolio para ver más sobre <b>mi trabajo</b>.`,
         networks : {
           github : "Perfil de Github",
           email : "Correo electrónico",
@@ -142,6 +142,16 @@ const dictionary = {
 
 if(window.location.href.includes("EN")) {
   language = "LANG_EN";
+  changeTexts();
+}
+
+function switchLanguage() {
+  if(language == "LANG_EN") {
+    language = "LANG_ES";
+  }
+  else {
+    language = "LANG_EN";
+  }
   changeTexts();
 }
 

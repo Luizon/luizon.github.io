@@ -30,12 +30,13 @@
 <body id="top" class="">
   <nav class="navbar fixed-top">
     <div class="container-fluid">
-      <a tabindex="-1" class="navbar-brand" href="https://luizon.dev/ES/" id="navbar_switchLanguage">
+      <a tabindex="-1" class="navbar-brand" href="javascript:switchLanguage();" id="navbar_switchLanguage">
+        <img src="../img/flag_mx.svg" alt="bandera_MX" class="nav-icon">  
+        ver en Español
       </a>
       <a tabindex="-1" class="navbar-brand" href="javascript:bootbox.dialog({message: 'Not yet buddy', backdrop: true, buttons: { ok: { label: 'OK', className: 'btn-primary'} }, className: 'bootbox-no-title'})">
         <img src="../img/pdf.svg" alt="resume_CV" class="nav-icon">  
-        <span id="navbar_resume" class="text-decoration-underline">
-        </span>
+        <span id="navbar_resume" class="text-decoration-underline">Download resume</span>
       </a>
       <button tabindex="-1" hidden type="button" id="btnTop" class="rounded-circle btn-scroll border-3 position-absolute end-0 me-2 me-md-3 btn btn-outline-light btn-top">
         <img class="btn-img" src="../img/arrow_upward.svg" alt="↑">
@@ -56,8 +57,11 @@
                 <div class="pb-5 pt-md-2 pt-5 pt-md-0 mb-5 mb-sm-4 mb-md-0 mt-5 mt-sm-0"></div>
               </div>
               <div>
-                <h1><span id="greetings_title"></span> <div class="d-inline-flex wave-hand">👋🏾</div></h1>
+                <h1><span id="greetings_title">Hi there!</span> <div class="d-inline-flex wave-hand">👋🏾</div></h1>
                 <p id="greetings_text">
+                  I'm <b>Luis Cárdenas</b>, a <b>software engineer</b> passionate about
+                  <b>coding</b>, <b>user experience</b> and the <span class="purple">color purple</span>. <br><br>
+                  Browse in this portfolio to see more about <b>my work</b>.
                 </p>
                 <div class="row d-block d-md-none pt-4 pb-4 mobile-only"></div>
               </div>
@@ -127,7 +131,7 @@
       <div class="pt-3 pb-2 pb-md-0"></div>
       <div class="pt-4 d-block d-md-none"></div>
       <h1 class="text-center pt-4 text-light z-1 position-relative">
-        <span id="projects_title" class="text-to-replace badge rounded-pill"></span>
+        <span id="projects_title" class="text-to-replace badge rounded-pill">Software I've made</span>
       </h1>
       <button type="button" id="btn_LevelMaker" class="tetris-shape-container tetris-lg-w-2 tetris-sm-w-2 tetris-lg-y-3 tetris-sm-y-6 tetris-lg-L tetris-sm-L" aria-label="Level Maker">
         <div class="tetris-shape tetris-lg-L tetris-sm-L">

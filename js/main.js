@@ -177,7 +177,7 @@ btn_monitorKart.on("click", () => {
 
 
 $("#dictionary").ready(function() {
-  $('body').fadeIn();
+  $('body').fadeIn(100);
 
   console.log('a')
 });
