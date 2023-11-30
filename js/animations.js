@@ -6,14 +6,6 @@ const elts = {
   text2: $("#text2")[0]
 };
 
-// let textsEN = [
-//   "👨🏾‍💻 Developer",
-//   "💡 Creative mind",
-//   "🎯 Problem solver",
-//   "☕ Coffeeholic",
-//   "👾 Gamer",
-// ];
-
 const morphTime = 1.5;
 const cooldownTime = 2;
 
@@ -22,14 +14,8 @@ let time = new Date();
 let morph = 0;
 let cooldown = cooldownTime;
 
-// if(window.location.href.includes("/EN")) {
-//   elts.text1.textContent = textsEN[textIndex % textsEN.length];
-//   elts.text2.textContent = textsEN[(textIndex + 1) % textsEN.length];
-// }
-// else {
-  elts.text1.textContent = qualities[textIndex % qualities.length];
-  elts.text2.textContent = qualities[(textIndex + 1) % qualities.length];
-// }
+elts.text1.textContent = qualities[textIndex % qualities.length];
+elts.text2.textContent = qualities[(textIndex + 1) % qualities.length];
 
 function doMorph() {
   morph -= cooldown;
@@ -46,21 +32,18 @@ function doMorph() {
 }
 
 function setMorph(fraction) {
+  if(elts.text2.style.opacity == 1 // this optimze a lil bit this dom change
+      && elts.text2.textContent.substring(0, 2) != qualities[(textIndex + 1) % qualities.length].substring(0, 2)) { // this help to maintain soft the animation even if you switch the language
+    elts.text1.textContent = elts.text2.textContent;
+    elts.text2.textContent = qualities[(textIndex + 1) % qualities.length];
+  }
+
   elts.text2.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
   elts.text2.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
 
   fraction = 1 - fraction;
   elts.text1.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
   elts.text1.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
-
-  // if(window.location.href.includes("/EN")) {
-  //   elts.text1.textContent = textsEN[textIndex % textsEN.length];
-  //   elts.text2.textContent = textsEN[(textIndex + 1) % textsEN.length];
-  // }
-  // else {
-    elts.text1.textContent = qualities[textIndex % qualities.length];
-    elts.text2.textContent = qualities[(textIndex + 1) % qualities.length];
-  // }
 }
 
 function doCooldown() {
@@ -100,7 +83,6 @@ animate();
 /////////////////////////////////////
 
 const tetrisImageContainer = $('.tetris-shape-container')
-const textToReplace = $('.text-to-replace')[0];
 
 for(let i = 0 ; i < tetrisImageContainer.length ; i++) {
   let tetrisPiece = tetrisImageContainer[i];
@@ -124,8 +106,8 @@ for(let i = 0 ; i < tetrisImageContainer.length ; i++) {
 
       followImage.style.transform = `translate(${x/5}px, ${y/5}px) scale(1.3)`;
 
-      if(textToReplace.innerText != tetrisPiece.ariaLabel)
-        textToReplace.innerText = tetrisPiece.ariaLabel;
+      if($("#projects_title").text() != tetrisPiece.ariaLabel)
+        $("#projects_title").text(tetrisPiece.ariaLabel);
     }
   });
 }

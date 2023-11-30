@@ -117,61 +117,66 @@ const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstra
 // tetris project modals
 /////////////////////////////////////
 
-let btn_cracksCode = $("#btn_cracksCode");
-let btn_crm = $("#btn_crm");
-let btn_drp = $("#btn_drp");
-let btn_ESpeedruN = $("#btn_ESpeedruN");
-let btn_LevelMaker = $("#btn_LevelMaker");
-let btn_monitorIsa = $("#btn_monitorIsa");
-let btn_monitorKart = $("#btn_monitorKart");
-
-btn_cracksCode.on("click", () => {
+$("#btn_cracksCode").on("click", () => {
   bootbox.dialog({
     title: "to-do: change this modal UI",
     message: dictionary[language].sections.projects.systems.cracksCode.description,
     onEscape : true,
   });
 });
-btn_crm.on("click", () => {
+$("#btn_crm").on("click", () => {
   bootbox.dialog({
     title: "to-do: change this modal UI",
     message: dictionary[language].sections.projects.systems.crm.description,
     onEscape : true,
   });
 });
-btn_drp.on("click", () => {
+$("#btn_drp").on("click", () => {
   bootbox.dialog({
     title: "to-do: change this modal UI",
     message: dictionary[language].sections.projects.systems.drp.description,
     onEscape : true,
   });
 });
-btn_ESpeedruN.on("click", () => {
+$("#btn_ESpeedruN").on("click", () => {
   bootbox.dialog({
     title: "to-do: change this modal UI",
     message: dictionary[language].sections.projects.systems.ESpeedruN.description,
     onEscape : true,
   });
 });
-btn_LevelMaker.on("click", () => {
+$("#btn_LevelMaker").on("click", () => {
   bootbox.dialog({
     title: "to-do: change this modal UI",
     message: dictionary[language].sections.projects.systems.LevelMaker.description,
     onEscape : true,
   });
 });
-btn_monitorIsa.on("click", () => {
+$("#btn_monitorIsa").on("click", () => {
   bootbox.dialog({
     title: "to-do: change this modal UI",
     message: dictionary[language].sections.projects.systems.monitorIsa.description,
     onEscape : true,
   });
 });
-btn_monitorKart.on("click", () => {
+$("#btn_monitorKart").on("click", () => {
   bootbox.dialog({
     title: "to-do: change this modal UI",
     message: dictionary[language].sections.projects.systems.monitorKart.description,
     onEscape : true,
+  });
+});
+$("#btn_resume").on("click", () => {
+  bootbox.dialog({
+    message: dictionary[language].navbar.resumeText,
+    backdrop: true,
+    buttons: {
+      ok: {
+        label: 'Aceptar',
+        className: 'btn-primary',
+      },
+    },
+    className: 'bootbox-no-title',
   });
 });
 

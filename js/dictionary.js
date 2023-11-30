@@ -15,8 +15,9 @@ const dictionary = {
       mobileDeviceMessage : "Esta página web fue creada para dispositivos de escritorio. Es posible que algunas cosas no funcionen correctamente en dispositivos móviles.",
     },
     navbar : {
-      switchLanguage : '<img src="../img/flag_usa.svg" alt="flag_USA" class="nav-icon"> switch to English',
-      resume: "Descargar currículo",
+      switchLanguage : '<img src="../img/flag_usa.svg" alt="flag_USA" class="nav-icon">&nbsp;switch to English',
+      resume : "Descargar currículo",
+      resumeText : "Aún no amiguito",
     },
     sections : {
       greetings : {
@@ -76,8 +77,9 @@ const dictionary = {
       mobileDeviceMessage : "This webpage was made for desktop devices. Some stuff may not work correctly in mobile devices.",
     },
     navbar : {
-      switchLanguage : '<img src="../img/flag_mx.svg" alt="bandera_MX" class="nav-icon"> ver en Español',
+      switchLanguage : '<img src="../img/flag_mx.svg" alt="bandera_MX" class="nav-icon">&nbsp;ver en Español',
       resume: "Download resume",
+      resumeText : "Not yet buddy",
     },
     sections : {
       greetings : {
@@ -152,7 +154,9 @@ function switchLanguage() {
   else {
     language = "LANG_EN";
   }
+  $(".bilingual").hide()
   changeTexts();
+  $(".bilingual").fadeIn()
 }
 
 function changeTexts() {
