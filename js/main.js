@@ -1,4 +1,10 @@
 /////////////////////////////////////
+// bootstrap tooltip
+/////////////////////////////////////
+const tooltipTriggerList = $('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+/////////////////////////////////////
 // scrolling
 /////////////////////////////////////
 const section = {
@@ -108,68 +114,153 @@ else {
 }
 
 /////////////////////////////////////
-// bootstrap tooltip
-/////////////////////////////////////
-const tooltipTriggerList = $('[data-bs-toggle="tooltip"]')
-const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-
-/////////////////////////////////////
 // tetris project modals
 /////////////////////////////////////
+function getModalContent(folderName) {
+  let info = dictionary[language].sections.projects.systems[folderName];
+
+  let cardContainer = $("<div></div>");
+  let card = $("<div class='card mb-3' style='border: none;'></div>");
+  let cardRow = $("<div class='row g-0'></div>");
+  let cardRowCol1 = $("<div class='col'></div>");
+  let cardRowCol2 = $("<div class='col'></div>");
+  let cardBody = $("<div class='card-body ps-3' style='padding: 0px;'></div>");
+  let cardTitle = $(`<h4 class='card-title mt-4'>${info.title}</h4>`);
+  let cardTechnologies = $(`<div class='modal-technologies justify-content-center'></div>`);
+  let cardText = $(`<p class='card-text ps-3 pe-4'>${info.description}</p>`);
+  cardTitle.append($("<hr>"));
+  cardTitle.append(cardTechnologies);
+  cardTitle.append($("<hr>"));
+
+  cardContainer.append(card);
+  card.append(cardRow);
+  cardRow.append(cardRowCol1);
+  cardRow.append(cardRowCol2);
+  cardRowCol2.append(cardBody);
+  cardBody.append(cardTitle);
+  cardBody.append(cardText);
+
+  for(technology in info.technologies) {
+    let tech = info.technologies[technology];
+    let newTechnology = $(`<img class='modal-technology' data-bs-toggle='tooltip' title='${technologyGlosary[tech]}' src='../img/technologies/${tech}.svg'>`);
+    new bootstrap.Tooltip(newTechnology); // to activate bootstrap tooltip
+    cardTechnologies.append(newTechnology);
+  }
+
+  let sliderContainer = $("<div class='slider-container img-fluid rounded-start'></div>");
+  let buttonContainer = $("<div class='slider-dot-container translate-middle'></div>");
+  for(let i = 1 ; i < projectImages[folderName] + 1 ; i++) {
+    let newImg = $(`<img class="slider-item" src='../img/projects/${folderName}/${i}.png' alt="${info.title + ' ' + i}">`)
+    // setImageListener(newImg);
+    let newButton = $(`<button tabindex="-1" class="slider-dot" onclick="$('.slider-item[src=\\'../img/projects/${folderName}/${i}.png\\']')[0].scrollIntoView({ behavior: 'smooth' })"></button>`);
+    newButton.on('click', () => {
+      if(!newButton.hasClass("active")) {
+        $('.slider-dot').removeClass("active");
+        newButton.addClass("active");
+      }
+    })
+    sliderContainer.append(newImg);
+    buttonContainer.append(newButton);
+  }
+
+  buttonContainer.children().get(0).classList.add("active");
+  sliderContainer.append(buttonContainer);
+  cardRowCol1.append(sliderContainer);
+
+  return cardContainer;
+}
+
+// function setImageListener(imgNode) {
+//   let imgScale = 2;
+
+//   let modalImgIsHovered = false;
+//   imgNode.on('mouseenter', () => {
+//     modalImgIsHovered = true;
+//   });
+
+//   imgNode.on('mouseleave', () => {
+//     modalImgIsHovered = false;
+//     imgNode[0].style.transform = 'translate(0, 0)';
+//   });
+    
+//   imgNode.on('mousemove', (e) => {
+//     if (modalImgIsHovered) {
+//       const x = e.clientX - imgNode[0].getBoundingClientRect().left - imgNode[0].offsetWidth;
+//       const y = e.clientY - imgNode[0].getBoundingClientRect().top - imgNode[0].offsetHeight;
+
+//       imgNode[0].style.transform = `translate(${x*imgScale}px, ${y*imgScale}px) scale(${imgScale})`;
+//     }
+//   });
+// }
 
 $("#btn_cracksCode").on("click", () => {
   bootbox.dialog({
-    title: "to-do: change this modal UI",
-    message: dictionary[language].sections.projects.systems.cracksCode.description,
     onEscape : true,
+    backdrop: true,
+    className: 'bootbox-no-title card-slider',
+    size : 'large',
+    message: getModalContent("cracksCode"),
   });
 });
 $("#btn_crm").on("click", () => {
   bootbox.dialog({
-    title: "to-do: change this modal UI",
-    message: dictionary[language].sections.projects.systems.crm.description,
+    className: 'bootbox-no-title card-slider',
+    size : 'large',
+    message: getModalContent("crm"),
+    backdrop: true,
     onEscape : true,
   });
 });
 $("#btn_drp").on("click", () => {
   bootbox.dialog({
-    title: "to-do: change this modal UI",
-    message: dictionary[language].sections.projects.systems.drp.description,
+    className: 'bootbox-no-title card-slider',
+    size : 'large',
+    message: getModalContent("drp"),
+    backdrop: true,
     onEscape : true,
   });
 });
 $("#btn_ESpeedruN").on("click", () => {
   bootbox.dialog({
-    title: "to-do: change this modal UI",
-    message: dictionary[language].sections.projects.systems.ESpeedruN.description,
+    className: 'bootbox-no-title card-slider',
+    size : 'large',
+    message: getModalContent("ESpeedruN"),
+    backdrop: true,
     onEscape : true,
   });
 });
 $("#btn_LevelMaker").on("click", () => {
   bootbox.dialog({
-    title: "to-do: change this modal UI",
-    message: dictionary[language].sections.projects.systems.LevelMaker.description,
+    className: 'bootbox-no-title card-slider',
+    size : 'large',
+    message: getModalContent("LevelMaker"),
+    backdrop: true,
     onEscape : true,
   });
 });
 $("#btn_monitorIsa").on("click", () => {
   bootbox.dialog({
-    title: "to-do: change this modal UI",
-    message: dictionary[language].sections.projects.systems.monitorIsa.description,
+    className: 'bootbox-no-title card-slider',
+    size : 'large',
+    message: getModalContent("monitorIsa"),
+    backdrop: true,
     onEscape : true,
   });
 });
 $("#btn_monitorKart").on("click", () => {
   bootbox.dialog({
-    title: "to-do: change this modal UI",
-    message: dictionary[language].sections.projects.systems.monitorKart.description,
+    className: 'bootbox-no-title card-slider',
+    size : 'large',
+    message: getModalContent("monitorKart"),
+    backdrop: true,
     onEscape : true,
   });
 });
 $("#btn_resume").on("click", () => {
   bootbox.dialog({
-    message: dictionary[language].navbar.resumeText,
+    description: dictionary[language].navbar.resumeText,
     backdrop: true,
+    onEscape : true,
     buttons: {
       ok: {
         label: 'Aceptar',
@@ -183,6 +274,4 @@ $("#btn_resume").on("click", () => {
 
 $("#dictionary").ready(function() {
   $('body').fadeIn(100);
-
-  console.log('a')
 });

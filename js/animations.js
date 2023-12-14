@@ -116,7 +116,7 @@ for(let i = 0 ; i < tetrisImageContainer.length ; i++) {
 // tetris image change over time
 /////////////////////////////////////
 
-const project = {
+const projectImages = {
   // projectName : quantityOfImages
   cracksCode : 2,
   crm : 5,
@@ -136,7 +136,7 @@ async function changeSingleImage(projectName, imgNode) {
 
   let newImage = new Image(); // image buffer
   let index = parseInt(imgNode.src.match(/\d+(?=\.png)/)[0]); // get current index
-  index = ((index + 1) % (project[projectName] + 1) ); // get next index
+  index = ((index + 1) % (projectImages[projectName] + 1) ); // get next index
   index = index <= 0 ? 1 : index;
   newImage.src = `../img/projects/${projectName}/${index}.png`; // actual file's name
 

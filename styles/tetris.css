@@ -20,8 +20,6 @@
   position: inherit;
   z-index: 1;
   background-color: #0008;
-  user-select: none;
-  pointer-events: none;
 }
 /* shapes */
 .tetris-lg-L{
