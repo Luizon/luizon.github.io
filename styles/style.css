@@ -184,7 +184,7 @@ nav {
 .card-text {
   text-align: justify;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
   max-height: calc(400px - 163px);
 }
 
@@ -194,12 +194,12 @@ nav {
   transition: 250ms;
 }
 
-.modal-technology:hover {
+a:hover .modal-title-redirect, .modal-technology:hover {
   transition: 250ms;
   transform: scale(1.25);
 }
 
-.modal-technology {
+a .modal-title-redirect, .modal-technology {
   transition: 100ms;
   height: 45px;
   width: 45px;

@@ -25,6 +25,8 @@ const dictionary = {
     misc : {
       warning : "Advertencia",
       mobileDeviceMessage : "Esta página web fue creada para dispositivos de escritorio. Es posible que algunas cosas no funcionen correctamente en dispositivos móviles.",
+      visit : "Visitar página web",
+      watchRepo : "Ver repositorio",
     },
     navbar : {
       switchLanguage : '<img src="../img/flag_usa.svg" alt="flag_USA" class="nav-icon">&nbsp;switch to English',
@@ -53,6 +55,7 @@ const dictionary = {
         systems : {
           cracksCode : {
             title : "Cracks Code",
+            url : "https://github.com/Luizon/Cracks-Code",
             technologies : ["java", "git"],
             description : "Editor de código de los cracks. Editor de texto plano simple, con temas predefinidos y uno personalizado, un historial de archivos y la opción de tener varios archivos abiertos a la vez.",
           },
@@ -63,11 +66,13 @@ const dictionary = {
           },
           LevelMaker : {
             title : "Level Maker",
+            url : "https://luizon.dev/LevelMaker",
             technologies : ["js", "git"],
             description : "Level Maker es un juego parecido a Mario Maker: haces niveles que luego puedes jugar y puedes cargar niveles tuyos o de otros para jugar. Solo que al ser Javascript vanilla esa clase de interacciones son un poco más complicadas.",
           },
           ESpeedruN : {
             title : "ESpeedruÑ.com",
+            url : "https://ESpeedruÑ.com",
             technologies : ["js", "git", "html5", "css3", "bootstrap"],
             description : "ESpeedruÑ.com es uno de mis orgullos personales. Esta página usa la API de speedrun.com para mostrar tablas de marcadores de speedrun de usuarios hispanohablantes. Cosa que usa la comunidad hispana de speedrun y que les incentiva a la sana competencia.",
           },
@@ -94,6 +99,8 @@ const dictionary = {
     misc : {
       warning : "Warning",
       mobileDeviceMessage : "This webpage was made for desktop devices. Some stuff may not work correctly in mobile devices.",
+      visit : "Visit webpage",
+      watchRepo : "See repository",
     },
     navbar : {
       switchLanguage : '<img src="../img/flag_mx.svg" alt="bandera_MX" class="nav-icon">&nbsp;ver en Español',
@@ -122,6 +129,7 @@ const dictionary = {
         systems : {
           cracksCode : {
             title : "Cracks Code",
+            url : "https://github.com/Luizon/Cracks-Code",
             technologies : ["java", "git"],
             description : "Cracks Code is a plain text editor where you write your notes. It has a file history, integrated themes and a personalized theme for you own preferences, a tab system and rich text made for Java code. "
             + "Rich text is kind of limitated and this desktop system was not optimized to actually write full codes in, so I don't recommended it for coding (although that's his name, that's kinda ironic I know). "
@@ -135,11 +143,13 @@ const dictionary = {
           },
           LevelMaker : {
             title : "Level Maker",
+            url : "https://luizon.dev/LevelMaker",
             technologies : ["js", "git"],
             description : "Level Maker is a videogame where you can create your own platform levels and you can save them, load them and of course, play them. This game is a vanilla Javascript web app with no integrations at all.",
           },
           ESpeedruN : {
             title : "ESpeedruÑ.com",
+            url : "https://ESpeedruÑ.com",
             technologies : ["js", "git", "html5", "css3", "bootstrap"],
             description : "ESpeedruÑ.com is a web page where you can find the hispanic speedrun leaderboards from any game registred in speedrun.com. It works with speedrun.com API and, because of that, it has to deal with their speed problems and limitations. "
             + "I'm not associated with speedrun.com at all, I just made this for the hispanic speedrun community because I love speedrunning and I wish the best for the community.",

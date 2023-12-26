@@ -128,6 +128,17 @@ function getModalContent(folderName) {
   let cardTitle = $(`<h4 class='card-title mt-4'>${info.title}</h4>`);
   let cardTechnologies = $(`<div class='modal-technologies justify-content-center'></div>`);
   let cardText = $(`<p class='card-text ps-3 pe-4'>${info.description}</p>`);
+  if(info.url !== undefined) {
+    cardTitle.html("");
+    let innerTitle = dictionary[language].misc.visit;
+    if(info.url.includes("github"))
+      innerTitle = dictionary[language].misc.watchRepo;
+    let titleUrl = $(`<a href='${info.url}'>${info.title}</a>`);
+    let titleImg = $(`<img class='ps-2 pe-2 ms-1 modal-title-redirect' src='../img/redirect.svg' data-bs-toggle='tooltip' title='${innerTitle}' alt=''>`);
+    titleUrl.append(titleImg);
+    cardTitle.append(titleUrl);
+    new bootstrap.Tooltip(titleImg); // to activate bootstrap tooltip
+  }
   cardTitle.append($("<hr>"));
   cardTitle.append(cardTechnologies);
   cardTitle.append($("<hr>"));
@@ -258,7 +269,7 @@ $("#btn_monitorKart").on("click", () => {
 });
 $("#btn_resume").on("click", () => {
   bootbox.dialog({
-    description: dictionary[language].navbar.resumeText,
+    message: dictionary[language].navbar.resumeText,
     backdrop: true,
     onEscape : true,
     buttons: {
