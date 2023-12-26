@@ -122,12 +122,12 @@ function getModalContent(folderName) {
   let cardContainer = $("<div></div>");
   let card = $("<div class='card mb-3' style='border: none;'></div>");
   let cardRow = $("<div class='row g-0'></div>");
-  let cardRowCol1 = $("<div class='col'></div>");
-  let cardRowCol2 = $("<div class='col'></div>");
-  let cardBody = $("<div class='card-body ps-3' style='padding: 0px;'></div>");
+  let cardRowCol1 = $("<div class='col-12 col-md-6'></div>");
+  let cardRowCol2 = $("<div class='col-12 col-md-6'></div>");
+  let cardBody = $("<div class='card-body ps-0 ps-md-3' style='padding: 0px;'></div>");
   let cardTitle = $(`<h4 class='card-title mt-4'>${info.title}</h4>`);
-  let cardTechnologies = $(`<div class='modal-technologies justify-content-center'></div>`);
-  let cardText = $(`<p class='card-text ps-3 pe-4'>${info.description}</p>`);
+  let cardTechnologies = $(`<div class='modal-technologies justify-content-center hide-on-xs'></div>`);
+  let cardText = $(`<p class='card-text ps-0 ps-md-3 pe-0 pe-md-4'>${info.description}</p>`);
   if(info.url !== undefined) {
     cardTitle.html("");
     let innerTitle = dictionary[language].misc.visit;
@@ -139,9 +139,9 @@ function getModalContent(folderName) {
     cardTitle.append(titleUrl);
     new bootstrap.Tooltip(titleImg); // to activate bootstrap tooltip
   }
-  cardTitle.append($("<hr>"));
+  cardTitle.append($("<hr class='hide-on-xs'>"));
   cardTitle.append(cardTechnologies);
-  cardTitle.append($("<hr>"));
+  cardTitle.append($("<hr class='hide-on-xs'>"));
 
   cardContainer.append(card);
   card.append(cardRow);

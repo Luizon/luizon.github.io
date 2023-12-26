@@ -153,6 +153,18 @@ nav {
   transition: 200ms;
 }
 
+.bootbox-no-title > .modal-dialog > .modal-content {
+  max-height: calc(100% - 2em);
+}
+
+.modal-dialog {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
 .bootbox-no-title > .modal-dialog > .modal-content > .modal-header {
   display: none;
 }
@@ -185,7 +197,7 @@ nav {
   text-align: justify;
   overflow-x: hidden;
   overflow-y: auto;
-  max-height: calc(400px - 163px);
+  height: 250px;
 }
 
 .modal-technologies {
@@ -229,7 +241,7 @@ a .modal-title-redirect, .modal-technology {
 .slider-dot-container {
   position: absolute;
   left: 25%!important;
-  top: calc(100% - 3em)!important;
+  top: 23em!important;
   display: flex;
   gap: 10px;
 }
@@ -290,7 +302,27 @@ a .modal-title-redirect, .modal-technology {
     height: 50px;
     top: 3px;
   }
+
+  .card-text {
+    max-height: calc(25vh - 1em);
+    font-size: 0.9rem;
+  }
+
+  .slider-container {
+    max-height: calc(40vh - 1em);
+  }
+
+  .slider-dot-container {
+    left: 50%!important;
+    top: calc(35vh - 1em)!important;
+  }
 }
 
 @media (max-width: 575.98px) {
+}
+
+@media (max-width: 419.98px) {
+  .hide-on-xs {
+    display: none;
+  }
 }
