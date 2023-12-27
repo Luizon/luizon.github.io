@@ -116,6 +116,8 @@ else {
 /////////////////////////////////////
 // tetris project modals
 /////////////////////////////////////
+var btnModalChangeInterval;
+var btnModalIndex;
 function getModalContent(folderName) {
   let info = dictionary[language].sections.projects.systems[folderName];
 
@@ -133,15 +135,15 @@ function getModalContent(folderName) {
     let innerTitle = dictionary[language].misc.visit;
     if(info.url.includes("github"))
       innerTitle = dictionary[language].misc.watchRepo;
-    let titleUrl = $(`<a href='${info.url}'>${info.title}</a>`);
+    let titleUrl = $(`<a target="_blank" href='${info.url}'>${info.title}</a>`);
     let titleImg = $(`<img class='ps-2 pe-2 ms-1 modal-title-redirect' src='../img/redirect.svg' data-bs-toggle='tooltip' title='${innerTitle}' alt=''>`);
     titleUrl.append(titleImg);
     cardTitle.append(titleUrl);
     new bootstrap.Tooltip(titleImg); // to activate bootstrap tooltip
   }
-  cardTitle.append($("<hr class='hide-on-xs'>"));
+  cardTitle.append($("<hr class='hide-on-xs mt-1 mb-1 mt-md-3 mb-md-3'>"));
   cardTitle.append(cardTechnologies);
-  cardTitle.append($("<hr class='hide-on-xs'>"));
+  cardTitle.append($("<hr class='hide-on-xs mt-1 mb-1 mt-md-3 mb-md-3'>"));
 
   cardContainer.append(card);
   card.append(cardRow);
@@ -163,7 +165,7 @@ function getModalContent(folderName) {
   for(let i = 1 ; i < projectImages[folderName] + 1 ; i++) {
     let newImg = $(`<img class="slider-item" src='../img/projects/${folderName}/${i}.png' alt="${info.title + ' ' + i}">`)
     // setImageListener(newImg);
-    let newButton = $(`<button tabindex="-1" class="slider-dot" onclick="$('.slider-item[src=\\'../img/projects/${folderName}/${i}.png\\']')[0].scrollIntoView({ behavior: 'smooth' })"></button>`);
+    let newButton = $(`<button id="btnModal${i}" tabindex="-1" class="slider-dot" onclick="$('.slider-item[src=\\'../img/projects/${folderName}/${i}.png\\']')[0].scrollIntoView({ behavior: 'smooth' }); startSlider(${i});"></button>`);
     newButton.on('click', () => {
       if(!newButton.hasClass("active")) {
         $('.slider-dot').removeClass("active");
@@ -178,7 +180,32 @@ function getModalContent(folderName) {
   sliderContainer.append(buttonContainer);
   cardRowCol1.append(sliderContainer);
 
+  btnModalIndex = 0;
+  btnModalChangeInterval = setInterval(e => {
+    if($(`#btnModal${btnModalIndex + 1}`)[0] !== undefined)
+      btnModalIndex++;
+    else
+      btnModalIndex = 1;
+    $(`#btnModal${btnModalIndex}`)[0].click();
+  }, 5000);
+
   return cardContainer;
+}
+
+function killModalChangeIntervalProcess() {
+  clearTimeout(btnModalChangeInterval);
+}
+
+function startSlider(index) {
+  killModalChangeIntervalProcess();
+  btnModalChangeInterval = setInterval(e => {
+    if($(`#btnModal${btnModalIndex + 1}`)[0] !== undefined)
+      btnModalIndex++;
+    else
+      btnModalIndex = 1;
+    $(`#btnModal${btnModalIndex}`)[0].click();
+  }, 5000);
+  btnModalIndex = index;
 }
 
 // function setImageListener(imgNode) {
@@ -211,6 +238,7 @@ $("#btn_cracksCode").on("click", () => {
     className: 'bootbox-no-title card-slider',
     size : 'large',
     message: getModalContent("cracksCode"),
+    onHide: killModalChangeIntervalProcess,
   });
 });
 $("#btn_crm").on("click", () => {
@@ -220,6 +248,7 @@ $("#btn_crm").on("click", () => {
     message: getModalContent("crm"),
     backdrop: true,
     onEscape : true,
+    onHide: killModalChangeIntervalProcess,
   });
 });
 $("#btn_drp").on("click", () => {
@@ -229,6 +258,7 @@ $("#btn_drp").on("click", () => {
     message: getModalContent("drp"),
     backdrop: true,
     onEscape : true,
+    onHide: killModalChangeIntervalProcess,
   });
 });
 $("#btn_ESpeedruN").on("click", () => {
@@ -238,6 +268,7 @@ $("#btn_ESpeedruN").on("click", () => {
     message: getModalContent("ESpeedruN"),
     backdrop: true,
     onEscape : true,
+    onHide: killModalChangeIntervalProcess,
   });
 });
 $("#btn_LevelMaker").on("click", () => {
@@ -247,6 +278,7 @@ $("#btn_LevelMaker").on("click", () => {
     message: getModalContent("LevelMaker"),
     backdrop: true,
     onEscape : true,
+    onHide: killModalChangeIntervalProcess,
   });
 });
 $("#btn_monitorIsa").on("click", () => {
@@ -256,6 +288,7 @@ $("#btn_monitorIsa").on("click", () => {
     message: getModalContent("monitorIsa"),
     backdrop: true,
     onEscape : true,
+    onHide: killModalChangeIntervalProcess,
   });
 });
 $("#btn_monitorKart").on("click", () => {
@@ -265,6 +298,7 @@ $("#btn_monitorKart").on("click", () => {
     message: getModalContent("monitorKart"),
     backdrop: true,
     onEscape : true,
+    onHide: killModalChangeIntervalProcess,
   });
 });
 $("#btn_resume").on("click", () => {
