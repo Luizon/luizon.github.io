@@ -162,10 +162,11 @@ function getModalContent(folderName) {
 
   let sliderContainer = $("<div class='slider-container img-fluid rounded-start'></div>");
   let buttonContainer = $("<div class='slider-dot-container translate-middle'></div>");
+  let dot = "<div class='dot'></div>";
   for(let i = 1 ; i < projectImages[folderName] + 1 ; i++) {
     let newImg = $(`<img class="slider-item" src='../img/projects/${folderName}/${i}.png' alt="${info.title + ' ' + i}">`)
     // setImageListener(newImg);
-    let newButton = $(`<button id="btnModal${i}" tabindex="-1" class="slider-dot" onclick="$('.slider-item[src=\\'../img/projects/${folderName}/${i}.png\\']')[0].scrollIntoView({ behavior: 'smooth' }); startSlider(${i});"></button>`);
+    let newButton = $(`<button id="btnModal${i}" tabindex="-1" class="slider-dot" onclick="$('.slider-item[src=\\'../img/projects/${folderName}/${i}.png\\']')[0].scrollIntoView({ behavior: 'smooth' }); startSlider(${i});">${dot}</button>`);
     newButton.on('click', () => {
       if(!newButton.hasClass("active")) {
         $('.slider-dot').removeClass("active");
