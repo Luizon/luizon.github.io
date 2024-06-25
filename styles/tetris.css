@@ -150,6 +150,13 @@
 }
 
 /* individual positions */
+.tetris-out {
+  top:0;
+  left: -200vw;
+}
+.tetris-lg-y-0{
+  top: 0;
+}
 .tetris-lg-y-1{
   top: calc(var(--block-lg-height));
 }
@@ -164,6 +171,9 @@
 }
 .tetris-lg-y-5{
   top: calc(var(--block-lg-height) * 5);
+}
+.tetris-lg-x-0{
+  left: 0;
 }
 .tetris-lg-x-1{
   left: calc(var(--block-lg-width));

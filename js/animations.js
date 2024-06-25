@@ -185,3 +185,86 @@ function changeAllImages() {
 setInterval( () => {
   changeAllImages();
 }, 10000);
+
+/////////////////////////////////////
+// tetris pieces moving (start)
+/////////////////////////////////////
+
+moveTetrisOutOfBounce($("#btn_LevelMaker")[0]);
+moveTetrisOutOfBounce($("#btn_ESpeedruN")[0]);
+moveTetrisOutOfBounce($("#btn_drp")[0]);
+moveTetrisOutOfBounce($("#btn_crm")[0]);
+moveTetrisOutOfBounce($("#btn_monitorKart")[0]);
+moveTetrisOutOfBounce($("#btn_monitorIsa")[0]);
+moveTetrisOutOfBounce($("#btn_cracksCode")[0]);
+var tetrisPiecesHasBeenMoved = false;
+async function moveTetrisPieces() {
+  // return;
+  tetrisPiecesHasBeenMoved = true;//
+  await moveTetrisPosition({smX:2, smY:0, lgX:3, lgY:0, object: $("#btn_LevelMaker")[0], time:0});
+  await moveTetrisPosition({smX:1, smY:0, lgX:2, lgY:0, object: $("#btn_LevelMaker")[0], time: 500});
+  await moveTetrisPosition({smX:0, smY:0, lgX:1, lgY:0, object: $("#btn_LevelMaker")[0], time: 100});
+  await moveTetrisPosition({smX:0, smY:0, lgX:0, lgY:0, object: $("#btn_LevelMaker")[0], time: 100});
+  await moveTetrisPosition({smX:0, smY:6, lgX:0, lgY:3, object: $("#btn_LevelMaker")[0], time: 300});
+  // ESpeedruN
+  await moveTetrisPosition({smX:1, smY:0, lgX:2, lgY:0, object: $("#btn_ESpeedruN")[0], time: 500});
+  await moveTetrisPosition({smX:2, smY:0, lgX:2, lgY:0, object: $("#btn_ESpeedruN")[0], time: 100});
+  await moveTetrisPosition({smX:2, smY:7, lgX:2, lgY:4, object: $("#btn_ESpeedruN")[0], time: 200});
+  // drp
+  await moveTetrisPosition({smX:2, smY:0, lgX:3, lgY:0, object: $("#btn_drp")[0], time: 500});
+  await moveTetrisPosition({smX:1, smY:0, lgX:2, lgY:0, object: $("#btn_drp")[0], time: 200});
+  await moveTetrisPosition({smX:1, smY:0, lgX:1, lgY:0, object: $("#btn_drp")[0], time: 100});
+  await moveTetrisPosition({smX:1, smY:6, lgX:1, lgY:3, object: $("#btn_drp")[0], time: 200});
+  // crm
+  await moveTetrisPosition({smX:2, smY:0, lgX:3, lgY:0, object: $("#btn_crm")[0], time: 500});
+  await moveTetrisPosition({smX:3, smY:0, lgX:4, lgY:0, object: $("#btn_crm")[0], time: 200});
+  await moveTetrisPosition({smX:3, smY:5, lgX:4, lgY:4, object: $("#btn_crm")[0], time: 200});
+  // monitor kart
+  await moveTetrisPosition({smX:2, smY:0, lgX:3, lgY:0, object: $("#btn_monitorKart")[0], time: 500});
+  await moveTetrisPosition({smX:1, smY:0, lgX:4, lgY:0, object: $("#btn_monitorKart")[0], time: 200});
+  await moveTetrisPosition({smX:0, smY:0, lgX:5, lgY:0, object: $("#btn_monitorKart")[0], time: 100});
+  await moveTetrisPosition({smX:0, smY:0, lgX:6, lgY:0, object: $("#btn_monitorKart")[0], time: 100});
+  await moveTetrisPosition({smX:0, smY:4, lgX:6, lgY:3, object: $("#btn_monitorKart")[0], time: 200});
+  // monitor isa
+  await moveTetrisPosition({smX:2, smY:0, lgX:2, lgY:0, object: $("#btn_monitorIsa")[0], time: 500});
+  await moveTetrisPosition({smX:1, smY:0, lgX:2, lgY:0, object: $("#btn_monitorIsa")[0], time: 200});
+  await moveTetrisPosition({smX:0, smY:0, lgX:2, lgY:0, object: $("#btn_monitorIsa")[0], time: 200});
+  await moveTetrisPosition({smX:0, smY:2, lgX:2, lgY:2, object: $("#btn_monitorIsa")[0], time: 200});
+  // cracks code
+  await moveTetrisPosition({smX:2, smY:0, lgX:3, lgY:0, object: $("#btn_cracksCode")[0], time: 500});
+  await moveTetrisPosition({smX:2, smY:0, lgX:4, lgY:0, object: $("#btn_cracksCode")[0], time: 100});
+  await moveTetrisPosition({smX:2, smY:2, lgX:4, lgY:1, object: $("#btn_cracksCode")[0], time: 100});
+};
+
+async function moveTetrisPosition(json) { // {smX, smY, lgX, lgY, object}
+  await new Promise(resolve => {setTimeout(e=>{
+    removeTetrisPosition(json.object);
+    // if(json.object.classList.includes('tetris-out'))
+    //   json.object.classList.remove('tetris-out');
+    let clases = [`tetris-sm-x-${json.smX}`, `tetris-sm-y-${json.smY}`, `tetris-lg-x-${json.lgX}`, `tetris-lg-y-${json.lgY}`];
+    clases.forEach(clase => {
+      json.object.classList.add(clase);
+    });
+    console.log(json.time);
+    resolve();
+  }, json.time)});
+}
+
+function moveTetrisOutOfBounce(object) { // object is a vanilla js object
+  removeTetrisPosition(object);
+  object.classList.add('tetris-out')
+}
+
+function removeTetrisPosition(object) { // object is a vanilla js object
+  let removeList = [];
+  for(let i=0; i<object.classList.length; i++)
+  {
+    let a=object.classList[i];
+    if(a.includes('tetris-sm-x') || a.includes('tetris-sm-y')
+      || a.includes('tetris-lg-x') || a.includes('tetris-lg-y')) {
+        removeList.push(a);
+    }
+  }
+  for(let i=0; i<removeList.length ; i++)
+    object.classList.remove(removeList[i]);
+}

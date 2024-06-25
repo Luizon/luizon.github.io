@@ -30,8 +30,7 @@ const dictionary = {
     },
     navbar : {
       switchLanguage : '<img src="../img/flag_usa.svg" alt="flag_USA" class="nav-icon">&nbsp;switch to English',
-      resume : "Descargar currículo",
-      resumeText : "Aún no amiguito",
+      resumeUrl : "https://luizon.dev/Files/Resume_ES.pdf",
     },
     sections : {
       greetings : {
@@ -97,15 +96,14 @@ const dictionary = {
   },
   LANG_EN : {
     misc : {
-      warning : "Warning",
+      close: 'Close',
       mobileDeviceMessage : "This webpage was made for desktop devices. Some stuff may not work correctly in mobile devices.",
       visit : "Visit webpage",
       watchRepo : "See repository",
     },
     navbar : {
       switchLanguage : '<img src="../img/flag_mx.svg" alt="bandera_MX" class="nav-icon">&nbsp;ver en Español',
-      resume: "Download resume",
-      resumeText : "Not yet buddy",
+      resumeUrl : "https://luizon.dev/Files/Resume_EN.pdf",
     },
     sections : {
       greetings : {

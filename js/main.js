@@ -65,6 +65,8 @@ function scrollToSection(evt, selectedSection = false) {
   }
   else {
     __body__.style.background = "#420666";
+    if(!tetrisPiecesHasBeenMoved)
+      moveTetrisPieces();
 
     if(scrollToTopButton.classList.contains("fade-out"))
       scrollToTopButton.classList.remove("fade-out");
@@ -303,18 +305,7 @@ $("#btn_monitorKart").on("click", () => {
   });
 });
 $("#btn_resume").on("click", () => {
-  bootbox.dialog({
-    message: dictionary[language].navbar.resumeText,
-    backdrop: true,
-    onEscape : true,
-    buttons: {
-      ok: {
-        label: 'Aceptar',
-        className: 'btn-primary',
-      },
-    },
-    className: 'bootbox-no-title',
-  });
+  window.location.href = dictionary[language].navbar.resumeUrl;
 });
 
 

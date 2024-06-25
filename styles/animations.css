@@ -121,7 +121,7 @@
   width: 20px;
   height: 20px;
   background: rgba(255, 255, 255, 0.2);
-  animation: animate 25s linear infinite;
+  animation: animate 16s linear infinite;
   top: 100vh;
 }
 
@@ -182,7 +182,7 @@
   top: 60vh;
   width: 25vh;
   height: 25vh;
-  animation-duration: 45s;
+  animation-duration: 25s;
 }
 
 .circles li:nth-child(9){
@@ -190,7 +190,7 @@
   top: 80vh;
   width: 15vh;
   height: 15vh;
-  animation-duration: 35s;
+  animation-duration: 22s;
 }
 
 .circles li:nth-child(10){
@@ -214,7 +214,7 @@
   top: 100vh;
   width: 50vh;
   height: 50vh;
-  animation-duration: 25s;
+  animation-duration: 11s;
 }
 
 .circles li:nth-child(13){
@@ -222,7 +222,7 @@
   top: 120vh;
   width: 20vh;
   height: 20vh;
-  animation-duration: 30s;
+  animation-duration: 20s;
 }
 
 .circles li:nth-child(14){
@@ -254,7 +254,7 @@
   top: 160vh;
   width: 70vh;
   height: 70vh;
-  animation-duration: 25s;
+  animation-duration: 11s;
 }
 
 .circles li:nth-child(18){
@@ -262,7 +262,7 @@
   top: 160vh;
   width: 40vh;
   height: 40vh;
-  animation-duration: 30s;
+  animation-duration: 8s;
 }
 
 .circles li:nth-child(19){
@@ -288,7 +288,7 @@
     border-radius: 0;
   }
   100%{
-    transform: translateY(-90vh) rotate(720deg);
+    transform: translateY(-150vh) rotate(720deg);
     opacity: 0;
     border-radius: 50%;
   }
