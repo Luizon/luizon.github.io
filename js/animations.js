@@ -205,31 +205,31 @@ async function moveTetrisPieces() {
   await moveTetrisPosition({smX:1, smY:0, lgX:2, lgY:0, object: $("#btn_LevelMaker")[0], time: 500});
   await moveTetrisPosition({smX:0, smY:0, lgX:1, lgY:0, object: $("#btn_LevelMaker")[0], time: 100});
   await moveTetrisPosition({smX:0, smY:0, lgX:0, lgY:0, object: $("#btn_LevelMaker")[0], time: 100});
-  await moveTetrisPosition({smX:0, smY:6, lgX:0, lgY:3, object: $("#btn_LevelMaker")[0], time: 300});
+  await moveTetrisPosition({smX:0, smY:6, lgX:0, lgY:3, object: $("#btn_LevelMaker")[0], time: 100});
   // ESpeedruN
   await moveTetrisPosition({smX:1, smY:0, lgX:2, lgY:0, object: $("#btn_ESpeedruN")[0], time: 500});
   await moveTetrisPosition({smX:2, smY:0, lgX:2, lgY:0, object: $("#btn_ESpeedruN")[0], time: 100});
-  await moveTetrisPosition({smX:2, smY:7, lgX:2, lgY:4, object: $("#btn_ESpeedruN")[0], time: 200});
+  await moveTetrisPosition({smX:2, smY:7, lgX:2, lgY:4, object: $("#btn_ESpeedruN")[0], time: 100});
   // drp
   await moveTetrisPosition({smX:2, smY:0, lgX:3, lgY:0, object: $("#btn_drp")[0], time: 500});
-  await moveTetrisPosition({smX:1, smY:0, lgX:2, lgY:0, object: $("#btn_drp")[0], time: 200});
+  await moveTetrisPosition({smX:1, smY:0, lgX:2, lgY:0, object: $("#btn_drp")[0], time: 100});
   await moveTetrisPosition({smX:1, smY:0, lgX:1, lgY:0, object: $("#btn_drp")[0], time: 100});
-  await moveTetrisPosition({smX:1, smY:6, lgX:1, lgY:3, object: $("#btn_drp")[0], time: 200});
+  await moveTetrisPosition({smX:1, smY:6, lgX:1, lgY:3, object: $("#btn_drp")[0], time: 100});
   // crm
   await moveTetrisPosition({smX:2, smY:0, lgX:3, lgY:0, object: $("#btn_crm")[0], time: 500});
-  await moveTetrisPosition({smX:3, smY:0, lgX:4, lgY:0, object: $("#btn_crm")[0], time: 200});
-  await moveTetrisPosition({smX:3, smY:5, lgX:4, lgY:4, object: $("#btn_crm")[0], time: 200});
+  await moveTetrisPosition({smX:3, smY:0, lgX:4, lgY:0, object: $("#btn_crm")[0], time: 100});
+  await moveTetrisPosition({smX:3, smY:5, lgX:4, lgY:4, object: $("#btn_crm")[0], time: 100});
   // monitor kart
   await moveTetrisPosition({smX:2, smY:0, lgX:3, lgY:0, object: $("#btn_monitorKart")[0], time: 500});
-  await moveTetrisPosition({smX:1, smY:0, lgX:4, lgY:0, object: $("#btn_monitorKart")[0], time: 200});
+  await moveTetrisPosition({smX:1, smY:0, lgX:4, lgY:0, object: $("#btn_monitorKart")[0], time: 100});
   await moveTetrisPosition({smX:0, smY:0, lgX:5, lgY:0, object: $("#btn_monitorKart")[0], time: 100});
   await moveTetrisPosition({smX:0, smY:0, lgX:6, lgY:0, object: $("#btn_monitorKart")[0], time: 100});
-  await moveTetrisPosition({smX:0, smY:4, lgX:6, lgY:3, object: $("#btn_monitorKart")[0], time: 200});
+  await moveTetrisPosition({smX:0, smY:4, lgX:6, lgY:3, object: $("#btn_monitorKart")[0], time: 100});
   // monitor isa
   await moveTetrisPosition({smX:2, smY:0, lgX:2, lgY:0, object: $("#btn_monitorIsa")[0], time: 500});
-  await moveTetrisPosition({smX:1, smY:0, lgX:2, lgY:0, object: $("#btn_monitorIsa")[0], time: 200});
-  await moveTetrisPosition({smX:0, smY:0, lgX:2, lgY:0, object: $("#btn_monitorIsa")[0], time: 200});
-  await moveTetrisPosition({smX:0, smY:2, lgX:2, lgY:2, object: $("#btn_monitorIsa")[0], time: 200});
+  await moveTetrisPosition({smX:1, smY:0, lgX:2, lgY:0, object: $("#btn_monitorIsa")[0], time: 100});
+  await moveTetrisPosition({smX:0, smY:0, lgX:2, lgY:0, object: $("#btn_monitorIsa")[0], time: 100});
+  await moveTetrisPosition({smX:0, smY:2, lgX:2, lgY:2, object: $("#btn_monitorIsa")[0], time: 100});
   // cracks code
   await moveTetrisPosition({smX:2, smY:0, lgX:3, lgY:0, object: $("#btn_cracksCode")[0], time: 500});
   await moveTetrisPosition({smX:2, smY:0, lgX:4, lgY:0, object: $("#btn_cracksCode")[0], time: 100});
@@ -245,7 +245,6 @@ async function moveTetrisPosition(json) { // {smX, smY, lgX, lgY, object}
     clases.forEach(clase => {
       json.object.classList.add(clase);
     });
-    console.log(json.time);
     resolve();
   }, json.time)});
 }

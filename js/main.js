@@ -9,8 +9,8 @@ const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstra
 /////////////////////////////////////
 const section = {
   GREETINGS : 0,
-  // CONST_TECHNOLOGIES : 1,
   PROJECTS : 1,
+  // CONST_TECHNOLOGIES : 2,
   CONTACT : 3
 }
 const sections = $('section');
@@ -57,6 +57,7 @@ function scrollToSection(evt, selectedSection = false) {
   sections[currentSectionIndex].scrollIntoView({ behavior: 'smooth' });
   if(currentSectionIndex == section.GREETINGS) {
     __body__.style.background = "#210333";
+    window.location.href = window.location.origin + window.location.pathname + '#aboutMe';
 
     if(scrollToTopButton.classList.contains("fade-in"))
       scrollToTopButton.classList.remove("fade-in");
@@ -65,6 +66,7 @@ function scrollToSection(evt, selectedSection = false) {
   }
   else {
     __body__.style.background = "#420666";
+    window.location.href = window.location.origin + window.location.pathname + '#projects';
     if(!tetrisPiecesHasBeenMoved)
       moveTetrisPieces();
 
@@ -84,7 +86,12 @@ window.onresize = evt => {
 }
 window.onload = evt => {
   // console.log("load")
-  sections[section.GREETINGS].scrollIntoView({ behavior: 'smooth' });
+  if(window.location.href.includes('#aboutMe'))
+    sections[section.GREETINGS].scrollIntoView({ behavior: 'smooth' });
+  else if(window.location.href.includes('#projects'))
+    scrollToSection(evt, section.PROJECTS);
+  else
+    sections[section.GREETINGS].scrollIntoView({ behavior: 'smooth' });
 }
 
 /////////////////////////////////////
