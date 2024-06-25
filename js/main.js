@@ -82,12 +82,10 @@ function scrollToSection(evt, selectedSection = false) {
 /////////////////////////////////////
 window.onresize = evt => {
   sections[currentSectionIndex].scrollIntoView({ behavior: 'smooth' });
-  // console.log("resize")
 }
 window.onload = evt => {
-  // console.log("load")
   if(window.location.href.includes('#aboutMe'))
-    sections[section.GREETINGS].scrollIntoView({ behavior: 'smooth' });
+    scrollToSection(evt, section.GREETINGS);
   else if(window.location.href.includes('#projects'))
     scrollToSection(evt, section.PROJECTS);
   else
