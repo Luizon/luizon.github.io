@@ -312,7 +312,7 @@
   list-style: none;
   width: 10vh;
   height: 10vh;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.5);
   opacity: 0;
   margin-top: calc(var(--block-lg-height) * 3 / 4);
   margin-left: calc(var(--block-lg-width) / 2);
@@ -334,5 +334,11 @@
     width: 10vw;
     height: 10vw;
     margin-top: calc(var(--block-sm-height) * 3 / 4);
+  }
+  @keyframes particle-left {
+    100%{  translate: -25vw;}
+  }
+  @keyframes particle-right {
+    100%{  translate: 25vw;}
   }
 }
