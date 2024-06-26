@@ -95,17 +95,16 @@
 
 
 
-.area{
+.special-background{
   /* background: #4e54c8;   */
   background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  
   width: 100%;
   height:100vh;
   position: absolute;
   top: 0px;
-  z-index: -1;
 }
 
-.circles{
+.bg-circles, .tetramino-particles{
   position: absolute;
   top: 0;
   left: 0;
@@ -114,7 +113,7 @@
   overflow: hidden;
 }
 
-.circles li{
+.bg-circles li{
   position: absolute;
   display: block;
   list-style: none;
@@ -125,7 +124,7 @@
   top: 100vh;
 }
 
-.circles li:nth-child(1){
+.bg-circles li:nth-child(1){
   left: 25%;
   top: 10vh;
   width: 40vh;
@@ -133,7 +132,7 @@
 }
 
 
-.circles li:nth-child(2){
+.bg-circles li:nth-child(2){
   left: 10%;
   top: 10vh;
   width: 20vh;
@@ -141,14 +140,14 @@
   animation-duration: 12s;
 }
 
-.circles li:nth-child(3){
+.bg-circles li:nth-child(3){
   left: 70%;
   top: 20vh;
   width: 20vh;
   height: 20vh;
 }
 
-.circles li:nth-child(4){
+.bg-circles li:nth-child(4){
   left: 40%;
   top: 20vh;
   width: 60vh;
@@ -156,28 +155,28 @@
   animation-duration: 18s;
 }
 
-.circles li:nth-child(5){
+.bg-circles li:nth-child(5){
   left: -5%;
   top: 40vh;
   width: 20vh;
   height: 20vh;
 }
 
-.circles li:nth-child(6){
+.bg-circles li:nth-child(6){
   left: 75%;
   top: 40vh;
   width: 30vh;
   height: 30vh;
 }
 
-.circles li:nth-child(7){
+.bg-circles li:nth-child(7){
   left: 35%;
   top: 60vh;
   width: 40vh;
   height: 40vh;
 }
 
-.circles li:nth-child(8){
+.bg-circles li:nth-child(8){
   left: 50%;
   top: 60vh;
   width: 25vh;
@@ -185,7 +184,7 @@
   animation-duration: 25s;
 }
 
-.circles li:nth-child(9){
+.bg-circles li:nth-child(9){
   left: 20%;
   top: 80vh;
   width: 15vh;
@@ -193,7 +192,7 @@
   animation-duration: 22s;
 }
 
-.circles li:nth-child(10){
+.bg-circles li:nth-child(10){
   left: -15%;
   top: 80vh;
   width: 40vh;
@@ -201,7 +200,7 @@
   animation-duration: 11s;
 }
 
-.circles li:nth-child(11){
+.bg-circles li:nth-child(11){
   left: 55%;
   top: 100vh;
   width: 40vh;
@@ -209,7 +208,7 @@
   animation-duration: 20s;
 }
 
-.circles li:nth-child(12){
+.bg-circles li:nth-child(12){
   left: 30%;
   top: 100vh;
   width: 50vh;
@@ -217,7 +216,7 @@
   animation-duration: 11s;
 }
 
-.circles li:nth-child(13){
+.bg-circles li:nth-child(13){
   left: 0%;
   top: 120vh;
   width: 20vh;
@@ -225,7 +224,7 @@
   animation-duration: 20s;
 }
 
-.circles li:nth-child(14){
+.bg-circles li:nth-child(14){
   left: 60%;
   top: 120vh;
   width: 70vh;
@@ -233,7 +232,7 @@
   animation-duration: 15s;
 }
 
-.circles li:nth-child(15){
+.bg-circles li:nth-child(15){
   left: -5%;
   top: 140vh;
   width: 40vh;
@@ -241,7 +240,7 @@
   animation-duration: 10s;
 }
 
-.circles li:nth-child(16){
+.bg-circles li:nth-child(16){
   left: 50%;
   top: 140vh;
   width: 60vh;
@@ -249,7 +248,7 @@
   animation-duration: 20s;
 }
 
-.circles li:nth-child(17){
+.bg-circles li:nth-child(17){
   left: 35%;
   top: 160vh;
   width: 70vh;
@@ -257,7 +256,7 @@
   animation-duration: 11s;
 }
 
-.circles li:nth-child(18){
+.bg-circles li:nth-child(18){
   left: 65%;
   top: 160vh;
   width: 40vh;
@@ -265,7 +264,7 @@
   animation-duration: 8s;
 }
 
-.circles li:nth-child(19){
+.bg-circles li:nth-child(19){
   left: 55%;
   top: 180vh;
   width: 50vh;
@@ -273,7 +272,7 @@
   animation-duration: 15s;
 }
 
-.circles li:nth-child(20){
+.bg-circles li:nth-child(20){
   left: 40%;
   top: 180vh;
   width: 20vh;
@@ -291,5 +290,49 @@
     transform: translateY(-150vh) rotate(720deg);
     opacity: 0;
     border-radius: 50%;
+  }
+}
+
+@keyframes particle-left {
+  0%  {  translate: 0;    }
+  100%{  translate: -25vh;}
+}
+@keyframes particle-right {
+  0%  {  translate: 0;   }
+  100%{  translate: 25vh;}
+}
+@keyframes particle {
+  0%  {  transform: rotate(0deg)    scale(1);  opacity: 1;  border-radius: 0;}
+  100%{  transform: rotate(180deg)  scale(0);  opacity: 0;  border-radius: 1;}
+}
+
+.tetramino-particles li{
+  position: absolute;
+  display: block;
+  list-style: none;
+  width: 10vh;
+  height: 10vh;
+  background: rgba(255, 255, 255, 0.3);
+  opacity: 0;
+  margin-top: calc(var(--block-lg-height) * 3 / 4);
+  margin-left: calc(var(--block-lg-width) / 2);
+}
+
+.tetramino-left-particles{
+  animation:  particle .25s linear, particle-left .25s linear;
+}
+
+.tetramino-right-particles{
+  animation:  particle .25s linear, particle-right .25s linear;
+}
+
+/************************************
+          MOBILE DEVICES 
+************************************/
+@media (orientation: portrait) {
+  .tetramino-particles li{
+    width: 10vw;
+    height: 10vw;
+    margin-top: calc(var(--block-sm-height) * 3 / 4);
   }
 }

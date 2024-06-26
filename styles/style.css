@@ -333,3 +333,7 @@ a .modal-title-redirect, .modal-technology {
     display: none;
   }
 }
+
+.z-n1 { /* this class already exists in a newer Bootstrap version */
+  z-index: -1;
+}

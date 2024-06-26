@@ -172,6 +172,12 @@
 .tetris-lg-y-5{
   top: calc(var(--block-lg-height) * 5);
 }
+.tetris-lg-y-6{
+  top: calc(var(--block-lg-height) * 6);
+}
+.tetris-lg-x--1{
+  left: calc(0px - var(--block-lg-width)/2);
+}
 .tetris-lg-x-0{
   left: 0;
 }
@@ -192,6 +198,9 @@
 }
 .tetris-lg-x-6{
   left: calc(var(--block-lg-width) * 6);
+}
+.tetris-lg-x-7{
+  left: calc(var(--block-lg-width) * 7);
 }
 
 /* language icon */
@@ -386,6 +395,12 @@
   }
   .tetris-sm-y-9{
     top: calc(var(--block-sm-height) * 9);
+  }
+  .tetris-sm-y-10{
+    top: calc(var(--block-sm-height) * 10);
+  }
+  .tetris-sm-x--1{
+    left: calc(0px - var(--block-sm-width)/2);
   }
   .tetris-sm-x-0{
     left: 0;
