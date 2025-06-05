@@ -31,6 +31,7 @@ const dictionary = {
     navbar : {
       switchLanguage : '<img src="../img/flag_usa.svg" alt="flag_USA" class="nav-icon">&nbsp;switch to English',
       resumeUrl : "https://luizon.dev/Files/Resume_ES.pdf",
+      resume: "Descargar currículo",
     },
     sections : {
       greetings : {
@@ -104,6 +105,7 @@ const dictionary = {
     navbar : {
       switchLanguage : '<img src="../img/flag_mx.svg" alt="bandera_MX" class="nav-icon">&nbsp;ver en Español',
       resumeUrl : "https://luizon.dev/Files/Resume_EN.pdf",
+      resume: "Download resume",
     },
     sections : {
       greetings : {
@@ -167,8 +169,8 @@ const dictionary = {
           monitorKart : {
             title : "ISA and NPS Mario Kart Monitor",
             technologies : ["php", "js", "postgresql", "html5", "css3", "bootstrap"],
-            description : "A web app which loads information and show a resume of employees stats from Coppel's call center. "
-            + "It loads information from Coppel's database using a PHP API (which I made) and it resume that information in order to just show the top best in the top and the top worst in the bottom.",
+            description : "A web app that loads information and show a summary of employees stats from Coppel's call center. "
+            + "It loads information from Coppel's database using a PHP API (which I made) and it summarizes that information in order to show the top best in the top and the top worst in the bottom.",
           },
         },
       },
