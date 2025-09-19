@@ -266,6 +266,10 @@ a .modal-title-redirect, .modal-technology {
   background-color: #333;
 }
 
+#btnDown {
+  margin-top: 77px;
+}
+
 @media (max-width: 991.98px) {
   .networks {
     width: 5em;
@@ -323,6 +327,11 @@ a .modal-title-redirect, .modal-technology {
     left: 50%!important;
     top: calc(35vh - 1em)!important;
   }
+
+  #btnDown {
+    margin-top: 0px;
+    left: 0px;
+  }
 }
 
 @media (max-width: 575.98px) {
@@ -334,14 +343,10 @@ a .modal-title-redirect, .modal-technology {
   }
 }
 
+
 .z-n1 { /* this class already exists in a newer Bootstrap version */
   z-index: -1;
 }
-
-#btnDown {
-  margin-top: 77px;
-}
-
 /* contact form */
 .contact-form-wrapper {
   display: flex;
@@ -355,8 +360,7 @@ a .modal-title-redirect, .modal-technology {
 .contact-form {
   width: 100%;
   max-width: 520px;
-  background: #ffffff33;
-  border: 1px solid #ffffff22;
+  background: #b389cc99;
   border-radius: .75rem;
   padding: 1.25rem;
   box-shadow: 0 10px 30px #0003;

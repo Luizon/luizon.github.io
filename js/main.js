@@ -38,9 +38,14 @@ scrollToDownButton.addEventListener("click", evt => {
 });
 
 function scrollToSection(evt, selectedSection = false) {
-  console.log(`scroll a ${selectedSection}`);
   if((evt.key != " " && selectedSection === false) || isScrolling)
     return;
+  if(evt.key === " ") {
+    if($("input, textarea, button.bilingual, a").is(":focus")) {
+      // don't scroll, user is probably interacting with the form
+      return;
+    }
+  }
   if(!__body__.classList.contains("smooth-1s"))
     __body__.classList.add("smooth-1s");
   isScrolling = true;
@@ -73,15 +78,15 @@ function scrollToSection(evt, selectedSection = false) {
     scrollToDownButton.classList.add("fade-out");
     setTimeout( evt => { scrollToDownButton.hidden = true; }, 1000);
     stopPong();
-    console.log("go to greetings");
+    // console.log("go to greetings");
   }
   else if(currentSectionIndex == section.PROJECTS) {
     goToProjects();
-    console.log("go to projects");
+    // console.log("go to projects");
   }
   else {
     goToContact();
-    console.log("go to contact");
+    // console.log("go to contact");
   }
 };
 
@@ -429,9 +434,11 @@ function resizePong() {
 function resetBall(direction) {
   pong.ball.x = pong.width/2;
   pong.ball.y = pong.height/2;
-  const deg = (Math.random() * 60 - 30) * Math.PI / 180; // -30..30 degrees
-  pong.ball.vx = Math.cos(deg) * pong.ball.speed * direction;
-  pong.ball.vy = Math.sin(deg) * pong.ball.speed;
+  const minDeg = 12; // avoid flat starts
+  const angleDeg = (minDeg + Math.random() * (30 - minDeg)) * (Math.random() < 0.5 ? -1 : 1);
+  const rad = angleDeg * Math.PI / 180;
+  pong.ball.vx = Math.cos(rad) * pong.ball.speed * direction;
+  pong.ball.vy = Math.sin(rad) * pong.ball.speed;
 }
 
 function aiMove(paddle, targetY, dt, react = 0.9) {
@@ -474,18 +481,26 @@ function updatePong(dt) {
   if(pong.ball.x - pong.ball.r <= pong.left.x + pong.left.w) {
     if(pong.ball.y >= pong.left.y && pong.ball.y <= pong.left.y + pong.left.h && pong.ball.vx < 0) {
       pong.ball.x = pong.left.x + pong.left.w + pong.ball.r;
-      const offset = (pong.ball.y - (pong.left.y + pong.left.h/2)) / (pong.left.h/2);
-      pong.ball.vx = Math.abs(pong.ball.vx) * 1.03; // slight speed up
-      pong.ball.vy = pong.ball.speed * offset;
+      let offset = (pong.ball.y - (pong.left.y + pong.left.h/2)) / (pong.left.h/2);
+      offset = Math.max(-1, Math.min(1, offset));
+      if(Math.abs(offset) < 0.12) offset = 0.12 * (Math.random() < 0.5 ? -1 : 1);
+      const angle = offset * (Math.PI / 4); // up to 45°
+      const s = pong.ball.speed;
+      pong.ball.vx = Math.cos(angle) * s;
+      pong.ball.vy = Math.sin(angle) * s;
     }
   }
   // Right paddle
   if(pong.ball.x + pong.ball.r >= pong.right.x) {
     if(pong.ball.y >= pong.right.y && pong.ball.y <= pong.right.y + pong.right.h && pong.ball.vx > 0) {
       pong.ball.x = pong.right.x - pong.ball.r;
-      const offset = (pong.ball.y - (pong.right.y + pong.right.h/2)) / (pong.right.h/2);
-      pong.ball.vx = -Math.abs(pong.ball.vx) * 1.03; // slight speed up
-      pong.ball.vy = pong.ball.speed * offset;
+      let offset = (pong.ball.y - (pong.right.y + pong.right.h/2)) / (pong.right.h/2);
+      offset = Math.max(-1, Math.min(1, offset));
+      if(Math.abs(offset) < 0.12) offset = 0.12 * (Math.random() < 0.5 ? -1 : 1);
+      const angle = offset * (Math.PI / 4); // up to 45°
+      const s = pong.ball.speed;
+      pong.ball.vx = -Math.cos(angle) * s;
+      pong.ball.vy = Math.sin(angle) * s;
     }
   }
 
