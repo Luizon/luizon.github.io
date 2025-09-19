@@ -34,12 +34,15 @@
         <img src="../img/flag_usa.svg" alt="flag_USA" class="nav-icon">
         &nbsp;switch to English
       </button>
-      <button id="btn_resume" tabindex="-1" type="button" class="bilingual navbar-brand btn-fake-a bg-transparent pt-1 pb-1 ms-3 me-3 justify-content-center">
-        <img src="../img/pdf.svg" alt="resume_CV" class="nav-icon">
-        &nbsp;<span id="navbar_resume" class="text-decoration-underline pt-1">Descargar currículo</span>
+      <button id="btn_contact" tabindex="-1" type="button" class="bilingual navbar-brand btn-fake-a bg-transparent pt-1 pb-1 ms-3 me-3 justify-content-center">
+        <img src="../img/redes/email.svg" alt="" class="nav-icon">
+        &nbsp;<span id="navbar_contact" class="text-decoration-underline pt-1">Contáctame</span>
       </button>
       <button tabindex="-1" hidden type="button" id="btnTop" class="rounded-circle btn-scroll border-3 position-absolute end-0 me-2 me-md-3 btn btn-outline-light btn-top">
         <img class="btn-img" src="../img/arrow_upward.svg" alt="↑">
+      </button>
+      <button tabindex="-1" hidden type="button" id="btnDown" class="rounded-circle btn-scroll border-3 position-absolute end-0 me-2 me-md-3 btn btn-outline-light btn-top">
+        <img class="img-downwards btn-img" src="../img/arrow_upward.svg" alt="↓">
       </button>
     </div>
   </nav>
@@ -51,7 +54,7 @@
           <div class="row pt-5 pt-sm-3">
             <div class="col d-flex align-items-center position-relative" id="biography">
               <div class="z-1 pb-5 d-block d-md-none position-absolute top-100 start-50 translate-middle">
-                <button tabindex="-1" class="btn-scroll-down btn btn-scroll btn-outline-light rounded-circle border-3 shadow-none text-light btn-scroll btn-scroll-1">
+                <button tabindex="-1" class="btn-scroll-down btn btn-outline-light rounded-circle border-3 shadow-none text-light btn-scroll btn-scroll-1">
                   <img class="img-downwards btn-img" src="../img/arrow_upward.svg" alt="↓">
                 </button>
                 <div class="pb-5 pt-md-2 pt-5 pt-md-0 mb-5 mb-sm-4 mb-md-0 mt-5 mt-sm-0"></div>
@@ -81,7 +84,7 @@
         </div>
         <div class="col col-7 col-sm-5 full-height position-relative">
           <div class="z-1 pb-5 d-none d-md-block position-absolute top-100 start-50 translate-middle">
-            <button tabindex="-1" class="btn-scroll-down btn btn-scroll btn-outline-light rounded-circle border-3 shadow-none text-light btn-scroll btn-scroll-1">
+            <button tabindex="-1" class="btn-scroll-down btn btn-outline-light rounded-circle border-3 shadow-none text-light btn-scroll btn-scroll-1">
               <img class="img-downwards btn-img" src="../img/arrow_upward.svg" alt="↓">
             </button>
             <div class="pb-5 pt-md-2 pt-5 pt-md-0 mb-5 mb-sm-4 mb-md-0 mt-5 mt-sm-0"></div>
@@ -207,6 +210,43 @@
         </div>
         <img class="tetris-language-icon tetris-icon-lg-x-50 tetris-icon-sm-x-50 tetris-icon-lg-y-66 tetris-icon-sm-y-66" src="../img/technologies/java.svg" alt="Java" data-bs-toggle="tooltip" title="Java">
       </button>
+    </section>
+    <section id="contact" class="position-relative full-height">
+      <div class="pt-3 pb-2 pb-md-0"></div>
+      <div class="pt-4 d-block d-md-none"></div>
+      <div class="contact-form-wrapper z-1 position-relative">
+        <form class="contact-form" action="https://formsubmit.co/p_luizon@hotmail.com" method="POST">
+          <h1 class="text-to-replace text-no-selectable fs-2 badge rounded-pill text-center text-light z-1 position-relative pe-none">
+            <span id="contact_title" class="bilingual">Contáctame</span>
+          </h1>
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_subject" value="Nuevo mensaje desde luizon.dev">
+          <input type="hidden" name="_template" value="box">
+          <input class="bilingual" type="text" name="name" placeholder="Tu nombre" required>
+          <input class="bilingual" type="email" name="email" placeholder="Tu correo" required>
+          <textarea class="bilingual" name="message" placeholder="Tu mensaje" required></textarea>
+          <button class="bilingual" type="submit">Enviar</button>
+        </form>
+      </div>
+      <footer class="site-footer z-1 position-absolute bottom-0">
+        <div class="footer-inner">
+          <span>© <span id="footer_year"></span> Luis Cárdenas</span>
+          <span>·</span>
+          <a href="https://github.com/luizon" target="_blank" rel="noopener">Github</a>
+          <span>·</span>
+          <a href="mailto:lf-cardenas@hotmail.com">Email</a>
+          <span>·</span>
+          <a href="https://linkedin.com/in/luisfernandocardenas" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </footer>
+      <script>
+        (function(){
+          var y = new Date().getFullYear();
+          var yEl = document.getElementById('footer_year');
+          if(yEl) yEl.textContent = y;
+        })();
+      </script>
+      
     </section>
         
   </div>

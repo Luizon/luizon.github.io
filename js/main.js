@@ -11,12 +11,13 @@ const section = {
   GREETINGS : 0,
   PROJECTS : 1,
   // CONST_TECHNOLOGIES : 2,
-  CONTACT : 3
+  CONTACT : 2
 }
 const sections = $('section');
 const __body__ = $("#top")[0];
 const scrollButtons = $(".btn-scroll");
 const scrollToTopButton = $("#btnTop")[0];
+const scrollToDownButton = $("#btnDown")[0];
 let currentSectionIndex = 0;
 let isScrolling = false;
 
@@ -31,6 +32,9 @@ for( scrollElement in scrollButtons ) {
 __body__.addEventListener("keyup", scrollToSection);
 scrollToTopButton.addEventListener("click", evt => {
   scrollToSection( evt, section.GREETINGS );
+});
+scrollToDownButton.addEventListener("click", evt => {
+  scrollToSection( evt, section.CONTACT );
 });
 
 function scrollToSection(evt, selectedSection = false) {
@@ -63,19 +67,62 @@ function scrollToSection(evt, selectedSection = false) {
       scrollToTopButton.classList.remove("fade-in");
     scrollToTopButton.classList.add("fade-out");
     setTimeout( evt => { scrollToTopButton.hidden = true; }, 1000);
+
+    if(scrollToDownButton.classList.contains("fade-in"))
+      scrollToDownButton.classList.remove("fade-in");
+    scrollToDownButton.classList.add("fade-out");
+    setTimeout( evt => { scrollToDownButton.hidden = true; }, 1000);
+    console.log("go to greetings");
+  }
+  else if(currentSectionIndex == section.PROJECTS) {
+    goToProjects();
+    console.log("go to projects");
   }
   else {
-    __body__.style.background = "#420666";
-    window.location.href = window.location.origin + window.location.pathname + '#projects';
-    if(!tetrisPiecesHasBeenMoved)
-      moveTetrisPieces();
+    goToContact();
+    console.log("go to contact");
+  }
+};
 
+function goToContact() {
+  __body__.style.background = "#420666";
+  window.location.href = window.location.origin + window.location.pathname + '#contact';
+
+  if(scrollToDownButton.classList.contains("fade-in"))
+    scrollToDownButton.classList.remove("fade-in");
+  scrollToDownButton.classList.add("fade-out");
+  setTimeout( evt => { scrollToDownButton.hidden = true; }, 1000);
+
+  if(scrollToTopButton.hidden) {
     if(scrollToTopButton.classList.contains("fade-out"))
       scrollToTopButton.classList.remove("fade-out");
+    if(scrollToTopButton.classList.contains("fade-in"))
+      scrollToTopButton.classList.remove("fade-in");
     scrollToTopButton.classList.add("fade-in");
     scrollToTopButton.hidden = false;
   }
-};
+}
+
+function goToProjects() {
+  __body__.style.background = "#200077";
+  window.location.href = window.location.origin + window.location.pathname + '#projects';
+  if(!tetrisPiecesHasBeenMoved)
+    moveTetrisPieces();
+
+  if(scrollToTopButton.classList.contains("fade-out"))
+    scrollToTopButton.classList.remove("fade-out");
+  if(scrollToTopButton.classList.contains("fade-in"))
+    scrollToTopButton.classList.remove("fade-in");
+  scrollToTopButton.classList.add("fade-in");
+  scrollToTopButton.hidden = false;
+
+  if(scrollToDownButton.classList.contains("fade-out"))
+    scrollToDownButton.classList.remove("fade-out");
+  if(scrollToDownButton.classList.contains("fade-in"))
+    scrollToDownButton.classList.remove("fade-in");
+  scrollToDownButton.classList.add("fade-in");
+  scrollToDownButton.hidden = false;
+}
 
 /////////////////////////////////////
 // window events
@@ -88,6 +135,8 @@ window.onload = evt => {
     scrollToSection(evt, section.GREETINGS);
   else if(window.location.href.includes('#projects'))
     scrollToSection(evt, section.PROJECTS);
+  else if(window.location.href.includes('#contact'))
+    scrollToSection(evt, section.CONTACT);
   else
     sections[section.GREETINGS].scrollIntoView({ behavior: 'smooth' });
 }
@@ -309,8 +358,8 @@ $("#btn_monitorKart").on("click", () => {
     onHide: killModalChangeIntervalProcess,
   });
 });
-$("#btn_resume").on("click", () => {
-  window.location.href = dictionary[language].navbar.resumeUrl;
+$("#btn_contact").on("click", evt => {
+  scrollToSection(evt, section.CONTACT);
 });
 
 

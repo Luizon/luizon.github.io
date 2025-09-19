@@ -30,8 +30,7 @@ const dictionary = {
     },
     navbar : {
       switchLanguage : '<img src="../img/flag_usa.svg" alt="flag_USA" class="nav-icon">&nbsp;switch to English',
-      resumeUrl : "https://luizon.dev/Files/Resume_ES.pdf",
-      resume: "Descargar currículo",
+      contact: "Contáctame",
     },
     sections : {
       greetings : {
@@ -93,6 +92,13 @@ const dictionary = {
           },
         },
       },
+      contact : {
+        title : "Contáctame",
+        name : "Tu nombre",
+        email : "Tu correo",
+        message : "Tu mensaje",
+        submit : "Enviar",
+      },
     },
   },
   LANG_EN : {
@@ -104,8 +110,7 @@ const dictionary = {
     },
     navbar : {
       switchLanguage : '<img src="../img/flag_mx.svg" alt="bandera_MX" class="nav-icon">&nbsp;ver en Español',
-      resumeUrl : "https://luizon.dev/Files/Resume_EN.pdf",
-      resume: "Download resume",
+      contact: "Contact me",
     },
     sections : {
       greetings : {
@@ -174,6 +179,13 @@ const dictionary = {
           },
         },
       },
+      contact : {
+        title : "Contact me",
+        name : "Your name",
+        email : "Your email",
+        message : "Your message",
+        submit : "Send",
+      },
     },
   },
 }
@@ -197,9 +209,7 @@ function switchLanguage() {
 
 function changeTexts() {
   // navbar
-  $("#navbar_resumeHref").href = dictionary[language].navbar.resumeHref;
-  
-  $("#navbar_resume").text(dictionary[language].navbar.resume);
+  $("#navbar_contact").text(dictionary[language].navbar.contact);
   $("#navbar_switchLanguage").html(dictionary[language].navbar.switchLanguage);
   
   // greetings section
@@ -229,4 +239,11 @@ function changeTexts() {
   $("#monitorIsa").attr('alt', dictionary[language].sections.projects.systems.monitorIsa.title);
   $("#btn_monitorKart").attr('aria-label', dictionary[language].sections.projects.systems.monitorKart.title);
   $("#monitorKart").attr('alt', dictionary[language].sections.projects.systems.monitorKart.title);
+
+  // contact section
+  $("#contact_title").text(dictionary[language].sections.contact.title);
+  $(".contact-form input[name='name']").attr('placeholder', dictionary[language].sections.contact.name);
+  $(".contact-form input[name='email']").attr('placeholder', dictionary[language].sections.contact.email);
+  $(".contact-form textarea[name='message']").attr('placeholder', dictionary[language].sections.contact.message);
+  $(".contact-form button[type='submit']").text(dictionary[language].sections.contact.submit);
 }
