@@ -18,77 +18,124 @@ const __body__ = $("#top")[0];
 const scrollButtons = $(".btn-scroll");
 const scrollToTopButton = $("#btnTop")[0];
 const scrollToDownButton = $("#btnDown")[0];
+const btnGoToProjects = $('.btnGoToProjects');
 let currentSectionIndex = 0;
 let isScrolling = false;
+const __hideTimers = new WeakMap();
+
+// smooth scroll helper
+function smoothScrollToSectionId(id) {
+  const el = document.getElementById(id);
+  if(el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 
 for( scrollElement in scrollButtons ) {
   if(typeof scrollButtons[ scrollElement ] !== "object")
     break;
   if(scrollButtons[ scrollElement ].classList.contains("btn-scroll-1"))
     scrollButtons[ scrollElement ].addEventListener("click", evt => {
-      scrollToSection( evt, section.PROJECTS );
+      smoothScrollToSectionId('projects');
     });
 }
-__body__.addEventListener("keyup", scrollToSection);
 scrollToTopButton.addEventListener("click", evt => {
-  scrollToSection( evt, section.GREETINGS );
+  smoothScrollToSectionId('aboutMe');
 });
 scrollToDownButton.addEventListener("click", evt => {
-  scrollToSection( evt, section.CONTACT );
+  smoothScrollToSectionId('contact');
 });
 
-function scrollToSection(evt, selectedSection = false) {
-  if((evt.key != " " && selectedSection === false) || isScrolling)
-    return;
-  if(evt.key === " ") {
-    if($("input, textarea, button.bilingual, a").is(":focus")) {
-      // don't scroll, user is probably interacting with the form
-      return;
-    }
-  }
-  if(!__body__.classList.contains("smooth-1s"))
-    __body__.classList.add("smooth-1s");
-  isScrolling = true;
-  setTimeout( e => {
-    isScrolling = false;
-  }, 1000);
-  let flagSectionAlreadySelected = false;
-  if(selectedSection !== false) {
-    if(selectedSection < sections.length && selectedSection >= 0) {
-      currentSectionIndex = selectedSection;
-      flagSectionAlreadySelected = true;
-    }
-  }
-  if(!flagSectionAlreadySelected)
-    currentSectionIndex++;
-  if(currentSectionIndex >= sections.length)
-    currentSectionIndex = 0;
-  sections[currentSectionIndex].scrollIntoView({ behavior: 'smooth' });
-  if(currentSectionIndex == section.GREETINGS) {
-    __body__.style.background = "#210333";
-    window.location.href = window.location.origin + window.location.pathname + '#aboutMe';
+// observe sections to sync UI state
+let activeSectionId = null;
+let sectionObserver = null;
+const sectionBackgrounds = { aboutMe: "#210333", projects: "#200077", contact: "#420666" };
 
-    if(scrollToTopButton.classList.contains("fade-in"))
-      scrollToTopButton.classList.remove("fade-in");
-    scrollToTopButton.classList.add("fade-out");
-    setTimeout( evt => { scrollToTopButton.hidden = true; }, 1000);
+function setButtonsVisibilityFor(sectionId) {
+  const fadeShow = (el) => {
+    if(!el) return;
+    const t = __hideTimers.get(el);
+    if(t) { clearTimeout(t); __hideTimers.delete(el); }
+    if(el.classList.contains('fade-out')) el.classList.remove('fade-out');
+    el.classList.add('fade-in');
+    el.hidden = false;
+  };
+  const fadeHide = (el) => {
+    if(!el) return;
+    const t = __hideTimers.get(el);
+    if(t) { clearTimeout(t); __hideTimers.delete(el); }
+    if(el.classList.contains('fade-in')) el.classList.remove('fade-in');
+    el.classList.add('fade-out');
+    const timeoutId = setTimeout(() => { el.hidden = true; __hideTimers.delete(el); }, 250);
+    __hideTimers.set(el, timeoutId);
+  };
 
-    if(scrollToDownButton.classList.contains("fade-in"))
-      scrollToDownButton.classList.remove("fade-in");
-    scrollToDownButton.classList.add("fade-out");
-    setTimeout( evt => { scrollToDownButton.hidden = true; }, 1000);
+  if(sectionId === 'aboutMe') {
+    fadeHide(scrollToTopButton);
+    fadeHide(scrollToDownButton);
+    // show helper button only in aboutMe
+    for(let i = 0; i < btnGoToProjects.length; i++) fadeShow(btnGoToProjects[i]);
+  } else if(sectionId === 'projects') {
+    fadeShow(scrollToTopButton);
+    fadeShow(scrollToDownButton);
+    // hide helper button when projects is active
+    for(let i = 0; i < btnGoToProjects.length; i++) fadeHide(btnGoToProjects[i]);
+  } else if(sectionId === 'contact') {
+    fadeShow(scrollToTopButton);
+    fadeHide(scrollToDownButton);
+    // also hide helper button in contact
+    for(let i = 0; i < btnGoToProjects.length; i++) fadeHide(btnGoToProjects[i]);
+  }
+}
+
+function setActiveSection(id) {
+  if(activeSectionId === id) return;
+  activeSectionId = id;
+  if(!__body__.classList.contains('smooth-1s')) __body__.classList.add('smooth-1s');
+  __body__.style.background = sectionBackgrounds[id] || "#210333";
+  const newHash = '#' + id;
+  if(window.location.hash !== newHash) {
+    history.replaceState(null, '', window.location.pathname + newHash);
+  }
+  setButtonsVisibilityFor(id);
+  if(id === 'projects') {
+    if(!tetrisPiecesHasBeenMoved) moveTetrisPieces();
     stopPong();
-    // console.log("go to greetings");
+  } else if(id === 'contact') {
+    startPong();
+  } else {
+    stopPong();
   }
-  else if(currentSectionIndex == section.PROJECTS) {
-    goToProjects();
-    // console.log("go to projects");
+}
+
+function setupSectionObserver() {
+  const targets = ['aboutMe','projects','contact']
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
+  if(targets.length === 0) return;
+  if(sectionObserver) {
+    targets.forEach(t => sectionObserver.unobserve(t));
   }
-  else {
-    goToContact();
-    // console.log("go to contact");
+  sectionObserver = new IntersectionObserver((entries) => {
+    let best = null;
+    for(const entry of entries) {
+      if(!entry.isIntersecting) continue;
+      if(!best || entry.intersectionRatio > best.intersectionRatio) best = entry;
+    }
+    if(best && best.target && best.target.id) {
+      setActiveSection(best.target.id);
+    }
+  }, { threshold: [0.25, 0.55, 0.75, 0.9] });
+  targets.forEach(t => sectionObserver.observe(t));
+  // initialize
+  let initial = 'aboutMe';
+  for(const t of targets) {
+    const rect = t.getBoundingClientRect();
+    const height = Math.max(1, rect.height);
+    const visible = Math.max(0, Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0));
+    const ratio = visible / height;
+    if(ratio > 0.55) { initial = t.id; break; }
   }
-};
+  setActiveSection(initial);
+}
 
 function goToContact() {
   __body__.style.background = "#420666";
@@ -136,46 +183,10 @@ function goToProjects() {
 // window events
 /////////////////////////////////////
 window.onresize = evt => {
-  sections[currentSectionIndex].scrollIntoView({ behavior: 'smooth' });
   resizePong();
 }
 window.onload = evt => {
-  if(window.location.href.includes('#aboutMe'))
-    scrollToSection(evt, section.GREETINGS);
-  else if(window.location.href.includes('#projects'))
-    scrollToSection(evt, section.PROJECTS);
-  else if(window.location.href.includes('#contact'))
-    scrollToSection(evt, section.CONTACT);
-  else
-    sections[section.GREETINGS].scrollIntoView({ behavior: 'smooth' });
-}
-
-/////////////////////////////////////
-// mobile stuff
-/////////////////////////////////////
-if (!/Mobi|Android|iPhone/i.test(navigator.userAgent)) {
-  let onlyMobileElements = $(".mobile-only");
-  for(element in onlyMobileElements) {
-    if(typeof onlyMobileElements[element] !== "object")
-      break;
-    onlyMobileElements[element].hidden = true;
-  }
-}
-else {
-  scrollToTopButton.classList.add("btn-top-mobile");
-  setTimeout( evt => {
-    try {
-      bootbox.dialog({
-        title: dictionary[language].misc.warning,
-        message: dictionary[language].misc.mobileDeviceMessage,
-        onEscape: true
-      })
-    } catch(e) {
-      alert(dictionary[language].misc.warning + ": " + dictionary[language].misc.mobileDeviceMessage);
-      console.log(e)
-    }
-  }
-  , 1000);
+  setupSectionObserver();
 }
 
 /////////////////////////////////////
@@ -189,7 +200,7 @@ function getModalContent(folderName) {
   let cardContainer = $("<div></div>");
   let card = $("<div class='card mb-3' style='border: none;'></div>");
   let cardRow = $("<div class='row g-0'></div>");
-  let cardRowCol1 = $("<div class='col-12 col-md-6'></div>");
+  let cardRowCol1 = $("<div class='col-12 col-md-6 position-relative'></div>");
   let cardRowCol2 = $("<div class='col-12 col-md-6'></div>");
   let cardBody = $("<div class='card-body ps-0 ps-md-3' style='padding: 0px;'></div>");
   let cardTitle = $(`<h4 class='card-title mt-4'>${info.title}</h4>`);
@@ -225,26 +236,114 @@ function getModalContent(folderName) {
     cardTechnologies.append(newTechnology);
   }
 
-  let sliderContainer = $("<div class='slider-container img-fluid rounded-start'></div>");
+  let sliderContainer = $("<div class='slider-container img-fluid rounded-start position-relative'></div>");
+  let sliderTrack = $("<div class='slider-track'></div>");
+  sliderContainer.append(sliderTrack);
   let buttonContainer = $("<div class='slider-dot-container translate-middle'></div>");
   let dot = "<div class='dot'></div>";
   for(let i = 1 ; i < projectImages[folderName] + 1 ; i++) {
-    let newImg = $(`<img class="slider-item" src='../img/projects/${folderName}/${i}.png' alt="${info.title + ' ' + i}">`)
-    // setImageListener(newImg);
-    let newButton = $(`<button id="btnModal${i}" tabindex="-1" class="slider-dot" onclick="$('.slider-item[src=\\'../img/projects/${folderName}/${i}.png\\']')[0].scrollIntoView({ behavior: 'smooth' }); startSlider(${i});">${dot}</button>`);
-    newButton.on('click', () => {
-      if(!newButton.hasClass("active")) {
-        $('.slider-dot').removeClass("active");
-        newButton.addClass("active");
-      }
-    })
-    sliderContainer.append(newImg);
+    let newImg = $(`<img class="slider-item" draggable="false" src='../img/projects/${folderName}/${i}.png' alt="${info.title + ' ' + i}">`)
+    // mouse-position zoom
+    newImg.on('mousemove', (e) => {
+      const img = newImg[0];
+      const rect = img.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      img.style.transformOrigin = `${x}% ${y}%`;
+      img.style.transform = 'scale(1.25)';
+    });
+    newImg.on('mouseleave', () => {
+      const img = newImg[0];
+      img.style.transform = 'scale(1)';
+      img.style.transformOrigin = '50% 50%';
+    });
+    // open fullscreen on click (ignore if dragging)
+    let clickStartX = 0, clickStartY = 0, moved = false;
+    newImg.on('mousedown touchstart', (e) => {
+      const pt = e.touches && e.touches[0] ? e.touches[0] : e;
+      clickStartX = pt.clientX; clickStartY = pt.clientY; moved = false;
+    });
+    newImg.on('mousemove touchmove', (e) => {
+      const pt = e.touches && e.touches[0] ? e.touches[0] : e;
+      if(Math.abs(pt.clientX - clickStartX) > 6 || Math.abs(pt.clientY - clickStartY) > 6) moved = true;
+    });
+    newImg.on('click', () => {
+      if(!moved) openFullscreenViewer(folderName, i);
+    });
+    let newButton = $(`<button id="btnModal${i}" tabindex="-1" class="slider-dot">${dot}</button>`);
+    newButton.on('click', () => { showIndex(i, true); });
+    sliderTrack.append(newImg);
     buttonContainer.append(newButton);
   }
 
   buttonContainer.children().get(0).classList.add("active");
-  sliderContainer.append(buttonContainer);
+  // prev / next navigation buttons
+  let prevBtn = $("<button type='button' class='slider-nav-btn slider-prev' aria-label='Previous'>‹</button>");
+  let nextBtn = $("<button type='button' class='slider-nav-btn slider-next' aria-label='Next'>›</button>");
+  const totalImages = projectImages[folderName] || 1;
+  const showIndex = (idx, animate) => {
+    if(idx < 1) idx = totalImages;
+    if(idx > totalImages) idx = 1;
+    btnModalIndex = idx;
+    const tx = -(idx - 1) * 100;
+    if(animate) sliderTrack.removeClass('dragging');
+    sliderTrack[0].style.transform = `translateX(${tx}%)`;
+    $('.slider-dot').removeClass('active');
+    $(`#btnModal${idx}`).addClass('active');
+  };
+  const goNext = () => showIndex(btnModalIndex + 1, true);
+  const goPrev = () => showIndex(btnModalIndex - 1, true);
+  prevBtn.on('click', () => { killModalChangeIntervalProcess(); goPrev(); startSlider(btnModalIndex); });
+  nextBtn.on('click', () => { killModalChangeIntervalProcess(); goNext(); startSlider(btnModalIndex); });
   cardRowCol1.append(sliderContainer);
+  // keep controls anchored and centered relative to the column, not the scroller
+  cardRowCol1.append(buttonContainer);
+  cardRowCol1.append(prevBtn);
+  cardRowCol1.append(nextBtn);
+
+  // drag-to-swipe navigation with animated snap
+  let isDraggingSlider = false;
+  let dragStartX = 0;
+  let dragDeltaX = 0;
+  const getClientX = (evt) => (evt.touches && evt.touches[0] ? evt.touches[0].clientX : evt.clientX);
+  sliderContainer.on('mousedown touchstart', (evt) => {
+    isDraggingSlider = true;
+    dragStartX = getClientX(evt);
+    dragDeltaX = 0;
+    killModalChangeIntervalProcess();
+    sliderTrack.addClass('dragging');
+    evt.preventDefault();
+  });
+  sliderContainer.on('mousemove touchmove', (evt) => {
+    if(!isDraggingSlider) return;
+    const x = getClientX(evt);
+    dragDeltaX = x - dragStartX;
+    const w = sliderContainer[0].clientWidth || 1;
+    const deltaPercent = (dragDeltaX / w) * 100;
+    const basePercent = -((btnModalIndex - 1) * 100);
+    sliderTrack[0].style.transform = `translateX(${basePercent + deltaPercent}%)`;
+    evt.preventDefault();
+  });
+  const endDrag = () => {
+    if(!isDraggingSlider) return;
+    const w = sliderContainer[0].clientWidth || 1;
+    const threshold = Math.max(40, w * 0.15);
+    sliderTrack.removeClass('dragging');
+    if(dragDeltaX > threshold) {
+      goPrev();
+    } else if(dragDeltaX < -threshold) {
+      goNext();
+    } else {
+      // snap back
+      showIndex(btnModalIndex, true);
+    }
+    isDraggingSlider = false;
+    startSlider(btnModalIndex);
+  };
+  sliderContainer.on('mouseup touchend touchcancel mouseleave', endDrag);
+
+  // initialize position
+  showIndex(1, false);
 
   btnModalIndex = 0;
   btnModalChangeInterval = setInterval(e => {
@@ -272,6 +371,150 @@ function startSlider(index) {
     $(`#btnModal${btnModalIndex}`)[0].click();
   }, 5000);
   btnModalIndex = index;
+}
+
+// fullscreen viewer
+let fsOverlayEl = null;
+let fsImgEl = null;
+let fsFolder = null;
+let fsIndex = 1;
+function ensureFsOverlay() {
+  if(fsOverlayEl) return fsOverlayEl;
+  fsOverlayEl = document.createElement('div');
+  fsOverlayEl.className = 'fs-viewer-overlay';
+  fsOverlayEl.innerHTML = "<div class='fs-viewer-inner'><div class='fs-track'></div><div class='fs-dots'></div><button class='fs-close-btn' aria-label='Close'>✕</button><button class='fs-nav-btn fs-prev' aria-label='Previous'>‹</button><button class='fs-nav-btn fs-next' aria-label='Next'>›</button></div>";
+  document.body.appendChild(fsOverlayEl);
+  fsImgEl = null;
+  const closeBtn = fsOverlayEl.querySelector('.fs-close-btn');
+  const btnPrev = fsOverlayEl.querySelector('.fs-prev');
+  const btnNext = fsOverlayEl.querySelector('.fs-next');
+  const dotsEl = fsOverlayEl.querySelector('.fs-dots');
+  closeBtn.addEventListener('click', closeFullscreenViewer);
+  btnPrev.addEventListener('click', () => { fsPrev(); });
+  btnNext.addEventListener('click', () => { fsNext(); });
+  fsOverlayEl.addEventListener('click', (e) => {
+    // close on click outside track and controls
+    const trackEl = fsOverlayEl.querySelector('.fs-track');
+    const controls = [closeBtn, btnPrev, btnNext, dotsEl];
+    if(e.target === fsOverlayEl) { closeFullscreenViewer(); return; }
+    const insideTrack = trackEl && (e.target === trackEl || trackEl.contains(e.target));
+    const insideControls = controls.some(c => c && (c === e.target || c.contains(e.target)));
+    if(!insideTrack && !insideControls) closeFullscreenViewer();
+  });
+  window.addEventListener('keydown', (e) => {
+    if(fsOverlayEl && fsOverlayEl.style.display === 'flex') {
+      if(e.key === 'Escape') closeFullscreenViewer();
+      if(e.key === 'ArrowLeft') fsPrev();
+      if(e.key === 'ArrowRight') fsNext();
+    }
+  });
+  return fsOverlayEl;
+}
+function openFullscreenViewer(folderName, index) {
+  ensureFsOverlay();
+  fsFolder = folderName;
+  fsIndex = index;
+  fsOverlayEl.style.display = 'flex';
+  buildFsSlidesAndDots();
+  fsShowIndex(index, false);
+}
+function closeFullscreenViewer() {
+  if(!fsOverlayEl) return;
+  fsOverlayEl.style.display = 'none';
+}
+function fsNext() {
+  const total = projectImages[fsFolder] || 1;
+  fsIndex = fsIndex + 1 > total ? 1 : fsIndex + 1;
+  fsShowIndex(fsIndex, true);
+}
+function fsPrev() {
+  const total = projectImages[fsFolder] || 1;
+  fsIndex = fsIndex - 1 < 1 ? total : fsIndex - 1;
+  fsShowIndex(fsIndex, true);
+}
+function buildFsSlidesAndDots() {
+  const oldTrack = fsOverlayEl.querySelector('.fs-track');
+  const dotsWrap = fsOverlayEl.querySelector('.fs-dots');
+  if(!oldTrack || !dotsWrap) return;
+  // replace track to avoid duplicate event listeners across openings
+  const track = document.createElement('div');
+  track.className = 'fs-track';
+  oldTrack.parentNode.replaceChild(track, oldTrack);
+  dotsWrap.innerHTML = '';
+  const total = projectImages[fsFolder] || 1;
+  for(let i = 1; i <= total; i++) {
+    const slide = document.createElement('div');
+    slide.className = 'fs-slide';
+    const img = document.createElement('img');
+    img.src = `../img/projects/${fsFolder}/${i}.png`;
+    img.alt = `${fsFolder} ${i}`;
+    img.className = 'fs-viewer-img';
+    slide.appendChild(img);
+    track.appendChild(slide);
+    const dot = document.createElement('button');
+    dot.className = 'fs-dot';
+    dot.setAttribute('aria-label', `Go to image ${i}`);
+    dot.addEventListener('click', () => { fsIndex = i; fsShowIndex(i, true); });
+    dotsWrap.appendChild(dot);
+  }
+  updateFsDotsActive();
+  // setup drag on track
+  fsSetupDrag(track);
+}
+function updateFsDotsActive() {
+  const dotsWrap = fsOverlayEl ? fsOverlayEl.querySelector('.fs-dots') : null;
+  if(!dotsWrap) return;
+  const dots = dotsWrap.querySelectorAll('.fs-dot');
+  dots.forEach((d, idx) => {
+    if(idx + 1 === fsIndex) d.classList.add('active'); else d.classList.remove('active');
+  });
+}
+function fsShowIndex(idx, animate) {
+  const track = fsOverlayEl.querySelector('.fs-track');
+  const total = projectImages[fsFolder] || 1;
+  if(idx < 1) idx = total;
+  if(idx > total) idx = 1;
+  fsIndex = idx;
+  if(track) {
+    if(animate === false) track.classList.add('dragging'); else track.classList.remove('dragging');
+    const tx = -(idx - 1) * 100;
+    track.style.transform = `translateX(${tx}%)`;
+  }
+  updateFsDotsActive();
+}
+function fsSetupDrag(track) {
+  let dragging = false;
+  let startX = 0;
+  let deltaX = 0;
+  const getX = (evt) => (evt.touches && evt.touches[0] ? evt.touches[0].clientX : evt.clientX);
+  track.addEventListener('mousedown', (e) => { dragging = true; startX = getX(e); deltaX = 0; track.classList.add('dragging'); e.preventDefault(); });
+  track.addEventListener('touchstart', (e) => { dragging = true; startX = getX(e); deltaX = 0; track.classList.add('dragging'); }, { passive: false });
+  const move = (e) => {
+    if(!dragging) return;
+    const x = getX(e);
+    deltaX = x - startX;
+    const w = fsOverlayEl.clientWidth || 1;
+    const base = -((fsIndex - 1) * 100);
+    const deltaPct = (deltaX / w) * 100;
+    track.style.transform = `translateX(${base + deltaPct}%)`;
+    if(e.cancelable) e.preventDefault();
+  };
+  track.addEventListener('mousemove', move);
+  track.addEventListener('touchmove', move, { passive: false });
+  const end = () => {
+    if(!dragging) return;
+    track.classList.remove('dragging');
+    const w = fsOverlayEl.clientWidth || 1;
+    const threshold = Math.max(40, w * 0.15);
+    if(deltaX > threshold) fsPrev();
+    else if(deltaX < -threshold) fsNext();
+    else fsShowIndex(fsIndex, true);
+    dragging = false;
+  };
+  track.addEventListener('mouseup', end);
+  track.addEventListener('mouseleave', end);
+  track.addEventListener('touchend', end);
+  track.addEventListener('touchcancel', end);
 }
 
 // function setImageListener(imgNode) {
@@ -368,8 +611,14 @@ $("#btn_monitorKart").on("click", () => {
   });
 });
 $("#btn_contact").on("click", evt => {
-  scrollToSection(evt, section.CONTACT);
+  smoothScrollToSectionId('contact');
 });
+
+if(btnGoToProjects && btnGoToProjects.length) {
+  for(let i = 0; i < btnGoToProjects.length; i++) {
+    btnGoToProjects[i].addEventListener('click', () => smoothScrollToSectionId('projects'));
+  }
+}
 
 
 $("#dictionary").ready(function() {
@@ -549,6 +798,15 @@ function startPong() {
   if(!initPong()) return;
   pong.running = true;
   pong.lastTime = performance.now();
+  try {
+    const canvas = document.getElementById('pong_canvas');
+    if(canvas) {
+      canvas.style.opacity = '0';
+      // force reflow to restart transition
+      void canvas.offsetWidth;
+      canvas.style.opacity = '1';
+    }
+  } catch(e) {}
   pong.rafId = requestAnimationFrame(loopPong);
 }
 
@@ -558,4 +816,10 @@ function stopPong() {
   if(pong.rafId) cancelAnimationFrame(pong.rafId);
   pong.rafId = null;
   if(pong.ctx) pong.ctx.clearRect(0, 0, pong.canvas.width, pong.canvas.height);
+  try {
+    const canvas = document.getElementById('pong_canvas');
+    if(canvas) {
+      canvas.style.opacity = '0';
+    }
+  } catch(e) {}
 }

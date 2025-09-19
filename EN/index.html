@@ -35,7 +35,7 @@
         &nbsp;ver en Español
       </button>
       <button id="btn_contact" tabindex="-1" type="button" class="bilingual navbar-brand btn-fake-a bg-transparent pt-1 pb-1 ms-3 me-3 justify-content-center">
-        <img src="../img/redes/email.svg" alt="" class="nav-icon">  
+        <img src="../img/email.svg" alt="" class="nav-icon">  
         &nbsp;<span id="navbar_contact" class="text-decoration-underline pt-1">Contact me</span>
       </button>
       <button tabindex="-1" hidden type="button" id="btnTop" class="rounded-circle btn-scroll border-3 position-absolute end-0 me-2 me-md-3 btn btn-outline-light btn-top">
@@ -54,7 +54,7 @@
           <div class="row pt-5 pt-sm-3">
             <div class="col d-flex align-items-center position-relative" id="biography">
               <div class="z-1 pb-5 d-block d-md-none position-absolute top-100 start-50 translate-middle">
-                <button tabindex="-1" class="btn-scroll-down btn btn-outline-light rounded-circle border-3 shadow-none text-light btn-scroll btn-scroll-1">
+                <button tabindex="-1" class="btnGoToProjects btn-scroll-down btn btn-outline-light rounded-circle border-3 shadow-none text-light btn-scroll btn-scroll-1">
                   <img class="img-downwards btn-img" src="../img/arrow_upward.svg" alt="↓">
                 </button>
                 <div class="pb-5 pt-md-2 pt-5 pt-md-0 mb-5 mb-sm-4 mb-md-0 mt-5 mt-sm-0"></div>
@@ -66,7 +66,6 @@
                   <b>coding</b>, <b>user experience</b> and the <span class="purple">color purple</span>. <br><br>
                   Browse in this portfolio to see more about <b>my work</b>.
                 </p>
-                <div class="row d-block d-md-none pt-4 pb-4 mobile-only"></div>
               </div>
             </div>
             <div class="col col-auto d-none d-md-block networks pt-5">
@@ -84,7 +83,7 @@
         </div>
         <div class="col col-7 col-sm-5 full-height position-relative">
           <div class="z-1 pb-5 d-none d-md-block position-absolute top-100 start-50 translate-middle">
-            <button tabindex="-1" class="btn-scroll-down btn btn-outline-light rounded-circle border-3 shadow-none text-light btn-scroll btn-scroll-1">
+            <button tabindex="-1" class="btnGoToProjects btn-scroll-down btn btn-outline-light rounded-circle border-3 shadow-none text-light btn-scroll btn-scroll-1">
               <img class="img-downwards btn-img" src="../img/arrow_upward.svg" alt="↓">
             </button>
             <div class="pb-5 pt-md-2 pt-5 pt-md-0 mb-5 mb-sm-4 mb-md-0 mt-5 mt-sm-0"></div>
@@ -134,7 +133,6 @@
                 </a>
               </div>
             </div>
-            <div class="row pt-4 pb-3 mobile-only"></div>
           </div>
         </div>
       </div>
@@ -212,6 +210,7 @@
       </button>
     </section>
     <section id="contact" class="position-relative full-height">
+      <canvas id="pong_canvas" class="pong-canvas" aria-hidden="true"></canvas>
       <div class="contact-form-wrapper z-1 position-relative">
         <form class="contact-form" action="https://formsubmit.co/lf-cardenas@hotmail.com" method="POST">
           <h1 class="text-to-replace text-no-selectable fs-2 badge rounded-pill text-center text-light z-1 position-relative pe-none">
@@ -227,14 +226,18 @@
         </form>
       </div>
       <footer class="site-footer z-1 position-absolute bottom-0">
-        <div class="footer-inner">
-          <span>© <span id="footer_year"></span> Luis Cárdenas</span>
-          <span>·</span>
-          <a href="https://github.com/luizon" target="_blank" rel="noopener">Github</a>
-          <span>·</span>
-          <a href="mailto:lf-cardenas@hotmail.com">Email</a>
-          <span>·</span>
-          <a href="https://linkedin.com/in/luisfernandocardenas" target="_blank" rel="noopener">LinkedIn</a>
+        <div class="footer-inner d-md-flex d-block">
+          <div class="justify-content-center">
+            <span>© <span id="footer_year"></span> Luis Cárdenas</span>
+            <span class="d-md-block d-none pe-3">·</span>
+          </div>
+          <div>
+            <a href="https://github.com/luizon" target="_blank" rel="noopener">Github</a>
+            <span>·</span>
+            <a href="mailto:lf-cardenas@hotmail.com">Email</a>
+            <span>·</span>
+            <a href="https://linkedin.com/in/luisfernandocardenas" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
         </div>
       </footer>
       <script>

@@ -24,7 +24,6 @@ const dictionary = {
   LANG_ES : {
     misc : {
       warning : "Advertencia",
-      mobileDeviceMessage : "Esta página web fue creada para dispositivos de escritorio. Es posible que algunas cosas no funcionen correctamente en dispositivos móviles.",
       visit : "Visitar página web",
       watchRepo : "Ver repositorio",
     },
@@ -104,7 +103,6 @@ const dictionary = {
   LANG_EN : {
     misc : {
       close: 'Close',
-      mobileDeviceMessage : "This webpage was made for desktop devices. Some stuff may not work correctly in mobile devices.",
       visit : "Visit webpage",
       watchRepo : "See repository",
     },
