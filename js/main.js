@@ -72,6 +72,7 @@ function scrollToSection(evt, selectedSection = false) {
       scrollToDownButton.classList.remove("fade-in");
     scrollToDownButton.classList.add("fade-out");
     setTimeout( evt => { scrollToDownButton.hidden = true; }, 1000);
+    stopPong();
     console.log("go to greetings");
   }
   else if(currentSectionIndex == section.PROJECTS) {
@@ -101,6 +102,7 @@ function goToContact() {
     scrollToTopButton.classList.add("fade-in");
     scrollToTopButton.hidden = false;
   }
+  startPong();
 }
 
 function goToProjects() {
@@ -122,6 +124,7 @@ function goToProjects() {
     scrollToDownButton.classList.remove("fade-in");
   scrollToDownButton.classList.add("fade-in");
   scrollToDownButton.hidden = false;
+  stopPong();
 }
 
 /////////////////////////////////////
@@ -129,6 +132,7 @@ function goToProjects() {
 /////////////////////////////////////
 window.onresize = evt => {
   sections[currentSectionIndex].scrollIntoView({ behavior: 'smooth' });
+  resizePong();
 }
 window.onload = evt => {
   if(window.location.href.includes('#aboutMe'))
@@ -366,3 +370,177 @@ $("#btn_contact").on("click", evt => {
 $("#dictionary").ready(function() {
   $('body').fadeIn(100);
 });
+
+/////////////////////////////////////
+// contact pong (CPU vs CPU)
+/////////////////////////////////////
+const pong = {
+  canvas: null,
+  ctx: null,
+  running: false,
+  rafId: null,
+  lastTime: 0,
+  dpr: Math.max(1, window.devicePixelRatio || 1),
+  width: 0,
+  height: 0,
+  ball: null,
+  left: null,
+  right: null
+};
+
+function initPong() {
+  if(!pong.canvas) {
+    pong.canvas = document.getElementById('pong_canvas');
+    if(!pong.canvas) return false;
+    pong.ctx = pong.canvas.getContext('2d');
+  }
+  const contactSection = document.getElementById('contact');
+  if(!contactSection) return false;
+  const rect = contactSection.getBoundingClientRect();
+  pong.width = Math.max(300, Math.floor(rect.width));
+  pong.height = Math.max(200, Math.floor(rect.height));
+  pong.canvas.width = Math.floor(pong.width * pong.dpr);
+  pong.canvas.height = Math.floor(pong.height * pong.dpr);
+  pong.canvas.style.width = pong.width + 'px';
+  pong.canvas.style.height = pong.height + 'px';
+  pong.ctx.setTransform(pong.dpr, 0, 0, pong.dpr, 0, 0);
+
+  const padW = 50;
+  const padH = Math.floor(pong.height * 0.18);
+  const margin = 18;
+  const baseSpeed = Math.max(220, Math.min(380, Math.floor(pong.width * 0.35)));
+
+  pong.left = { x: margin, y: (pong.height - padH)/2, w: padW, h: padH, vy: 0, speed: baseSpeed };
+  pong.right = { x: pong.width - margin - padW, y: (pong.height - padH)/2, w: padW, h: padH, vy: 0, speed: baseSpeed };
+  pong.ball = { x: pong.width/2, y: pong.height/2, r: 15, vx: 0, vy: 0, speed: baseSpeed };
+  resetBall(Math.random() < 0.5 ? -1 : 1);
+  pong.lastTime = performance.now();
+  return true;
+}
+
+function resizePong() {
+  if(!pong.canvas) return;
+  const wasRunning = pong.running;
+  if(wasRunning) stopPong();
+  initPong();
+  if(wasRunning) startPong();
+}
+
+function resetBall(direction) {
+  pong.ball.x = pong.width/2;
+  pong.ball.y = pong.height/2;
+  const deg = (Math.random() * 60 - 30) * Math.PI / 180; // -30..30 degrees
+  pong.ball.vx = Math.cos(deg) * pong.ball.speed * direction;
+  pong.ball.vy = Math.sin(deg) * pong.ball.speed;
+}
+
+function aiMove(paddle, targetY, dt, react = 0.9) {
+  const center = paddle.y + paddle.h/2;
+  const diff = targetY - center;
+  const maxMove = paddle.speed * dt * react;
+  const move = Math.max(-maxMove, Math.min(maxMove, diff));
+  paddle.y += move;
+  if(paddle.y < 0) paddle.y = 0;
+  if(paddle.y + paddle.h > pong.height) paddle.y = pong.height - paddle.h;
+}
+
+function updatePong(dt) {
+  // Move paddles (CPU vs CPU)
+  const trackingBias = 0.85;
+  if(pong.ball.vx < 0) {
+    aiMove(pong.left, pong.ball.y, dt, trackingBias);
+    aiMove(pong.right, pong.height/2, dt, 0.5);
+  } else {
+    aiMove(pong.right, pong.ball.y, dt, trackingBias);
+    aiMove(pong.left, pong.height/2, dt, 0.5);
+  }
+
+  // Move ball
+  pong.ball.x += pong.ball.vx * dt;
+  pong.ball.y += pong.ball.vy * dt;
+
+  // Wall collision top/bottom
+  if(pong.ball.y - pong.ball.r <= 0 && pong.ball.vy < 0) {
+    pong.ball.y = pong.ball.r;
+    pong.ball.vy *= -1;
+  }
+  if(pong.ball.y + pong.ball.r >= pong.height && pong.ball.vy > 0) {
+    pong.ball.y = pong.height - pong.ball.r;
+    pong.ball.vy *= -1;
+  }
+
+  // Paddle collisions
+  // Left paddle
+  if(pong.ball.x - pong.ball.r <= pong.left.x + pong.left.w) {
+    if(pong.ball.y >= pong.left.y && pong.ball.y <= pong.left.y + pong.left.h && pong.ball.vx < 0) {
+      pong.ball.x = pong.left.x + pong.left.w + pong.ball.r;
+      const offset = (pong.ball.y - (pong.left.y + pong.left.h/2)) / (pong.left.h/2);
+      pong.ball.vx = Math.abs(pong.ball.vx) * 1.03; // slight speed up
+      pong.ball.vy = pong.ball.speed * offset;
+    }
+  }
+  // Right paddle
+  if(pong.ball.x + pong.ball.r >= pong.right.x) {
+    if(pong.ball.y >= pong.right.y && pong.ball.y <= pong.right.y + pong.right.h && pong.ball.vx > 0) {
+      pong.ball.x = pong.right.x - pong.ball.r;
+      const offset = (pong.ball.y - (pong.right.y + pong.right.h/2)) / (pong.right.h/2);
+      pong.ball.vx = -Math.abs(pong.ball.vx) * 1.03; // slight speed up
+      pong.ball.vy = pong.ball.speed * offset;
+    }
+  }
+
+  // Out of bounds left/right → reset
+  if(pong.ball.x < -30) resetBall(1);
+  if(pong.ball.x > pong.width + 30) resetBall(-1);
+}
+
+function drawPong() {
+  const ctx = pong.ctx;
+  if(!ctx) return;
+  ctx.clearRect(0, 0, pong.width, pong.height);
+  ctx.fillStyle = '#000';
+  ctx.strokeStyle = '#000';
+
+  // Center line (dashed)
+  ctx.globalAlpha = 0.25;
+  const dashH = 12, gap = 10, centerX = Math.floor(pong.width/2);
+  for(let y = 0; y < pong.height; y += dashH + gap) {
+    ctx.fillRect(centerX - 1, y, 10, dashH);
+  }
+  ctx.globalAlpha = .5;
+
+  // Paddles
+  ctx.fillRect(pong.left.x, pong.left.y, pong.left.w, pong.left.h);
+  ctx.fillRect(pong.right.x, pong.right.y, pong.right.w, pong.right.h);
+
+  // Ball
+  ctx.beginPath();
+  ctx.arc(pong.ball.x, pong.ball.y, pong.ball.r, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+function loopPong(now) {
+  if(!pong.running) return;
+  const dtMs = now ? (now - pong.lastTime) : 16;
+  pong.lastTime = now || performance.now();
+  const dt = Math.min(0.033, Math.max(0.008, dtMs / 1000));
+  updatePong(dt);
+  drawPong();
+  pong.rafId = requestAnimationFrame(loopPong);
+}
+
+function startPong() {
+  if(pong.running) return;
+  if(!initPong()) return;
+  pong.running = true;
+  pong.lastTime = performance.now();
+  pong.rafId = requestAnimationFrame(loopPong);
+}
+
+function stopPong() {
+  if(!pong.running) return;
+  pong.running = false;
+  if(pong.rafId) cancelAnimationFrame(pong.rafId);
+  pong.rafId = null;
+  if(pong.ctx) pong.ctx.clearRect(0, 0, pong.canvas.width, pong.canvas.height);
+}

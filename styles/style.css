@@ -448,3 +448,18 @@ a .modal-title-redirect, .modal-technology {
     font-size: 1.7rem;
   }
 }
+
+/* contact pong canvas */
+#contact {
+  position: relative;
+  overflow: hidden;
+}
+
+#contact .pong-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 1;
+}
