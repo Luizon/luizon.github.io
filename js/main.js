@@ -186,10 +186,10 @@ window.onresize = evt => {
   resizePong();
 }
 window.onload = evt => {
-  setupSectionObserver();
   if(window.location.href.includes("sent=true")) {
     bootbox.alert(dictionary[language].sections.contact.messageSent);
   }
+  setupSectionObserver();
 }
 
 /////////////////////////////////////
